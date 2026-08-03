@@ -1,4 +1,4 @@
 interface:
   display_name: "TUL Project Setup"
-  short_description: "Set up a personal TUL thesis workspace"
-  default_prompt: "Use $setup-tul-project to create my local profile and initialize my thesis documents."
+  short_description: "Beginner-friendly TUL thesis setup"
+  default_prompt: "Use $setup-tul-project to guide me from Word to my own TUL thesis workspace in plain language."

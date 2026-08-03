@@ -1,9 +1,31 @@
 ---
 name: setup-tul-project
-description: Set up a cloned TUL thesis template for a new user or project. Use for first-time onboarding, creating or updating the local author profile, choosing faculty and work type, initializing the primary thesis or defense slides, adding independently compiled supporting documents such as a technological diary, registering deliverables, or handing work off to a fresh focused AI chat.
+description: Set up a TUL thesis template for a new user or project, including complete beginners moving from Word who do not know Git, GitHub, LaTeX, repositories, or terminals. Use for first-time orientation and onboarding, creating or updating the local author profile, choosing faculty and work type, initializing the primary thesis or defense slides, adding independently compiled supporting documents such as a technological diary, registering deliverables, or handing work off to a fresh focused AI chat.
 ---
 
 # Set up a TUL project
+
+## Orient a beginner
+
+Match the user's language. Unless the user demonstrates technical experience, use plain language and teach only what is needed for the current decision. Do not begin with a lecture, commands, internal file structure, or unexplained codes.
+
+At the start, briefly explain that:
+
+- the user should work in a personal project copy and the agent will verify that assumption before publishing or writing personal data into tracked files;
+- the agent will handle most file and LaTeX operations while the user controls content and confirms personal or official data;
+- the editable sources produce a PDF for reading and submission.
+
+When Git metadata exists, inspect the `origin` URL. If it still points to the original template repository, explain the difference between the original, a personal repository, and a local-only copy before writing personal data into tracked files. Recommend **Use this template** and a private repository to a beginner. Do not create, publish, or reconnect a repository without the user's authorization.
+
+Use these dialogue rules:
+
+- ask at most three closely related questions at once when possible;
+- accept ordinary answers such as „Fakulta textilní“ or „bakalářská práce“ and translate them to internal codes only after confirming the interpretation;
+- explain a code such as `FT` or `BP` after the human-readable name, not instead of it;
+- accept „nevím“, „nejsem si jistý“ and „doplním později“ for optional metadata without repeatedly asking;
+- when a script requires a provisional value, explain why, propose one clearly marked value, and obtain confirmation;
+- summarize the intended human-visible result before running initialization;
+- do not require the user to type terminal commands when the agent can safely perform the operation.
 
 ## Inspect the state
 
@@ -13,13 +35,20 @@ Treat `setup_state: template` as uninitialized. Do not force onboarding for a re
 
 ## Collect the minimum profile
 
-Ask only for missing values and keep the conversation in small groups. Require these values before initializing the primary document:
+Ask only for missing values and keep the conversation in small groups. Ask with human-readable names and normalize the confirmed answers internally. Require these values before initializing the primary document:
 
 - full name and optional preferred form of address;
-- faculty or unit code: `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, or `CXI`;
-- work type: `BP`, `DP`, `Dis`, `Teze`, `Autoref`, `Hab`, `SP`, or `Proj`;
+- faculty or unit, normalized after confirmation to `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, or `CXI`;
+- work type, normalized after confirmation to `BP`, `DP`, `Dis`, `Teze`, `Autoref`, `Hab`, `SP`, or `Proj`;
 - language: `CZ` or `EN`;
 - submission year.
+
+Use these name mappings when the user answers without codes:
+
+- Fakulta strojní → `FS`; Fakulta textilní → `FT`; Fakulta přírodovědně-humanitní a pedagogická → `FP`;
+- Ekonomická fakulta → `EF`; Fakulta umění a architektury → `FA`; Fakulta mechatroniky, informatiky a mezioborových studií → `FM`;
+- Fakulta zdravotnických studií → `FZS`; Ústav pro nanomateriály, pokročilé technologie a inovace → `CXI`;
+- bakalářská práce → `BP`; diplomová práce → `DP`. For less common work types, state the interpreted code and ask for confirmation.
 
 Then collect what is already known: Czech and English title, programme code and names, branch or specialization, supervisor, consultant, and IS STAG introductory-pages PDF. Allow unknown optional values to remain empty. Never guess official institutional metadata.
 
@@ -65,12 +94,14 @@ Keep personal author data in `PROJECT_PROFILE.json`; do not duplicate it in `PRO
 
 Run `scripts/validate-skills.ps1`, `scripts/audit-sources.ps1`, and a relevant environment check. Compile initialized documents only when their required metadata and toolchain are ready. Report missing components without installing anything.
 
-Finish with:
+Finish in the user's language with:
 
 - the profile path and its ignored status;
 - every created document key and entry point;
 - what metadata is still missing;
 - the checks performed;
+- a short beginner explanation of what the main source file, generated PDF, local profile, and Git history each do;
+- two or three example requests the user can make next without using file paths or terminal commands;
 - an exact prompt for a new focused chat.
 
 Recommend a fresh chat after onboarding so document work starts with clean context. Do not create a new chat unless the user explicitly asks. Example:
