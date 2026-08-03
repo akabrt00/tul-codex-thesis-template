@@ -6,6 +6,7 @@
 - When `PROJECT_CONTEXT.md` contains `setup_state: template` and the user wants to begin a real project, use `$setup-tul-project` before initializing or editing a document. Do not force onboarding for read-only questions.
 - Treat `templates/upstream/` as immutable vendor material. Never edit, compile, or use it as an expert/citable source.
 - Work on the thesis only in `prace/`, on defense slides only in `obhajoba/`, and on expert sources only in `zdroje/`.
+- Before creating or reviewing citations, read `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md` and then apply any stricter faculty-specific rule recorded in `PROJECT_CONTEXT.md`.
 - Register every independently compiled document and its entry point in `PROJECT_CONTEXT.md`. The primary thesis uses `prace/main.tex`; additional formal documents use `prace/dokumenty/<slug>/main.tex`.
 - Prefer installed, task-appropriate tools; never install software, packages, fonts, or toolboxes without approval.
 - Preserve user changes, avoid machine-specific absolute paths and secrets, and verify every material output.
