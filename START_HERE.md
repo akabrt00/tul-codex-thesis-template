@@ -55,12 +55,15 @@ Po nastavení vám agent řekne, co vytvořil, co ještě chybí a kde vznikne v
 
 Agentovi můžete psát normálními větami:
 
-- „Přidej tento PDF zdroj do projektu a připrav ho k citování.“
+- „Tady je nový odborný podklad. Co z něj můžeme použít v práci?“
+- „Co moje podklady říkají o opotřebení textilních materiálů?“
 - „Pomoz mi rozdělit tuto kapitolu do logických podkapitol.“
 - „Zapracuj připomínky vedoucího, ale nejdřív mi shrň navrhované změny.“
 - „Zkontroluj citace a seznam literatury.“
 - „Vytvoř aktuální PDF a zkontroluj, zda se správně zobrazuje.“
 - „Ulož ověřené změny do historie a vysvětli mi, co se uloží na GitHub.“
+
+U zdrojů nemusíte žádat o registraci, extrakci ani indexování a nemusíte znát název žádného skillu. Když v aktivním chatu přiložíte soubor nebo se zeptáte na odbornou informaci, agent tento postup spustí automaticky, ověří konkrétní stránku a buď připraví správnou citaci, nebo řekne, jaký podklad chybí. Projekt neběží bez agenta na pozadí; soubor vložený do `zdroje/00_prichozi/` se proto zpracuje při vaší nejbližší zprávě.
 
 ## Pět pojmů, které stačí znát
 

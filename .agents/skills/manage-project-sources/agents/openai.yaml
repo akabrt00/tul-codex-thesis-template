@@ -1,4 +1,6 @@
 interface:
   display_name: "Search and Manage Sources"
   short_description: "Indexes, searches, verifies, and cites sources"
-  default_prompt: "Use $manage-project-sources to search my registered materials, verify the evidence by page, and cite it or explain what source is missing."
+  default_prompt: "Search my registered materials, verify the evidence by page, and cite it or explain what source is missing."
+policy:
+  allow_implicit_invocation: true

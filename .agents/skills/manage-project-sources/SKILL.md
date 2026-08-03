@@ -1,9 +1,25 @@
 ---
 name: manage-project-sources
-description: Manage, index, search, and verify expert and citable project sources under zdroje/. Use whenever Codex adds, downloads, imports, organizes, converts, extracts, maps, summarizes, searches, answers questions from, verifies, recommends, or cites expert sources, including requests to find evidence for thesis text or identify missing materials; always exclude templates/ and upstream TUL assets.
+description: Automatically manage, index, search, and verify expert and citable project sources under zdroje/. Invoke without requiring the user to name this skill whenever a source file is attached, provided, or placed in zdroje/00_prichozi; when the user asks an evidence-seeking question; or when factual thesis writing, citation, bibliography, source recommendation, import, extraction, mapping, search, or audit is needed. Always exclude templates/ and upstream TUL assets.
 ---
 
 # Manage Project Sources
+
+## Operate implicitly
+
+Do not require the user to name this skill, request indexing, understand the directory structure, or describe the technical workflow. Automatically invoke it during an active turn when:
+
+- the user attaches or provides a source file for the project;
+- a new file is present in `zdroje/00_prichozi/`;
+- the user asks what their materials say, requests evidence, or asks a factual question related to the project;
+- the user asks to draft or revise factual thesis text, citations, bibliography entries, tables, or figures based on sources;
+- the source audit or search layer is missing or stale during such work.
+
+At the start of a source-related turn, inspect the registry, incoming directory, source tree, and search-layer state. Process relevant unregistered or incomplete sources through the full lifecycle before relying on them, and rebuild a missing or stale page index. A file attachment or placement in `zdroje/00_prichozi/` authorizes ordinary in-project ingestion unless the user explicitly asks for read-only inspection; still stop for a material licensing, privacy, source-identity, or public-repository decision that cannot be resolved safely.
+
+Do not ask routine technical questions that can be resolved from the project rules. For an informational question, answer from verified sources without editing thesis documents. When the user asks to write or revise a registered thesis document, automatically insert the supported citation and bibliography data as part of that requested edit. If local evidence is insufficient, return a source-gap recommendation; browse or acquire new material only when the request authorizes it.
+
+This workflow is turn-triggered. Do not claim to monitor folders or process files while no agent task is active.
 
 ## Establish context
 

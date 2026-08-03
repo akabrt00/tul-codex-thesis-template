@@ -14,6 +14,7 @@ At the start, briefly explain that:
 - the user should work in a personal project copy and the agent will verify that assumption before publishing or writing personal data into tracked files;
 - the agent will handle most file and LaTeX operations while the user controls content and confirms personal or official data;
 - the editable sources produce a PDF for reading and submission.
+- source work is automatic during active chats: the user can attach a document or ask a normal question about the materials without naming a skill, and the agent will register, index, search, and verify it as applicable.
 
 When Git metadata exists, inspect the `origin` URL. If it still points to the original template repository, explain the difference between the original, a personal repository, and a local-only copy before writing personal data into tracked files. Recommend **Use this template** and a private repository to a beginner. Do not create, publish, or reconnect a repository without the user's authorization.
 
@@ -103,6 +104,8 @@ Finish in the user's language with:
 - a short beginner explanation of what the main source file, generated PDF, local profile, and Git history each do;
 - two or three example requests the user can make next without using file paths or terminal commands;
 - an exact prompt for a new focused chat.
+
+At least one example must demonstrate implicit source handling in ordinary language, such as: “Tady je nový odborný podklad. Co z něj můžeme použít v práci?” Explain that processing begins in that active chat; the project does not watch folders unattended while the agent is inactive.
 
 Recommend a fresh chat after onboarding so document work starts with clean context. Do not create a new chat unless the user explicitly asks. Example:
 

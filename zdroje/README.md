@@ -2,6 +2,12 @@
 
 Toto je jediné místo pro odborné a citovatelné podklady projektu. Originál nikdy neupravuj. Každý uložený zdroj zapiš do `REJSTRIK_ZDROJU.md` a teprve potom vytvářej jeho odvozeniny. Upstream šablony v `templates/` nejsou odbornými zdroji, tento systém je zcela ignoruje a nikdy je nenabízí k citování.
 
+## Automatická práce se zdroji
+
+Uživatel nemusí znát název skillu, rejstřík ani žádný příkaz. Stačí v aktivním chatu přiložit podklad, vložit jej do `00_prichozi/` a napsat agentovi, nebo se běžně zeptat například „Co moje podklady říkají o tomto tématu?“. Agent automaticky zkontroluje nové soubory, zdroj zařadí, vytvoří potřebnou stránkovou extrakci a mapu, obnoví index, vyhledá důkazy a před citací ověří původní stránku.
+
+Automatika se spouští při práci agenta. Nejde o program běžící nepřetržitě na pozadí, takže soubor vložený do složky se zpracuje při nejbližší zprávě nebo úkolu v projektu. Samotný informační dotaz nemění text práce; citaci agent zapíše do dokumentu tehdy, když uživatel požádá o napsání nebo úpravu jeho obsahu.
+
 ## Rozdělení
 
 | Složka | Co do ní patří | Co do ní nepatří |
