@@ -43,6 +43,7 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 
 - Primary format: LaTeX
 - Scientific figures: editable TikZ/PGFPlots with traceable external data; MATLAB conversions use the automatic `$matlab-to-tikz` workflow
+- Visual workflow: rough content requests trigger automatic visual recommendations; create original TikZ where suitable, or extract/adapt registered source figures with page-level provenance and permission checks
 - Expected runtime: XeLaTeX, Biber, and MakeIndex
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
@@ -79,3 +80,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: Evidence work is local-first. Search maps and indexes locate candidates, but only verified registered source pages may support thesis claims; missing support becomes an explicit source gap.
 - 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
 - 2026-08-03: MATLAB and numerical plots should be converted to editable PGFPlots/TikZ with preserved data and verified rendering instead of inserted as screenshots when practical.
+- 2026-08-03: Visuals are purpose-led rather than decorative. Each used figure must be traceable as original, reproduced, adapted, or AI-generated; evidence-bearing imagery may not be generatively altered.

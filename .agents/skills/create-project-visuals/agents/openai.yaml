@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Project Visuals"
+  short_description: "Plans, extracts, adapts, and draws thesis visuals"
+  default_prompt: "Use $create-project-visuals to recommend and create the most useful visual for this section."
+policy:
+  allow_implicit_invocation: true

@@ -112,6 +112,16 @@ Příklad běžného požadavku:
 
 > Tady je MATLAB graf. Převeď ho do práce jako pěkný vektorový graf, zachovej data a zkontroluj jednotky i legendu.
 
+## Automatické návrhy obrázků a schémat
+
+Uživatel může obsah popsat hrubě, například „tady vysvětluju tok materiálu výrobní linkou“. Skill `$create-project-visuals` sám posoudí, zda pomůže schéma, graf, fotografie, výřez ze zdroje nebo žádný obrázek. Jednoduchá odborná schémata kreslí v TikZ, datové grafy předává workflow PGFPlots a vhodné obrázky z registrovaných dokumentů umí dohledat, vytáhnout a připravit pro sazbu.
+
+Každý použitý vizuál uchovává informaci o původu, stránce, licenci a provedené úpravě. Převzatý obrázek se cituje, překreslení se označí jako zpracované podle zdroje a AI ilustrace nesmí sloužit jako odborný důkaz. Experimentální fotografie, mikroskopické snímky ani naměřené grafy se generativně „nevylepšují“ způsobem, který by změnil jejich význam.
+
+Příklad:
+
+> Vysvětluju tu postup měření jen hrubě. Navrhni, jestli by pomohl obrázek nebo schéma, a připrav nejlepší variantu do práce.
+
 ## Zdroje a kontroly
 
 Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. Po předem registrovaných pravidlech TUL je první volné ID `SRC-0006`.

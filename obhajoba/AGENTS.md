@@ -6,5 +6,6 @@
 - Keep the public closing frame before backup slides intended for questions.
 - Store expert evidence in `zdroje/`, not in this directory. Cite it by `citacni_klic` and retain the internal `SRC-NNNN` mapping in the registry.
 - Use `$matlab-to-tikz` for MATLAB and numerical plots. Adapt line weight, labels, and density for projection while keeping the plotted values consistent with the thesis.
+- Use `$create-project-visuals` to reuse or adapt thesis visuals for projection. Prefer simplified, legible redraws over dense screenshots, while preserving source attribution and meaning.
 - Compile with `scripts/compile-presentation.ps1` and visually inspect title, representative content, figures/tables, closing, and backup slides.
 - Verify aspect ratio, clipping, legibility, footer numbering, and handout page size when applicable.

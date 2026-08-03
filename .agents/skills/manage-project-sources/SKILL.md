@@ -40,6 +40,8 @@ When web research produces several candidates, register only sources actually us
 
 For PDF text extraction, run `scripts/extract-pdf-text.ps1`. Require one text file per source PDF page and a manifest mapping page number to the derived file. Never merge pages into an unstructured text file when the result may support quotation, review, or citation.
 
+For a figure, table, diagram, photograph, or page crop extracted for document use, record its source ID, citation key, PDF page, original figure/table label and caption, extraction method, crop bounds when applicable, resolution or vector format, license/reuse basis, and every semantic or visual transformation. Preserve scale bars, legends, qualifications, and attribution. Link the derivative from the registry and never generatively alter evidence-bearing imagery.
+
 ## Build the searchable source layer
 
 After extracting a source, read `references/source-map-template.md` and create its content map under `zdroje/90_zpracovane/poznamky-a-souhrny/`. Inspect the whole source before mapping it. Record:
