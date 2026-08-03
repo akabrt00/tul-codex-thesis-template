@@ -1,19 +1,21 @@
 # TUL Codex Thesis Template
 
-Přenositelná projektová základna pro závěrečnou práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty.
+Přenositelná projektová základna pro závěrečnou práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty. Je navržená i pro studenty, kteří dosud pracovali pouze ve Wordu a neznají Git ani LaTeX.
+
+> **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX.
 
 ## Nejrychlejší začátek
 
-1. Naklonujte nebo stáhněte repozitář.
-2. Otevřete jeho kořenovou složku jako workspace AI agenta.
+1. Na GitHubu klikněte na **Use this template** a vytvořte si vlastní, ideálně soukromý repozitář. Vaše práce tím nemůže přepsat původní šablonu.
+2. Stáhněte svou kopii a otevřete celou její složku jako workspace AI agenta.
 3. Pošlete agentovi:
 
-   > Přečti `AGENTS.md` a použij `$setup-tul-project`. Proveď mě prvním nastavením, vytvoř můj lokální profil, založ potřebné dokumenty a řekni mi, kde mám pokračovat.
+   > Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
 
-4. Agent si vyžádá jméno, fakultu, typ práce, jazyk, rok a známé školní údaje. Nic oficiálního nesmí hádat.
+4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
 5. Po dokončení onboardingu otevřete nový chat ve stejném projektu a pracujte už jen na konkrétním dokumentu.
 
-Podrobný vstupní postup je v [START_HERE.md](START_HERE.md).
+Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
 
 ## Profil a soukromí
 
@@ -104,7 +106,9 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 
 ## Zdroje a kontroly
 
-Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. První volné ID v čisté šabloně je `SRC-0003`.
+Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. Po předem registrovaných pravidlech TUL je první volné ID `SRC-0006`.
+
+Výchozí pravidla citování TUL, práce s přímými a nepřímými citacemi, číselným systémem a deklarací AI jsou shrnuta v `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`. Vycházejí z registrovaných primárních zdrojů; aktuální pravidla konkrétní fakulty mají vždy přednost.
 
 Po přidání PDF agent vytvoří stránkovou extrakci, mapu témat a tvrzení a společný fulltextový index. Při dotazu nejprve prohledá registrované podklady, otevře nalezenou stránku a ověří ji proti originálu. Když podklady tvrzení nepodporují, nesmí vytvořit falešnou citaci; místo toho doporučí, jaký nový odborný materiál je potřeba získat.
 

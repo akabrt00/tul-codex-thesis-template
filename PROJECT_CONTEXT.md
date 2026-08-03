@@ -16,7 +16,7 @@ This tracked file describes the project, its deliverables, and durable decisions
 - Primary work type: `[BP/DP/Dis/Teze/Autoref/Hab/SP/Proj]`
 - Language: `[CZ/EN]`
 - Main document: `prace/main.tex`
-- Bibliography and citation requirements: `[not configured]`
+- Bibliography and citation requirements: follow the TUL policy summary in `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`; confirm the faculty-specific citation system during onboarding
 - IS STAG introductory-pages PDF: `[not provided]`
 
 ## Deliverables
@@ -76,3 +76,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: Personal onboarding data is stored in Git-ignored `PROJECT_PROFILE.json`; project structure and non-sensitive decisions remain in this tracked file.
 - 2026-08-03: `prace/main.tex` is the primary thesis entry point. Independently compiled supporting documents use `prace/dokumenty/<slug>/main.tex`.
 - 2026-08-03: Evidence work is local-first. Search maps and indexes locate candidates, but only verified registered source pages may support thesis claims; missing support becomes an explicit source gap.
+- 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
