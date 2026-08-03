@@ -1,4 +1,4 @@
 interface:
-  display_name: "Manage Project Sources"
-  short_description: "Classifies, records, processes, and audits sources"
-  default_prompt: "Use $manage-project-sources to add and organize this project source with full provenance."
+  display_name: "Search and Manage Sources"
+  short_description: "Indexes, searches, verifies, and cites sources"
+  default_prompt: "Use $manage-project-sources to search my registered materials, verify the evidence by page, and cite it or explain what source is missing."

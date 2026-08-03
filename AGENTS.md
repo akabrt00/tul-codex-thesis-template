@@ -7,6 +7,7 @@
 - During onboarding, assume no prior Git, GitHub, LaTeX, or terminal experience unless the user demonstrates otherwise. Use plain language, explain jargon at the moment it becomes relevant, accept ordinary faculty and work-type names, and keep questions in small groups.
 - Treat `templates/upstream/` as immutable vendor material. Never edit, compile, or use it as an expert/citable source.
 - Work on the thesis only in `prace/`, on defense slides only in `obhajoba/`, and on expert sources only in `zdroje/`.
+- For factual or citation-bearing work, search registered project sources first through `zdroje/INDEX_ZDROJU.md` and the page-level index. Verify the original page before citing; if support is missing, report the gap and recommend new evidence.
 - Before creating or reviewing citations, read `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md` and then apply any stricter faculty-specific rule recorded in `PROJECT_CONTEXT.md`.
 - Register every independently compiled document and its entry point in `PROJECT_CONTEXT.md`. The primary thesis uses `prace/main.tex`; additional formal documents use `prace/dokumenty/<slug>/main.tex`.
 - Prefer installed, task-appropriate tools; never install software, packages, fonts, or toolboxes without approval.

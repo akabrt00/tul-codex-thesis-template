@@ -110,9 +110,17 @@ Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_
 
 Výchozí pravidla citování TUL, práce s přímými a nepřímými citacemi, číselným systémem a deklarací AI jsou shrnuta v `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`. Vycházejí z registrovaných primárních zdrojů; aktuální pravidla konkrétní fakulty mají vždy přednost.
 
+Po přidání PDF agent vytvoří stránkovou extrakci, mapu témat a tvrzení a společný fulltextový index. Při dotazu nejprve prohledá registrované podklady, otevře nalezenou stránku a ověří ji proti originálu. Když podklady tvrzení nepodporují, nesmí vytvořit falešnou citaci; místo toho doporučí, jaký nový odborný materiál je potřeba získat.
+
+Příklad požadavku:
+
+> Prohledej moje zdroje k tématu opotřebení textilních materiálů. U každého použitelného tvrzení ověř konkrétní stránku a navrhni citaci. Co nenajdeš, vypiš jako chybějící podklad.
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-skills.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\audit-sources.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-source-search-index.ps1 -Force
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\search-sources.ps1 -Query "hledaný pojem"
 ```
 
 Šablona nic automaticky neinstaluje. Chybějící programy, balíky nebo fonty pouze nahlásí.

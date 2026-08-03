@@ -45,6 +45,7 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Expected runtime: XeLaTeX, Biber, and MakeIndex
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
+- Source retrieval: registry → thematic content maps → page-level fulltext index → original-page verification
 - Generated outputs: next to their registered document entry points unless configured otherwise
 
 ## Commands
@@ -74,4 +75,5 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 
 - 2026-08-03: Personal onboarding data is stored in Git-ignored `PROJECT_PROFILE.json`; project structure and non-sensitive decisions remain in this tracked file.
 - 2026-08-03: `prace/main.tex` is the primary thesis entry point. Independently compiled supporting documents use `prace/dokumenty/<slug>/main.tex`.
+- 2026-08-03: Evidence work is local-first. Search maps and indexes locate candidates, but only verified registered source pages may support thesis claims; missing support becomes an explicit source gap.
 - 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
