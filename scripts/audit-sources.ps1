@@ -18,6 +18,7 @@ foreach ($line in $registryLines) {
             id = $cells[0]
             citation_key = $cells[1]
             status = $cells[2]
+            title = $cells[3]
             local_path = $cells[5]
             raw = $line
         }
@@ -41,7 +42,7 @@ foreach ($row in $rows) {
     }
 }
 
-$controlNames = @('AGENTS.md','README.md','REJSTRIK_ZDROJU.md','.gitkeep')
+$controlNames = @('AGENTS.md','README.md','REJSTRIK_ZDROJU.md','INDEX_ZDROJU.md','.gitkeep')
 $originalFiles = @(
     Get-ChildItem -LiteralPath $sourceRoot -Recurse -Force -File |
         Where-Object {
@@ -55,9 +56,11 @@ foreach ($file in $originalFiles) {
 }
 
 $derivatives = @(Get-ChildItem -LiteralPath (Join-Path $sourceRoot '90_zpracovane') -Recurse -Force -File | Where-Object Name -ne '.gitkeep')
+$globalIndexNames = @('search-index.jsonl', 'search-index-manifest.json')
 foreach ($file in $derivatives) {
     $relative = $file.FullName.Substring($sourceRoot.Length + 1)
-    if ($relative -notmatch 'SRC-\d{4}') { $issues += "Derivative path is not associated with an SRC ID: $relative" }
+    $isGlobalIndex = $relative -like '90_zpracovane\index\*' -and $file.Name -in $globalIndexNames
+    if (-not $isGlobalIndex -and $relative -notmatch 'SRC-\d{4}') { $issues += "Derivative path is not associated with an SRC ID: $relative" }
 }
 
 $manifests = @($derivatives | Where-Object Name -eq 'manifest.json')
@@ -72,6 +75,84 @@ foreach ($manifestFile in $manifests) {
     foreach ($page in $manifest.pages) {
         if (-not (Test-Path -LiteralPath (Join-Path $manifestFile.DirectoryName $page.text_file))) {
             $issues += "Extraction manifest references a missing page file: $($page.text_file)"
+        }
+    }
+}
+
+$contentMapPath = Join-Path $sourceRoot 'INDEX_ZDROJU.md'
+$contentMapText = Get-Content -Raw -LiteralPath $contentMapPath
+$activeLocalPdfs = @($rows | Where-Object {
+    $_.status -eq 'aktivní' -and
+    $_.local_path -and
+    $_.local_path -ne 'pouze odkaz' -and
+    [IO.Path]::GetExtension($_.local_path) -eq '.pdf'
+})
+foreach ($row in $activeLocalPdfs) {
+    $matchingManifests = @($manifests | Where-Object {
+        try { (Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
+        catch { $false }
+    })
+    if ($matchingManifests.Count -ne 1) { $issues += "$($row.id) active PDF requires exactly one extraction manifest, found $($matchingManifests.Count)" }
+    $matchingMaps = @($derivatives | Where-Object { $_.Name -match ('^' + [regex]::Escape($row.id) + '.*_mapa-obsahu\.md$') })
+    if ($matchingMaps.Count -lt 1) { $issues += "$($row.id) active PDF has no content map" }
+    if ($contentMapText -notmatch [regex]::Escape($row.id)) { $issues += "$($row.id) active PDF is missing from INDEX_ZDROJU.md" }
+}
+
+$searchIndexPath = Join-Path $sourceRoot '90_zpracovane\index\search-index.jsonl'
+$searchManifestPath = Join-Path $sourceRoot '90_zpracovane\index\search-index-manifest.json'
+if ((Test-Path -LiteralPath $searchIndexPath) -xor (Test-Path -LiteralPath $searchManifestPath)) {
+    $issues += 'Global search index requires both search-index.jsonl and search-index-manifest.json'
+}
+if ($activeLocalPdfs.Count -gt 0 -and -not (Test-Path -LiteralPath $searchIndexPath)) {
+    $issues += 'Active local PDFs exist but the global page-level search index is missing'
+}
+if ((Test-Path -LiteralPath $searchIndexPath) -and (Test-Path -LiteralPath $searchManifestPath)) {
+    try { $searchManifest = Get-Content -Raw -LiteralPath $searchManifestPath | ConvertFrom-Json }
+    catch { $issues += 'Invalid search-index-manifest.json'; $searchManifest = $null }
+    $indexRecords = @()
+    $lineNumber = 0
+    foreach ($line in Get-Content -Encoding UTF8 -LiteralPath $searchIndexPath) {
+        $lineNumber++
+        if ([string]::IsNullOrWhiteSpace($line)) { continue }
+        try { $record = $line | ConvertFrom-Json }
+        catch { $issues += "Invalid JSONL record at search-index.jsonl line $lineNumber"; continue }
+        $indexRecords += $record
+        if ($record.source_id -notin $rows.id) { $issues += "Search index references unregistered source: $($record.source_id)" }
+        if ([int]$record.page_number -lt 1) { $issues += "Search index has invalid page number for $($record.source_id)" }
+        if ([string]$record.text_path -match '(?i)templates[/\\]') { $issues += "Search index points into templates/: $($record.text_path)" }
+        $indexedTextPath = Join-Path $sourceRoot ([string]$record.text_path)
+        if (-not (Test-Path -LiteralPath $indexedTextPath)) {
+            $issues += "Search index points to missing text page: $($record.text_path)"
+        } else {
+            $resolvedTextPath = (Resolve-Path -LiteralPath $indexedTextPath).Path
+            if (-not $resolvedTextPath.StartsWith($sourceRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+                $issues += "Search index text path escapes zdroje/: $($record.text_path)"
+            } else {
+                $currentTextHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $resolvedTextPath).Hash.ToLowerInvariant()
+                if ([string]$record.text_sha256 -ne $currentTextHash) { $issues += "Search index has stale text hash for $($record.source_id) page $($record.page_number)" }
+                $currentText = [string](Get-Content -Raw -Encoding UTF8 -LiteralPath $resolvedTextPath)
+                if ([string]$record.text -ne $currentText) { $issues += "Search index has stale text content for $($record.source_id) page $($record.page_number)" }
+            }
+        }
+    }
+    if ($searchManifest) {
+        if ([int]$searchManifest.schema_version -ne 1) { $issues += 'Unsupported search index schema version' }
+        if ([int]$searchManifest.page_record_count -ne $indexRecords.Count) { $issues += 'Search index record count differs from its manifest' }
+        $currentRegistryHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $registryPath).Hash.ToLowerInvariant()
+        if ([string]$searchManifest.registry_sha256 -ne $currentRegistryHash) { $issues += 'Search index is stale because the source registry changed' }
+        $indexedSourceCount = @($indexRecords | Select-Object -ExpandProperty source_id -Unique).Count
+        if ([int]$searchManifest.source_count -ne $indexedSourceCount) { $issues += 'Search index source count differs from its manifest' }
+    }
+    foreach ($row in $activeLocalPdfs) {
+        $sourceRecords = @($indexRecords | Where-Object source_id -eq $row.id)
+        if ($sourceRecords.Count -lt 1) { $issues += "$($row.id) active PDF has no page records in the global search index" }
+        $sourceManifestFile = $manifests | Where-Object {
+            try { (Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
+            catch { $false }
+        } | Select-Object -First 1
+        if ($sourceManifestFile) {
+            $expectedPages = [int](Get-Content -Raw -LiteralPath $sourceManifestFile.FullName | ConvertFrom-Json).page_count
+            if ($sourceRecords.Count -ne $expectedPages) { $issues += "$($row.id) search index page count differs from its extraction manifest" }
         }
     }
 }

@@ -1,13 +1,13 @@
 ---
 name: manage-project-sources
-description: Manage the complete lifecycle of expert and citable project sources under zdroje/, including assigning stable SRC identifiers and citation keys, classifying originals, recording provenance, extracting PDFs with page mapping, creating traceable derivatives, locating citations, and auditing the registry. Use whenever Codex adds, downloads, imports, organizes, converts, extracts, summarizes, cites, retrieves, or checks expert sources; always exclude templates/ and upstream TUL assets.
+description: Manage, index, search, and verify expert and citable project sources under zdroje/. Use whenever Codex adds, downloads, imports, organizes, converts, extracts, maps, summarizes, searches, answers questions from, verifies, recommends, or cites expert sources, including requests to find evidence for thesis text or identify missing materials; always exclude templates/ and upstream TUL assets.
 ---
 
 # Manage Project Sources
 
 ## Establish context
 
-From the repository root, read `PROJECT_CONTEXT.md`, `zdroje/README.md`, and `zdroje/REJSTRIK_ZDROJU.md`. Treat the category map and registry as authoritative. Do not invent a parallel source directory.
+From the repository root, read `PROJECT_CONTEXT.md`, `zdroje/README.md`, `zdroje/REJSTRIK_ZDROJU.md`, and `zdroje/INDEX_ZDROJU.md`. Treat the category map, registry, and search tree as authoritative. Do not invent a parallel source directory.
 
 Restrict every scan, search, duplicate check, suggestion, and citation lookup to `zdroje/`. Ignore all content under `templates/`, `prace/`, `obhajoba/`, `.agents/`, and generated build directories. Never register or cite TUL classes, manuals, logos, example PDFs, fonts, or other upstream template assets.
 
@@ -40,11 +40,45 @@ When web research produces several candidates, register only sources actually us
 
 For PDF text extraction, run `scripts/extract-pdf-text.ps1`. Require one text file per source PDF page and a manifest mapping page number to the derived file. Never merge pages into an unstructured text file when the result may support quotation, review, or citation.
 
+## Build the searchable source layer
+
+After extracting a source, read `references/source-map-template.md` and create its content map under `zdroje/90_zpracovane/poznamky-a-souhrny/`. Inspect the whole source before mapping it. Record:
+
+- its scope and document structure;
+- topics, synonyms, terminology, and page ranges;
+- supported claims and the kind and strength of evidence;
+- limitations, conflicts, age, and material the source does not support;
+- suitable thesis sections or uses.
+
+Update `zdroje/INDEX_ZDROJU.md` with concise thematic branches and a link to the source map. Do not place long quotations or full copyrighted text in either map.
+
+The index is a retrieval aid derived from registered page extractions; it is not evidence by itself and inherits the source's privacy and licensing restrictions. Keep a newly added source in status `příchozí` while completing its registry row, page extraction, content map, and search-tree entry. Then change it to `aktivní`, immediately rebuild the page-level index with `scripts/build-source-search-index.ps1 -Force`, and run the source audit.
+
 ## Find or cite sources
 
-Search `REJSTRIK_ZDROJU.md` first by ID, citation key, title, author, URL, and purpose. Then inspect the registered local path. Do not change files during a find-only request and never search `templates/` for citable evidence.
+Search in this order:
+
+1. `REJSTRIK_ZDROJU.md` for bibliographic identity, authority, provenance, and purpose.
+2. `INDEX_ZDROJU.md` and per-source maps for themes, terminology, likely sources, page ranges, and known limitations.
+3. `scripts/search-sources.ps1 -Query '<terms>'` for page-level candidates. Try relevant synonyms, abbreviations, Czech/English variants, and narrower terms when needed.
+4. Open every matching page text and relevant neighboring pages. For layout-dependent evidence such as tables, equations, diagrams, captions, or ambiguous extraction, visually inspect the corresponding original PDF page.
+5. Compare independent or primary sources when the claim is important, disputed, recent, or safety-sensitive.
+
+Never cite from a summary, map, search snippet, or AI memory alone. Treat them only as pointers to the registered original. Distinguish what the source states directly from the agent's inference, and report contradictions rather than silently resolving them.
 
 Use `citacni_klic` in document citations and retain `SRC-NNNN` for internal traceability. For external-facing references, use authoritative bibliographic information or URL from the registry rather than a local path.
+
+When the user asks to place supported text into a thesis, use the applicable thesis skill and citation policy. Cite immediately after the supported statement, include a page locator when required or helpful, and add or update the corresponding bibliography entry. Verify that the rendered citation and bibliography resolve correctly.
+
+If local evidence is insufficient, do not fabricate a citation. Return a source-gap recommendation containing:
+
+- the exact claim or question that remains unsupported;
+- source IDs, topics, terms, and page ranges already checked;
+- why the available evidence is missing, weak, outdated, secondary, or contradictory;
+- the preferred new source type and authority level;
+- suggested search terms, identifiers, institutions, databases, standards, manuals, datasets, or measurements.
+
+Search externally or acquire a recommended source only when the user's request authorizes it. Register and index any retained new source before citing it.
 
 ## Audit sources
 
@@ -56,6 +90,8 @@ Check for:
 - missing, duplicate, or filename-inconsistent citation keys;
 - duplicate URLs, DOI values, filenames, or checksums;
 - derivatives without a source ID or registry link;
+- active local PDFs without a page extraction, content map, search-tree entry, or page-level index record;
+- stale or malformed global search-index records;
 - modified or misplaced originals;
 - long-term files left in `00_prichozi/`;
 - incomplete provenance, dates, license restrictions, or status;
@@ -66,4 +102,4 @@ Report findings before making broad moves, renames, deletions, or deduplication 
 
 ## Finish
 
-Report the source IDs added or used, their locations, registry changes, derivatives created, verification performed, and unresolved provenance or licensing limitations.
+Report the source IDs added, searched, or used; exact pages verified; registry, map, and index changes; citations inserted; checks performed; and unresolved evidence, provenance, privacy, or licensing limitations.

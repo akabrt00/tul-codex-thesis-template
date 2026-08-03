@@ -27,7 +27,18 @@ Toto je jediné místo pro odborné a citovatelné podklady projektu. Originál 
 | `90_zpracovane/prevedene-soubory/` | Formátové konverze a pracovní kopie | Originály |
 | `90_zpracovane/vycistena-data/` | Vyčištěná, filtrovaná a sjednocená data | Neupravené datové zdroje |
 | `90_zpracovane/poznamky-a-souhrny/` | Poznámky, anotace a souhrny navázané na konkrétní zdroj | Finální projektové zprávy |
+| `90_zpracovane/index/` | Generovaný stránkový fulltextový index a jeho manifest | Originály nebo jediná kopie důležitých informací |
 | `99_archiv/` | Nahrazené nebo zastaralé podklady, které je nutné zachovat | Aktivní aktuální zdroje |
+
+## Hledací vrstva
+
+Vyhledávání má tři úrovně:
+
+1. `REJSTRIK_ZDROJU.md` určuje, co je zdroj, odkud pochází a jak se cituje.
+2. `INDEX_ZDROJU.md` a jednotlivé mapy obsahu ukazují témata, tvrzení, omezení a relevantní stránky.
+3. `90_zpracovane/index/search-index.jsonl` umožňuje fulltextové hledání v extrahovaných stránkách.
+
+Výsledek hledání není důkaz. Před citací vždy otevři odpovídající stránku a podle potřeby i originální PDF, zejména u tabulek, rovnic, obrázků a nejasné extrakce.
 
 ## Pracovní postup
 
@@ -39,6 +50,8 @@ Toto je jediné místo pro odborné a citovatelné podklady projektu. Originál 
 6. Pojmenuj uložený originál ve tvaru `SRC-NNNN_strucny-popis.ext`, pokud tím neztratíš významné původní označení.
 7. Odvozené soubory pojmenuj s ID a citačním klíčem a ulož je do příslušné části `90_zpracovane/`.
 8. PDF extrahuj pouze pomocí stránkového workflow: jeden textový soubor na jednu PDF stránku plus `manifest.json` s úplným mapováním.
-9. Při nahrazení zdroje zachovej historii v `99_archiv/` a aktualizuj stav v rejstříku.
+9. Vytvoř mapu obsahu podle skillu, doplň `INDEX_ZDROJU.md` a spusť `scripts/build-source-search-index.ps1 -Force`.
+10. Zdroj označ jako `aktivní` až po dokončení a ověření hledací vrstvy.
+11. Při nahrazení zdroje zachovej historii v `99_archiv/` a aktualizuj stav v rejstříku.
 
 Respektuj autorská práva, licence, ochranu osobních údajů a podmínky zdroje. Pokud lokální kopie není dovolena nebo potřebná, ulož do rejstříku pouze odkaz a metadata.
