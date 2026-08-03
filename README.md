@@ -104,7 +104,9 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 
 ## Zdroje a kontroly
 
-Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. První volné ID v čisté šabloně je `SRC-0003`.
+Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. Po předem registrovaných pravidlech TUL je první volné ID `SRC-0006`.
+
+Výchozí pravidla citování TUL, práce s přímými a nepřímými citacemi, číselným systémem a deklarací AI jsou shrnuta v `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`. Vycházejí z registrovaných primárních zdrojů; aktuální pravidla konkrétní fakulty mají vždy přednost.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-skills.ps1
