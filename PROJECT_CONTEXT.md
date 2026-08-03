@@ -46,6 +46,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
 - Source retrieval: registry → thematic content maps → page-level fulltext index → original-page verification
+- Source automation: enabled on source-related agent turns; attachments, incoming files, evidence questions, and citation-bearing writing trigger source processing without a named command
+- Background monitoring: disabled; pending sources are detected and processed when the agent next works in the project
 - Generated outputs: next to their registered document entry points unless configured otherwise
 
 ## Commands
@@ -77,3 +79,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: `prace/main.tex` is the primary thesis entry point. Independently compiled supporting documents use `prace/dokumenty/<slug>/main.tex`.
 - 2026-08-03: Evidence work is local-first. Search maps and indexes locate candidates, but only verified registered source pages may support thesis claims; missing support becomes an explicit source gap.
 - 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
+- 2026-08-03: Source management is implicit during active agent work. Users may attach a source or ask a normal evidence question without naming a skill; the agent automatically audits, registers, indexes, searches, and verifies as applicable. No unattended background watcher is assumed.

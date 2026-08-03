@@ -112,9 +112,11 @@ Výchozí pravidla citování TUL, práce s přímými a nepřímými citacemi, 
 
 Po přidání PDF agent vytvoří stránkovou extrakci, mapu témat a tvrzení a společný fulltextový index. Při dotazu nejprve prohledá registrované podklady, otevře nalezenou stránku a ověří ji proti originálu. Když podklady tvrzení nepodporují, nesmí vytvořit falešnou citaci; místo toho doporučí, jaký nový odborný materiál je potřeba získat.
 
-Příklad požadavku:
+Tento postup se spouští automaticky: uživatel nemusí znát název skillu ani výslovně žádat o registraci či indexování. Stačí v aktivním chatu přiložit podklad, upozornit na soubor vložený do `zdroje/00_prichozi/`, položit otázku nad vlastními materiály nebo požádat o odborný text do práce. Nejde o nepřetržitou službu na pozadí; čekající soubory agent rozpozná při nejbližším úkolu v projektu.
 
-> Prohledej moje zdroje k tématu opotřebení textilních materiálů. U každého použitelného tvrzení ověř konkrétní stránku a navrhni citaci. Co nenajdeš, vypiš jako chybějící podklad.
+Příklad běžného požadavku:
+
+> Co moje podklady říkají o opotřebení textilních materiálů? Použitelné závěry mi připrav do práce a řekni, co v podkladech chybí.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-skills.ps1

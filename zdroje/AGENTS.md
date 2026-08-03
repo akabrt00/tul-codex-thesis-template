@@ -1,6 +1,7 @@
 # Expert-source instructions
 
-- Use `$manage-project-sources` for every add, import, download, classification, extraction, citation, lookup, or audit operation.
+- Invoke `$manage-project-sources` automatically for every add, import, download, classification, extraction, citation, lookup, evidence question, or audit operation. Never require the user to know or type the skill name.
+- On each source-related active turn, check `00_prichozi/` and the search-layer state. Process pending sources and rebuild stale indexes before relying on them; do not claim unattended background monitoring.
 - Scan and manage only `zdroje/`. Always ignore `templates/`, `prace/`, `obhajoba/`, build outputs, and repository skills.
 - Never offer TUL templates, their manuals, logos, examples, or classes as expert evidence or citations.
 - Preserve each stable internal ID `SRC-NNNN`. Never reuse or renumber an ID, including reserved retired IDs.
