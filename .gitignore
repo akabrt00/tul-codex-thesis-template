@@ -1,0 +1,51 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Editor and operating-system state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Common generated files
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+venv/
+dist/
+build/
+coverage/
+tmp/
+.tmp-*/
+.build-logs/
+*.asv
+*.m~
+slprj/
+*.slxc
+
+# LaTeX generated files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv

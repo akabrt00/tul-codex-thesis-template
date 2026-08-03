@@ -1,0 +1,202 @@
+% Šablona prezentace s aplikací nového vizuálního stylu TUL 2022
+% vytvořil Jan Koprnický (jan.koprnicky@tul.cz)
+\newcommand{\verze}{Verze 2.3}
+% upraveno 20. 5. 2025
+
+\newcommand{\TULextlogofile}
+{V21TUL_pruhledne_CZ.pdf} % externí logo
+%{Znak_Liberec.pdf}
+
+\documentclass[TUL,aspect169]{tulpresentation} %nastavení parametrů: součást TUL (FS, FT, FP, EF, FUA, FM, FZS, CXI); jazyk (EN); barva (bw); tiskové podklady prezentace (handout) 2 slajdy na A4; poměr stran prezentace (aspect43/aspect169) 4:3 nebo 16:9; přidání externího loga (extlogo) do pravého dolního rohu
+
+%\documentclass[FM,EN,bw]{tulpresentation} % Prezentace FM, anglická loga, potlačená barva součásti převedena na černobílou
+
+\title{Šablona prezentace}% 3 řádky je max
+% \title[Krátký název prezentace]{Velmi dlouhý název prezentace % }% 
+% zalomený na 3 velmi dlouhé řádky}
+
+\author{Autor prezentace}
+\institute{XXX TUL}
+
+\newcommand{\authorMail}{jmeno.prijmeni@tul.cz}
+\newcommand{\authorPhone}{+420 485 35x xxx}
+% 
+\date{\today} %29.\,2.\,2023} % předefinování data
+
+% Volitelné balíky pro příklady využití prezentace
+
+
+\begin{document} 
+  \TULtitleframe
+
+\begin{frame}{Obsah} 
+  \only<1> {\tableofcontents[sections={1-}]}%,hideallsubsections]} % Při delších prezentacích s mnoha kapitolami je optimální obsah rozdělit na několik stránek
+  % \only<2>{\tableofcontents[sections={5-}]} 
+\end{frame} 
+
+\section{Práce s šablonou}
+\subsection{Úvod}
+\begin{frame}[fragile]
+  \frametitle{Práce s šablonou}
+  \framesubtitle{Úvod}
+  \begin{itemize}
+    \item Třída \verb|tulpresentation.cls| je založena na třídě beamer a upravena v souladu s novým vizuálním stylem Technické univerzity v Liberci (od r. 2022)
+    \item Nastavení používá zavedené definice z třídy \verb|tulthesis.cls| P. Satrapy
+    \item Šablona je nasdílena v online prostředí \emph{overleaf}, odtud je možné ji stáhnout a spustit offline 
+    \item Odkaz na šablony je: \href{www.fm.tul.cz/personal/jan.koprnicky}{www.fm.tul.cz/personal/jan.koprnicky}
+    \item Šablona vytváří logotypy součástí TUL z fontu \emph{TUL Mono Bold}, který je v projektu nebo může být nainstalován v operačním systému
+    \item Doplňkový symbol TUL v bílé barvě je nezbytný pro vytvoření titulní a závěrečné stránky prezentace 
+    \item Z těchto důvodů nejsou součástí šablony žádná předpřipravená loga
+  \end{itemize}
+\end{frame}
+
+\subsection{Úspěšný překlad}
+\begin{frame}[fragile]
+  \frametitle{Práce s šablonou}
+  \framesubtitle{Úspěšný překlad} 
+  \begin{itemize}
+  \item K úspěšnému překladu šablony jsou potřeba minimálně tyto soubory
+    \begin{itemize}
+      \item \verb|manual-tulpresentation.tex|
+      \item \verb|tulpresentation.cls|
+      \item \verb|symbol-tul-wh.pdf|
+      \item Instalovaný font \emph{Inter}     
+      \item Přítomný/instalovaný font \verb|TUL Mono Bold.*| 
+    \end{itemize}   
+  \end{itemize}
+\end{frame}
+
+\subsection{Parametry třídy}
+\begin{frame}[fragile]{Parametry třídy \emph{tulpresentation.cls}}
+\verb|\documentclass[<parametry>]{tulpresentation}| 
+
+  \begin{columns}[T]
+      \begin{column}{0.4\textwidth}
+        \begin{itemize}
+          \item Typ součásti TUL
+          \begin{itemize}
+            % \item \verb|TUL| (výchozí)
+            \item \verb|FS|
+            \item \verb|FT|
+            \item \verb|FP|
+            \item \verb|EF|
+            \item \verb|FUA|
+            \item \verb|FM|
+            \item \verb|FZS|
+            \item \verb|CXI|
+            \item Není-li parametr uveden, je nastaven \verb|TUL| (výchozí)
+          \end{itemize}      
+        \end{itemize}        
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{itemize}
+          \item Jazyková mutace logotypů
+          \begin{itemize}
+            \item český jazyk (výchozí)
+            \item \verb|EN| (anglický jazyk)
+          \end{itemize}
+          \item Barva prezentace        
+          \begin{itemize}
+            \item V souladu s vybranou součástí TUL (výchozí)
+            \item \verb|bw| (ovlivní barvu titulní stránky, záhlaví a zápatí, nikoli barvu obsahu slajdů)
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Příklady nastavení parametrů třídy}
+  \begin{itemize}
+    \item Prezentace v barvách Technické univerzity v Liberci s českými logy, titulní a závěrečnou stranou:
+
+    \verb|\documentclass[]{tulpresentation}|
+
+    \item Prezentace v barvách Fakulty přírodně-humanitní a pedagogické s anglickými logy:
+    
+    \verb|\documentclass[FP,EN]{tulpresentation}|
+    
+    \item Prezentace černobílá Fakulty mechatroniky, informatiky a mezioborových studií s anglickými logy:
+
+    \verb|\documentclass[FM,bw,EN]{tulpresentation}|
+  \end{itemize}
+\end{frame}
+
+\subsection{Nastavení hlavičky dokumentu}
+\begin{frame}[fragile]{Nastavení hlavičky dokumentu}
+  \begin{itemize}
+    \item Šablona pracuje s těmito deklaracemi
+    \begin{itemize}
+        \item \verb|\title[]{}|
+        \item \verb|\author{}|
+        \item \verb|\institute{}|
+        \item \verb|\newcommand{\authorMail}{}|
+        \item \verb|\newcommand{\authorPhone}{}|
+        \item \verb|\date{}|
+    \end{itemize} 
+    \item Další nastavení použitých balíků je volitelné (Bib\LaTeX, listings, chemfig, mchem atd.)    
+  \end{itemize}
+\end{frame}
+
+\subsection{Práce v těle dokumentu}
+\begin{frame}[fragile]{Práce v těle dokumentu}
+  \begin{itemize}
+    \item K vysázení titulní a závěrečné stránky je nezbytné použít příkazy
+    \begin{itemize}
+        \item \verb|\TULtitleframe|  
+        \item \verb|\TULendframe| 
+    \end{itemize} 
+    \item Další práce se šablonou je obdobná jako práce ve třídě \emph{beamer}
+  \end{itemize}    
+\end{frame}  
+
+\subsection{Úpravy třídy \emph{*.cls}}
+\begin{frame}[fragile]{Úpravy uvnitř třídy \emph{*.cls}}
+  \begin{itemize}
+      \item Úprava poměru stran prezentace 
+      \begin{itemize}
+        \item 16:9 (výchozí) nebo 
+        \item 4:3
+      \end{itemize}
+      
+      \item Nastavení primárního jazyka prezentace
+      \begin{itemize}
+        \item \emph{czech} (výchozí) nebo 
+        \item \emph{english}
+        \item V případě nastavení EN v parametru třídy je vhodné nastavit    
+        \verb|\setdefaultlanguage{english}|
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Matematika}
+    \begin{equation}
+       \begin{aligned} & v_x=\frac{\mathrm{d} x}{\mathrm{~d} t}=\dot{x}, v_y=\frac{\mathrm{d} y}{\mathrm{~d} t}=\dot{y}, v_z=\frac{\mathrm{d} z}{\mathrm{~d} t}=\dot{z} . \\ & a_x=\frac{\mathrm{d} v_x}{\mathrm{~d} t}=\dot{v}_x=\ddot{x}, a_y=\frac{\mathrm{d} v_y}{\mathrm{~d} t}=\dot{v}_y=\ddot{y}, a_z=\frac{\mathrm{d} v_z}{\mathrm{~d} t}=\dot{v}_z=\ddot{z} .\end{aligned}
+    \end{equation}
+\end{frame}
+\section*{Konec}
+
+\TULendframe % Poslední slide / Last slide 
+
+\section{Odpovědi}
+% Při obhajobách se obvykle vkládá za poslední slide příprava odpovědí na otázky
+\begin{frame}[fragile]
+  \frametitle{Jak vypadá využití šablony třídy tulpresentation.cls?}
+  \begin{itemize}
+    \item Naleznete v souboru \verb|priklad-pouziti-sablony-tulpresentation.pdf|
+    \item K zajištění minimálního počtu souborů šablony je zde jen výsledek překladu
+    \item Na vyžádání \href{mailto:jan.koprnicky@tul.cz}{jan.koprnicky@tul.cz} mohu zaslat balík souborů se zdrojovými kódy
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{priklad-pouziti-sablony-tulpresentation.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Odpověď na základní otázku života, vesmíru a vůbec}
+  \begin{itemize}
+    \item 42‽ % překvapník
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

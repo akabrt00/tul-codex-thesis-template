@@ -1,0 +1,4 @@
+interface:
+  display_name: "TUL LaTeX Thesis"
+  short_description: "Creates and validates TUL thesis documents"
+  default_prompt: "Use $tul-thesis to create or edit a TUL thesis document from the bundled official template."

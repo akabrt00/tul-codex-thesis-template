@@ -1,0 +1,8 @@
+* text=auto
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.yaml text eol=lf
+
+# Preserve immutable upstream vendor files byte-for-byte so manifest hashes remain valid.
+templates/upstream/** -text

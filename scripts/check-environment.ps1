@@ -1,0 +1,91 @@
+[CmdletBinding()]
+param([int]$ProbeTimeoutSeconds = 10)
+
+$ErrorActionPreference = 'Stop'
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$results = @()
+
+function Add-Result {
+    param([string]$Component, [bool]$Available, [string]$Detail, [string]$Remedy)
+    $script:results += [pscustomobject]@{
+        Component = $Component
+        Status = if ($Available) { 'OK' } else { 'MISSING' }
+        Detail = $Detail
+        Remedy = if ($Available) { '' } else { $Remedy }
+    }
+}
+
+function Test-CommandProbe {
+    param([string]$Name, [string[]]$Arguments)
+    $command = Get-Command -Name $Name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $command) { return [pscustomobject]@{ ok = $false; detail = 'command not found' } }
+    $psi = New-Object Diagnostics.ProcessStartInfo
+    $psi.FileName = $command.Source
+    $psi.Arguments = ($Arguments | ForEach-Object { if ($_ -match '\s') { '"' + ($_ -replace '"','\"') + '"' } else { $_ } }) -join ' '
+    $psi.UseShellExecute = $false
+    $psi.CreateNoWindow = $true
+    $psi.RedirectStandardOutput = $true
+    $psi.RedirectStandardError = $true
+    $process = New-Object Diagnostics.Process
+    $process.StartInfo = $psi
+    [void]$process.Start()
+    $stdoutTask = $process.StandardOutput.ReadToEndAsync()
+    $stderrTask = $process.StandardError.ReadToEndAsync()
+    if (-not $process.WaitForExit($ProbeTimeoutSeconds * 1000)) {
+        try { $process.Kill() } catch {}
+        return [pscustomobject]@{ ok = $false; detail = "found at $($command.Source), but probe timed out" }
+    }
+    $text = (($stdoutTask.Result + "`n" + $stderrTask.Result) -split '\r?\n' | Where-Object { $_ } | Select-Object -First 1) -join ' '
+    return [pscustomobject]@{ ok = ($process.ExitCode -eq 0); detail = "$($command.Source) - $text" }
+}
+
+$xelatex = Test-CommandProbe -Name 'xelatex' -Arguments @('--version')
+Add-Result 'XeLaTeX' $xelatex.ok $xelatex.detail 'Install XeTeX/XeLaTeX through MiKTeX Console or a full TeX Live distribution, then reopen the shell.'
+
+$biber = Test-CommandProbe -Name 'biber' -Arguments @('--version')
+Add-Result 'Biber' $biber.ok $biber.detail 'Install or repair the Biber package matching the installed BibLaTeX version (MiKTeX Console > Packages > biber), then run the probe again.'
+
+$makeindexCommand = Get-Command -Name 'makeindex' -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+Add-Result 'MakeIndex' ([bool]$makeindexCommand) ($(if($makeindexCommand){$makeindexCommand.Source}else{'command not found'})) 'Install the MakeIndex executable through MiKTeX Console or TeX Live.'
+
+$beamerProbe = Test-CommandProbe -Name 'kpsewhich' -Arguments @('beamer.cls')
+Add-Result 'Beamer class' $beamerProbe.ok $beamerProbe.detail 'Install the LaTeX Beamer package (MiKTeX Console > Packages > beamer, or TeX Live package collection-latexrecommended).'
+
+$thesisClass = Join-Path $repoRoot 'templates\upstream\TUL\TULthesis\tulthesis.cls'
+$tulStyle = Join-Path $repoRoot 'templates\upstream\TUL\TULthesis\tul.sty'
+$presentationClass = Join-Path $repoRoot 'templates\upstream\TUL\TULpresentation\tulpresentation.cls'
+Add-Result 'TULthesis class' ((Test-Path -LiteralPath $thesisClass) -and (Test-Path -LiteralPath $tulStyle)) "$thesisClass; $tulStyle" 'Restore templates/upstream/TUL/TULthesis from the verified upstream package.'
+Add-Result 'TULpresentation class' (Test-Path -LiteralPath $presentationClass) $presentationClass 'Restore templates/upstream/TUL/TULpresentation from the verified upstream package.'
+
+$fontProperties = @()
+foreach ($registryPath in @('HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts','HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts')) {
+    if (Test-Path $registryPath) {
+        $fontProperties += (Get-ItemProperty -Path $registryPath).PSObject.Properties | Where-Object { $_.Name -notmatch '^PS' } | ForEach-Object { "$($_.Name) $($_.Value)" }
+    }
+}
+$fontText = $fontProperties -join "`n"
+$interAvailable = $fontText -match '(?im)\bInter\b'
+$notoAvailable = $fontText -match '(?im)Noto Sans Mono'
+$localTulFonts = @(
+    Join-Path $repoRoot 'templates\upstream\TUL\TULpresentation\TULMono-Bold.otf'
+    Join-Path $repoRoot 'templates\upstream\TUL\TULthesis\TULMono-Bold.ttf'
+)
+$tulFontsAvailable = @($localTulFonts | Where-Object { Test-Path -LiteralPath $_ }).Count -eq $localTulFonts.Count
+Add-Result 'Inter font' $interAvailable ($(if($interAvailable){'registered system font'}else{'not found in Windows font registry'})) 'Install the Inter font family from its official distribution; TULpresentation requires it through fontspec.'
+Add-Result 'Noto Sans Mono font' $notoAvailable ($(if($notoAvailable){'registered system font'}else{'not found in Windows font registry'})) 'Install Noto Sans Mono when using the TUL font option in tul.sty.'
+Add-Result 'Bundled TUL Mono fonts' $tulFontsAvailable ($localTulFonts -join '; ') 'Restore the local TULMono font files from the verified upstream packages.'
+
+$pdfInfoProbe = Test-CommandProbe -Name 'pdfinfo' -Arguments @('-v')
+$pdfTextProbe = Test-CommandProbe -Name 'pdftotext' -Arguments @('-v')
+$pythonPdfProbe = Test-CommandProbe -Name 'python' -Arguments @('-c', 'import pypdf; print(pypdf.__version__)')
+$pdfBackendAvailable = ($pdfInfoProbe.ok -and $pdfTextProbe.ok) -or $pythonPdfProbe.ok
+Add-Result 'PDF page tools' $pdfBackendAvailable "pdfinfo: $($pdfInfoProbe.detail); pdftotext: $($pdfTextProbe.detail); Python/pypdf: $($pythonPdfProbe.detail)" 'Install Poppler (pdfinfo + pdftotext) and put it on PATH, or install Python and run: python -m pip install pypdf.'
+
+$results | Format-Table -AutoSize -Wrap
+$missing = @($results | Where-Object Status -eq 'MISSING')
+if ($missing.Count -gt 0) {
+    Write-Output "`nRemediation required:"
+    $missing | ForEach-Object { Write-Output "- $($_.Component): $($_.Remedy)" }
+    exit 1
+}
+Write-Output "`nEnvironment is ready."

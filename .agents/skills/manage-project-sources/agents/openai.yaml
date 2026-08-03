@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage Project Sources"
+  short_description: "Classifies, records, processes, and audits sources"
+  default_prompt: "Use $manage-project-sources to add and organize this project source with full provenance."
