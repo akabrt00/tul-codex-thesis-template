@@ -1,8 +1,9 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('All', 'Thesis', 'Presentation')]
+    [ValidateSet('All', 'Thesis', 'Presentation', 'Document')]
     [string]$Target = 'All',
-    [string]$DestinationRoot
+    [string]$DestinationRoot,
+    [string]$DocumentName
 )
 
 $ErrorActionPreference = 'Stop'
@@ -103,3 +104,17 @@ if ($Target -in @('All', 'Presentation')) {
     Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULpresentation') -Destination (Join-Path $destinationRootPath 'obhajoba') -MainSource 'manual-tulpresentaion.tex'
 }
 
+if ($Target -eq 'Document') {
+    if ([string]::IsNullOrWhiteSpace($DocumentName)) {
+        throw 'DocumentName is required when Target is Document.'
+    }
+    if ($DocumentName -notmatch '^[a-z0-9][a-z0-9-]*$') {
+        throw 'DocumentName must be a lowercase slug containing only a-z, 0-9, and hyphens.'
+    }
+    if ($DocumentName -eq 'main') {
+        throw 'DocumentName main is reserved for the primary thesis.'
+    }
+
+    $documentPath = Join-Path $destinationRootPath (Join-Path 'prace\dokumenty' $DocumentName)
+    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination $documentPath -MainSource 'manual-tulthesis.tex'
+}

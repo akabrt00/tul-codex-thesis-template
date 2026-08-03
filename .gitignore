@@ -5,6 +5,9 @@
 *.key
 *.pem
 
+# Local onboarding profile (may contain personal data)
+PROJECT_PROFILE.json
+
 # Editor and operating-system state
 .vscode/
 .idea/

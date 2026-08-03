@@ -1,60 +1,76 @@
 # Project context
 
-Fill this file in when starting a new project. Delete the instructional text after replacing it.
+`setup_state: template`
+
+This tracked file describes the project, its deliverables, and durable decisions. Personal author data belongs in the Git-ignored `PROJECT_PROFILE.json`. During onboarding, replace the template markers below with concrete project information and set `setup_state` to `initialized`.
 
 ## Goal
 
-What outcome should this project produce, and for whom?
+- Primary outcome: `[not configured]`
+- Intended audience: `[not configured]`
+- Topic or assignment: `[not configured]`
+
+## TUL document defaults
+
+- Faculty or unit: `[not configured]`
+- Primary work type: `[BP/DP/Dis/Teze/Autoref/Hab/SP/Proj]`
+- Language: `[CZ/EN]`
+- Main document: `prace/main.tex`
+- Bibliography and citation requirements: `[not configured]`
+- IS STAG introductory-pages PDF: `[not provided]`
+
+## Deliverables
+
+Register every independently compiled output. Use a stable lowercase key and keep paths relative to the repository root.
+
+| Key | Role | Document type | Entry point | Status | Purpose |
+|---|---|---|---|---|---|
+| `main` | primary thesis | `[not configured]` | `prace/main.tex` | not initialized | Main academic work |
+
+Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Examples include a technological diary, measurement report, project report, or a separately compiled appendix. Defense slides belong in `obhajoba/main.tex`.
 
 ## Scope
 
 ### In scope
 
-- Add concrete deliverables.
+- `[define during onboarding]`
 
 ### Out of scope
 
-- Add boundaries that Codex must not cross.
+- `[define during onboarding]`
 
 ## Technical environment
 
-- Primary language/framework:
-- Expected runtime or platform:
-- Supported operating systems:
-- Package manager:
-- Important local tools:
-- Input data and formats (store source copies under `zdroje/`):
-- Output artifacts and location:
-
-### Optional TUL LaTeX profile
-
-- Output type (thesis/document/presentation):
-- TUL unit or faculty:
-- Document type (BP/DP/Dis/Teze/Autoref/Hab/SP/Proj):
-- Language (CZ/EN):
-- Color mode and page/aspect settings:
-- Main `.tex` file:
-- Bibliography and citation requirements:
-- IS STAG introductory-pages PDF:
+- Primary format: LaTeX
+- Expected runtime: XeLaTeX, Biber, and MakeIndex
+- Supported operating systems: Windows first; keep paths portable
+- Expert inputs and source copies: `zdroje/`
+- Generated outputs: next to their registered document entry points unless configured otherwise
 
 ## Commands
 
-- Setup:
-- Run:
-- Test:
-- Lint/format:
-- Build/render:
+- Environment check: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-environment.ps1`
+- Initialize main thesis: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Thesis`
+- Initialize another document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Document -DocumentName <slug>`
+- Initialize defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Presentation`
+- Build a document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-thesis.ps1 -ProjectDir <document-directory> -MainTex main.tex -Clean`
+- Build defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentation.ps1 -ProjectDir .\obhajoba -MainTex main.tex -Clean`
 
 ## Quality criteria
 
-- Define what “done” means.
-- Add numerical tolerances, supported platforms, visual requirements, or acceptance tests.
+- Every material output must compile from a clean auxiliary state.
+- Citations, cross-references, page size, fonts, layout, and final PDF must be verified.
+- Every expert source must be traceable through `zdroje/REJSTRIK_ZDROJU.md`.
+- Every additional document must have a unique key, directory, purpose, and entry point in the deliverables table.
 
 ## Constraints and safety
 
-- List privacy, licensing, performance, compatibility, or destructive-action constraints.
-- List anything that must remain portable for other users or machines.
+- Never edit `templates/upstream/`.
+- Never commit `PROJECT_PROFILE.json`, secrets, or machine-specific absolute paths.
+- Do not guess official faculty, programme, branch, supervisor, or assignment metadata.
+- Preserve originals in `zdroje/` and place derivatives only under `zdroje/90_zpracovane/`.
 
 ## Durable decisions
 
-- Add decisions that future Codex sessions should preserve, including the reason and date.
+- 2026-08-03: Personal onboarding data is stored in Git-ignored `PROJECT_PROFILE.json`; project structure and non-sensitive decisions remain in this tracked file.
+- 2026-08-03: `prace/main.tex` is the primary thesis entry point. Independently compiled supporting documents use `prace/dokumenty/<slug>/main.tex`.

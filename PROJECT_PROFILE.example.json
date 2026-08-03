@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "author": {
+    "full_name": "Jmeno Prijmeni",
+    "preferred_name": "Jmeno"
+  },
+  "study": {
+    "faculty_code": "FM",
+    "programme_code": "",
+    "programme_name_cs": "",
+    "programme_name_en": "",
+    "branch_code": "",
+    "branch_name_cs": "",
+    "branch_name_en": ""
+  },
+  "document_defaults": {
+    "work_type": "BP",
+    "language": "CZ",
+    "year": 2026,
+    "title_cs": "",
+    "title_en": "",
+    "supervisor": "",
+    "consultant": "",
+    "stag_intro_pdf": ""
+  },
+  "privacy": {
+    "git_ignored": true
+  }
+}
