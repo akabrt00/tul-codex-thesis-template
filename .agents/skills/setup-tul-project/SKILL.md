@@ -45,7 +45,7 @@ Use `$tul-thesis` for thesis and formal-document initialization and `$tul-presen
 - Defense slides: run `scripts/init-project.ps1 -Target Presentation` only when `obhajoba/main.tex` does not exist.
 - Supporting document: run `scripts/init-project.ps1 -Target Document -DocumentName <slug>`.
 
-After copying, edit only the working copy. Configure `\documentclass` options and TUL metadata from the profile. Keep official data empty or visibly marked when the user has not supplied it. Prefer an official IS STAG introductory-pages PDF for current BP/DP workflows when available.
+The initializer creates a minimal starter and fills known metadata from the profile. After copying, edit only the working copy. Review `\documentclass` options and all TUL metadata; keep official data visibly marked when the user has not supplied it. Prefer an official IS STAG introductory-pages PDF for current BP/DP workflows when available.
 
 Use these entry points:
 

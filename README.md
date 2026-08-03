@@ -66,6 +66,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 `
 ```
 
 Inicializace kontroluje SHA-256 upstream stromů před kopírováním i po něm. Do `templates/upstream/` nikdy nezapisuje.
+Pro hlavní práci a další formální dokumenty vytvoří stručný pracovní `main.tex`; nepoužije jako výchozí obsah celý manuál šablony. Pokud existuje lokální profil, bezpečně do starteru doplní známá metadata a neznámé hodnoty ponechá jako jasné položky k doplnění.
 
 ## Kompilace
 

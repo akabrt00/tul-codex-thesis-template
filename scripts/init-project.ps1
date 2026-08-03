@@ -46,6 +46,93 @@ function Assert-TreeUnchanged {
     }
 }
 
+function ConvertTo-LaTeXText {
+    param([AllowEmptyString()][string]$Value)
+
+    if ($null -eq $Value) { return '' }
+    $result = $Value.Replace('\', '@@TUL_BACKSLASH@@')
+    $result = $result.Replace('&', '\&').Replace('%', '\%').Replace('$', '\$')
+    $result = $result.Replace('#', '\#').Replace('_', '\_')
+    $result = $result.Replace('{', '\{').Replace('}', '\}')
+    $result = $result.Replace('~', '\textasciitilde{}').Replace('^', '\textasciicircum{}')
+    $result.Replace('@@TUL_BACKSLASH@@', '\textbackslash{}')
+}
+
+function Write-ThesisStarter {
+    param(
+        [Parameter(Mandatory)][string]$Destination,
+        [Parameter(Mandatory)][string]$ProfileRoot
+    )
+
+    $starterPath = Join-Path $repoRoot 'templates\starters\tulthesis-main.tex'
+    $referencesPath = Join-Path $repoRoot 'templates\starters\references.bib'
+    $profilePath = Join-Path $ProfileRoot 'PROJECT_PROFILE.json'
+
+    $values = [ordered]@{
+        CLASS_OPTIONS = 'TUL,BP'
+        DEFAULT_LANGUAGE = 'czech'
+        TITLE_CS = 'Doplnit český název'
+        TITLE_EN = 'Add the English title'
+        AUTHOR = 'Doplnit autora'
+        PROGRAMME_CODE = ''
+        PROGRAMME_CS = 'Doplnit studijní program'
+        PROGRAMME_EN = 'Add the study programme'
+        BRANCH_CODE = ''
+        BRANCH_CS = 'Doplnit obor nebo specializaci'
+        BRANCH_EN = 'Add the branch or specialization'
+        SUPERVISOR = 'Doplnit vedoucího práce'
+        CONSULTANT_COMMAND = '% \TULconsultant{Doplnit konzultanta}'
+        YEAR = (Get-Date).Year.ToString()
+        FRONT_MATTER = "% Choose exactly one before the final build:`n% \ThesisStart{male}`n% \ThesisStart{female}`n% \ThesisStart{relative/path/to/stag-pages.pdf}"
+    }
+
+    if (Test-Path -LiteralPath $profilePath) {
+        $profile = Get-Content -Raw -LiteralPath $profilePath | ConvertFrom-Json
+        $options = @($profile.study.faculty_code, $profile.document_defaults.work_type)
+        if ($profile.document_defaults.language -eq 'EN') {
+            $options += 'EN'
+            $values.DEFAULT_LANGUAGE = 'english'
+        }
+        $values.CLASS_OPTIONS = ($options | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join ','
+        $values.TITLE_CS = ConvertTo-LaTeXText $profile.document_defaults.title_cs
+        $values.TITLE_EN = ConvertTo-LaTeXText $profile.document_defaults.title_en
+        $values.AUTHOR = ConvertTo-LaTeXText $profile.author.full_name
+        $values.PROGRAMME_CODE = ConvertTo-LaTeXText $profile.study.programme_code
+        $values.PROGRAMME_CS = ConvertTo-LaTeXText $profile.study.programme_name_cs
+        $values.PROGRAMME_EN = ConvertTo-LaTeXText $profile.study.programme_name_en
+        $values.BRANCH_CODE = ConvertTo-LaTeXText $profile.study.branch_code
+        $values.BRANCH_CS = ConvertTo-LaTeXText $profile.study.branch_name_cs
+        $values.BRANCH_EN = ConvertTo-LaTeXText $profile.study.branch_name_en
+        $values.SUPERVISOR = ConvertTo-LaTeXText $profile.document_defaults.supervisor
+        $values.YEAR = $profile.document_defaults.year.ToString()
+
+        if (-not [string]::IsNullOrWhiteSpace($profile.document_defaults.consultant)) {
+            $consultant = ConvertTo-LaTeXText $profile.document_defaults.consultant
+            $values.CONSULTANT_COMMAND = "\TULconsultant{$consultant}"
+        }
+
+        $stagPath = [string]$profile.document_defaults.stag_intro_pdf
+        if (-not [string]::IsNullOrWhiteSpace($stagPath) -and -not [IO.Path]::IsPathRooted($stagPath)) {
+            $portableStagPath = $stagPath.Replace('\', '/')
+            $values.FRONT_MATTER = "\ThesisStart{\detokenize{$portableStagPath}}"
+        }
+    }
+
+    foreach ($key in @('TITLE_CS', 'TITLE_EN', 'AUTHOR', 'PROGRAMME_CODE', 'PROGRAMME_CS', 'PROGRAMME_EN', 'BRANCH_CODE', 'BRANCH_CS', 'BRANCH_EN', 'SUPERVISOR')) {
+        if ([string]::IsNullOrWhiteSpace($values[$key])) {
+            $values[$key] = 'Doplnit'
+        }
+    }
+
+    $content = Get-Content -Raw -LiteralPath $starterPath
+    foreach ($entry in $values.GetEnumerator()) {
+        $token = '{{' + $entry.Key + '}}'
+        $content = $content.Replace($token, [string]$entry.Value)
+    }
+    Set-Content -LiteralPath (Join-Path $Destination 'main.tex') -Value $content -Encoding UTF8
+    Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'references.bib') -Force
+}
+
 function Copy-WorkingTree {
     param(
         [Parameter(Mandatory)][string]$Source,
@@ -98,7 +185,9 @@ function Copy-WorkingTree {
 }
 
 if ($Target -in @('All', 'Thesis')) {
-    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination (Join-Path $destinationRootPath 'prace') -MainSource 'manual-tulthesis.tex'
+    $thesisPath = Join-Path $destinationRootPath 'prace'
+    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination $thesisPath -MainSource 'manual-tulthesis.tex'
+    Write-ThesisStarter -Destination $thesisPath -ProfileRoot $destinationRootPath
 }
 if ($Target -in @('All', 'Presentation')) {
     Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULpresentation') -Destination (Join-Path $destinationRootPath 'obhajoba') -MainSource 'manual-tulpresentaion.tex'
@@ -117,4 +206,5 @@ if ($Target -eq 'Document') {
 
     $documentPath = Join-Path $destinationRootPath (Join-Path 'prace\dokumenty' $DocumentName)
     Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination $documentPath -MainSource 'manual-tulthesis.tex'
+    Write-ThesisStarter -Destination $documentPath -ProfileRoot $destinationRootPath
 }

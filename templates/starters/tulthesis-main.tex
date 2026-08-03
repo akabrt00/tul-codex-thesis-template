@@ -1,0 +1,71 @@
+\documentclass[{{CLASS_OPTIONS}}]{tulthesis}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{{{DEFAULT_LANGUAGE}}}
+
+\usepackage[
+  backend=biber,
+  style=iso-numeric,
+  sorting=nyt,
+  autolang=other,
+  bibencoding=UTF8
+]{biblatex}
+\addbibresource{references.bib}
+\usepackage{csquotes}
+
+\TULtitle{{{TITLE_CS}}}{{{TITLE_EN}}}
+\TULauthor{{{AUTHOR}}}
+\TULprogramme{{{PROGRAMME_CODE}}}{{{PROGRAMME_CS}}}{{{PROGRAMME_EN}}}
+\TULbranch{{{BRANCH_CODE}}}{{{BRANCH_CS}}}{{{BRANCH_EN}}}
+\TULsupervisor{{{SUPERVISOR}}}
+{{CONSULTANT_COMMAND}}
+\TULyear{{{YEAR}}}
+
+\begin{document}
+
+{{FRONT_MATTER}}
+
+\begin{abstractCZ}
+Doplňte český abstrakt.
+\end{abstractCZ}
+
+\begin{keywordsCZ}
+Doplňte česká klíčová slova.
+\end{keywordsCZ}
+
+\begin{abstractEN}
+Add the English abstract.
+\end{abstractEN}
+
+\begin{keywordsEN}
+Add English keywords.
+\end{keywordsEN}
+
+\begin{acknowledgement}
+Doplňte poděkování nebo toto prostředí odstraňte.
+\end{acknowledgement}
+
+\tableofcontents
+
+\chapter{Úvod}
+Popište motivaci, cíl práce a její strukturu.
+
+\chapter{Teoretická část}
+Zpracujte odborná východiska a citujte zdroje evidované ve složce \texttt{zdroje/}.
+
+\chapter{Praktická část}
+Popište návrh, realizaci, experimenty nebo měření.
+
+\chapter{Výsledky a diskuse}
+Vyhodnoťte výsledky, omezení a vztah k cíli práce.
+
+\chapter{Závěr}
+Shrňte dosažené výsledky a doporučení pro další práci.
+
+\printbibliography[title={Použitá literatura},heading=bibintoc]
+
+\appendix
+\chapter{Přílohy}
+Uveďte vložené přílohy nebo odkazy na samostatné dokumenty registrované v \texttt{PROJECT\_CONTEXT.md}.
+
+\end{document}
