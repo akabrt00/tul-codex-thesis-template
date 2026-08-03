@@ -60,6 +60,7 @@ Agentovi můžete psát normálními větami:
 - „Zapracuj připomínky vedoucího, ale nejdřív mi shrň navrhované změny.“
 - „Zkontroluj citace a seznam literatury.“
 - „Vytvoř aktuální PDF a zkontroluj, zda se správně zobrazuje.“
+- „Tady je graf z MATLABu. Převeď ho na pěkný vektorový graf do práce a ověř, že se nezměnila data.“
 - „Ulož ověřené změny do historie a vysvětli mi, co se uloží na GitHub.“
 
 ## Pět pojmů, které stačí znát

@@ -1,0 +1,6 @@
+interface:
+  display_name: "MATLAB to TikZ Figures"
+  short_description: "Creates polished PGFPlots figures from MATLAB"
+  default_prompt: "Use $matlab-to-tikz to convert my MATLAB plot into a polished TikZ/PGFPlots figure."
+policy:
+  allow_implicit_invocation: true

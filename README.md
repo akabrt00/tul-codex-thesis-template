@@ -104,6 +104,14 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 - `zdroje/` — odborné a citovatelné materiály s registry `SRC-NNNN`.
 - `scripts/` — inicializace, kompilace, extrakce a kontroly.
 
+## Grafy z MATLABu
+
+MATLAB grafy, soubory `.fig`, vykreslovací skripty, `.mat` data a tabulkové exporty automaticky spouštějí skill `$matlab-to-tikz`. Agent zachová vykreslená data v přenositelném souboru, vytvoří editovatelný graf TikZ/PGFPlots a zkontroluje jeho číselnou shodu i vzhled ve výsledném PDF. Uživatel nemusí instalovat `matlab2tikz` ani znát příkazy převodu.
+
+Příklad běžného požadavku:
+
+> Tady je MATLAB graf. Převeď ho do práce jako pěkný vektorový graf, zachovej data a zkontroluj jednotky i legendu.
+
 ## Zdroje a kontroly
 
 Každý odborný zdroj má trvalé interní ID `SRC-NNNN`, samostatný `citacni_klic`, původ, datum, SHA-256, licenci a vazbu na odvozené soubory. Po předem registrovaných pravidlech TUL je první volné ID `SRC-0006`.

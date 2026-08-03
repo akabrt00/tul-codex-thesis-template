@@ -42,6 +42,7 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 ## Technical environment
 
 - Primary format: LaTeX
+- Scientific figures: editable TikZ/PGFPlots with traceable external data; MATLAB conversions use the automatic `$matlab-to-tikz` workflow
 - Expected runtime: XeLaTeX, Biber, and MakeIndex
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
@@ -77,3 +78,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: `prace/main.tex` is the primary thesis entry point. Independently compiled supporting documents use `prace/dokumenty/<slug>/main.tex`.
 - 2026-08-03: Evidence work is local-first. Search maps and indexes locate candidates, but only verified registered source pages may support thesis claims; missing support becomes an explicit source gap.
 - 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
+- 2026-08-03: MATLAB and numerical plots should be converted to editable PGFPlots/TikZ with preserved data and verified rendering instead of inserted as screenshots when practical.
