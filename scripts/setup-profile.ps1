@@ -89,7 +89,7 @@ $profile = [ordered]@{
 
 $profile | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $profilePath -Encoding UTF8
 
-$parsed = Get-Content -Raw -LiteralPath $profilePath | ConvertFrom-Json
+$parsed = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
 if ($parsed.schema_version -ne 1 -or $parsed.study.faculty_code -ne $Faculty) {
     throw 'Profile verification failed.'
 }

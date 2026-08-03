@@ -87,7 +87,7 @@ function Write-ThesisStarter {
     }
 
     if (Test-Path -LiteralPath $profilePath) {
-        $profile = Get-Content -Raw -LiteralPath $profilePath | ConvertFrom-Json
+        $profile = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
         $options = @($profile.study.faculty_code, $profile.document_defaults.work_type)
         if ($profile.document_defaults.language -eq 'EN') {
             $options += 'EN'
@@ -124,7 +124,7 @@ function Write-ThesisStarter {
         }
     }
 
-    $content = Get-Content -Raw -LiteralPath $starterPath
+    $content = Get-Content -Raw -Encoding UTF8 -LiteralPath $starterPath
     foreach ($entry in $values.GetEnumerator()) {
         $token = '{{' + $entry.Key + '}}'
         $content = $content.Replace($token, [string]$entry.Value)

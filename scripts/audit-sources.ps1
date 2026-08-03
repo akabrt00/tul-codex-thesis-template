@@ -5,8 +5,8 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $sourceRoot = (Resolve-Path (Join-Path $repoRoot 'zdroje')).Path
 $registryPath = Join-Path $sourceRoot 'REJSTRIK_ZDROJU.md'
-$registryText = Get-Content -LiteralPath $registryPath -Raw
-$registryLines = Get-Content -LiteralPath $registryPath
+$registryText = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8
+$registryLines = Get-Content -LiteralPath $registryPath -Encoding UTF8
 $issues = @()
 $rows = @()
 
@@ -65,7 +65,7 @@ foreach ($file in $derivatives) {
 
 $manifests = @($derivatives | Where-Object Name -eq 'manifest.json')
 foreach ($manifestFile in $manifests) {
-    try { $manifest = Get-Content -Raw -LiteralPath $manifestFile.FullName | ConvertFrom-Json }
+    try { $manifest = Get-Content -Raw -Encoding UTF8 -LiteralPath $manifestFile.FullName | ConvertFrom-Json }
     catch { $issues += "Invalid extraction manifest: $($manifestFile.FullName.Substring($sourceRoot.Length + 1))"; continue }
     if ($manifest.source_id -notmatch '^SRC-\d{4}$') { $issues += "Extraction manifest has invalid source_id: $($manifestFile.FullName.Substring($sourceRoot.Length + 1))" }
     $numbers = @($manifest.pages | ForEach-Object { [int]$_.page_number })
@@ -80,7 +80,7 @@ foreach ($manifestFile in $manifests) {
 }
 
 $contentMapPath = Join-Path $sourceRoot 'INDEX_ZDROJU.md'
-$contentMapText = Get-Content -Raw -LiteralPath $contentMapPath
+$contentMapText = Get-Content -Raw -Encoding UTF8 -LiteralPath $contentMapPath
 $activeLocalPdfs = @($rows | Where-Object {
     $_.status -eq 'aktivní' -and
     $_.local_path -and
@@ -89,7 +89,7 @@ $activeLocalPdfs = @($rows | Where-Object {
 })
 foreach ($row in $activeLocalPdfs) {
     $matchingManifests = @($manifests | Where-Object {
-        try { (Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
+        try { (Get-Content -Raw -Encoding UTF8 -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
         catch { $false }
     })
     if ($matchingManifests.Count -ne 1) { $issues += "$($row.id) active PDF requires exactly one extraction manifest, found $($matchingManifests.Count)" }
@@ -107,7 +107,7 @@ if ($activeLocalPdfs.Count -gt 0 -and -not (Test-Path -LiteralPath $searchIndexP
     $issues += 'Active local PDFs exist but the global page-level search index is missing'
 }
 if ((Test-Path -LiteralPath $searchIndexPath) -and (Test-Path -LiteralPath $searchManifestPath)) {
-    try { $searchManifest = Get-Content -Raw -LiteralPath $searchManifestPath | ConvertFrom-Json }
+    try { $searchManifest = Get-Content -Raw -Encoding UTF8 -LiteralPath $searchManifestPath | ConvertFrom-Json }
     catch { $issues += 'Invalid search-index-manifest.json'; $searchManifest = $null }
     $indexRecords = @()
     $lineNumber = 0
@@ -147,11 +147,11 @@ if ((Test-Path -LiteralPath $searchIndexPath) -and (Test-Path -LiteralPath $sear
         $sourceRecords = @($indexRecords | Where-Object source_id -eq $row.id)
         if ($sourceRecords.Count -lt 1) { $issues += "$($row.id) active PDF has no page records in the global search index" }
         $sourceManifestFile = $manifests | Where-Object {
-            try { (Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
+            try { (Get-Content -Raw -Encoding UTF8 -LiteralPath $_.FullName | ConvertFrom-Json).source_id -eq $row.id }
             catch { $false }
         } | Select-Object -First 1
         if ($sourceManifestFile) {
-            $expectedPages = [int](Get-Content -Raw -LiteralPath $sourceManifestFile.FullName | ConvertFrom-Json).page_count
+            $expectedPages = [int](Get-Content -Raw -Encoding UTF8 -LiteralPath $sourceManifestFile.FullName | ConvertFrom-Json).page_count
             if ($sourceRecords.Count -ne $expectedPages) { $issues += "$($row.id) search index page count differs from its extraction manifest" }
         }
     }

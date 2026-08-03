@@ -33,7 +33,7 @@ if (((Test-Path -LiteralPath $indexPath) -or (Test-Path -LiteralPath $indexManif
 }
 
 $rows = @()
-foreach ($line in Get-Content -LiteralPath $registryPath) {
+foreach ($line in Get-Content -Encoding UTF8 -LiteralPath $registryPath) {
     if ($line -match '^\|\s*`(SRC-\d{4})`\s*\|') {
         $cells = @($line.Trim().Trim('|').Split('|') | ForEach-Object { $_.Trim().Trim('`') })
         if ($cells.Count -lt 12) { throw "Malformed registry row: $line" }
@@ -68,7 +68,7 @@ foreach ($row in @($rows | Where-Object { $_.status -eq 'aktivní' -and $_.local
 
     $matchingManifests = @()
     foreach ($manifestFile in $manifestFiles) {
-        $candidate = Get-Content -Raw -LiteralPath $manifestFile.FullName | ConvertFrom-Json
+        $candidate = Get-Content -Raw -Encoding UTF8 -LiteralPath $manifestFile.FullName | ConvertFrom-Json
         if ($candidate.source_id -eq $row.id) {
             $matchingManifests += [pscustomobject]@{ file = $manifestFile; data = $candidate }
         }

@@ -14,7 +14,7 @@ foreach ($directory in Get-ChildItem -LiteralPath $skillsPath -Force -Directory 
         $errors += "$($directory.Name): missing SKILL.md"
         continue
     }
-    $content = Get-Content -LiteralPath $skillFile -Raw
+    $content = Get-Content -LiteralPath $skillFile -Raw -Encoding UTF8
     if ($content -notmatch '(?s)^---\r?\n(.*?)\r?\n---') {
         $errors += "$($directory.Name): invalid YAML frontmatter delimiters"
         continue
@@ -40,4 +40,3 @@ if ($errors.Count -gt 0) {
     exit 1
 }
 Write-Output "`nValidated $($validated.Count) repository skills."
-
