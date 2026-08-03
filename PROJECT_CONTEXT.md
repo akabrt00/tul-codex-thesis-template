@@ -49,6 +49,7 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Expert inputs and source copies: `zdroje/`
 - Source retrieval: registry → thematic content maps → page-level fulltext index → original-page verification
 - Generated outputs: next to their registered document entry points unless configured otherwise
+- Recommended chat topology: `MAIN – hlavní práce`; `EXPERIMENTY – praktický deník` when a practical record exists; optional `OTÁZKY A REŠERŠE` and `OBHAJOBA`
 
 ## Commands
 
@@ -81,3 +82,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: Citation defaults are based on registered primary TUL sources `SRC-0003` to `SRC-0005`; faculty-specific requirements take precedence and must be confirmed rather than guessed.
 - 2026-08-03: MATLAB and numerical plots should be converted to editable PGFPlots/TikZ with preserved data and verified rendering instead of inserted as screenshots when practical.
 - 2026-08-03: Visuals are purpose-led rather than decorative. Each used figure must be traceable as original, reproduced, adapted, or AI-generated; evidence-bearing imagery may not be generatively altered.
+- 2026-08-03: Long-running work should use role-separated chats over one shared workspace. The main chat curates final thesis content; the experimental chat preserves complete practical records; question/research and defense chats remain optional and focused.

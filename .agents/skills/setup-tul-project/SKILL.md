@@ -1,6 +1,6 @@
 ---
 name: setup-tul-project
-description: Set up a TUL thesis template for a new user or project, including complete beginners moving from Word who do not know Git, GitHub, LaTeX, repositories, or terminals. Use for first-time orientation and onboarding, creating or updating the local author profile, choosing faculty and work type, initializing the primary thesis or defense slides, adding independently compiled supporting documents such as a technological diary, registering deliverables, or handing work off to a fresh focused AI chat.
+description: Set up a TUL thesis template for a new user or project, including complete beginners moving from Word who do not know Git, GitHub, LaTeX, repositories, terminals, or chat organization. Use for first-time orientation and onboarding, creating or updating the local author profile, choosing faculty and work type, initializing the primary thesis or defense slides, adding independently compiled supporting documents such as an experimental diary, registering deliverables, and handing work off to role-separated MAIN, EXPERIMENTY, research, or defense chats.
 ---
 
 # Set up a TUL project
@@ -84,6 +84,19 @@ Use these entry points:
 
 Do not treat an ordinary chapter or a PDF appendix embedded in the primary work as a separate document. Create a supporting workspace only when it needs its own compilation, title metadata, page numbering, or independent output PDF.
 
+## Plan focused chats
+
+Read `references/task-prompts.md` after the requested documents and their registered keys are known. Explain that chats share one workspace but keep separate conversational context.
+
+When both a main thesis and a practical, experimental, or technological diary exist, recommend these two persistent chats:
+
+1. `MAIN – hlavní práce` for selective, polished thesis content;
+2. `EXPERIMENTY – praktický deník` for complete practical records, including failed attempts and intermediate data.
+
+Offer `OTÁZKY A REŠERŠE` as an optional read-mostly thinking and evidence space. Offer `OBHAJOBA` only when presentation work starts. Do not make a beginner maintain unnecessary chats.
+
+Provide each recommended chat title and an exact opening prompt with the correct registered document key. Create chats only when the user explicitly asks or accepts the offer and the current environment supports it. Before creating, check for an existing matching chat when possible. If chat tools are unavailable, explain how to create them manually. Never imply that a new chat creates a repository, branch, or duplicate document.
+
 ## Update durable context
 
 Set `setup_state` in `PROJECT_CONTEXT.md` to `initialized`. Replace template markers with confirmed non-sensitive project facts. Register every output in the deliverables table with a unique key, role, document type, entry point, status, and purpose.
@@ -102,8 +115,9 @@ Finish in the user's language with:
 - the checks performed;
 - a short beginner explanation of what the main source file, generated PDF, local profile, and Git history each do;
 - two or three example requests the user can make next without using file paths or terminal commands;
+- recommended focused chat titles and exact opening prompts from `references/task-prompts.md`;
 - an exact prompt for a new focused chat.
 
-Recommend a fresh chat after onboarding so document work starts with clean context. Do not create a new chat unless the user explicitly asks. Example:
+Recommend role-separated fresh chats after onboarding so document work starts with clean context. Create no chat without explicit user agreement.
 
-> Work on the `main` document registered in `PROJECT_CONTEXT.md`. Read `AGENTS.md`, `PROJECT_CONTEXT.md`, and my local profile first. Help me plan the document structure before writing content.
+When only the primary document exists, recommend `MAIN – hlavní práce`. When a practical record also exists, recommend both `MAIN – hlavní práce` and `EXPERIMENTY – praktický deník`; keep the additional chats optional.

@@ -45,11 +45,24 @@ Když údaj ještě neznáte, napište „nevím“ nebo „doplním později“
 
 Lokální `PROJECT_PROFILE.json` obsahuje osobní údaje a Git ho ignoruje. Samotná práce může obsahovat vaše jméno, proto vás agent před jeho zapsáním do verzovaných souborů upozorní.
 
-## 4. Pokračujte v novém chatu
+## 4. Rozdělte práci do zaměřených chatů
 
-Po nastavení vám agent řekne, co vytvořil, co ještě chybí a kde vznikne výsledné PDF. Potom založte nový chat ve stejné složce a napište například:
+Po nastavení vám agent řekne, co vytvořil, co ještě chybí a kde vznikne výsledné PDF. Chat je samostatný pracovní rozhovor, nikoli kopie projektu: všechny chaty pracují nad stejnými soubory, ale každý si drží vlastní téma a historii.
+
+Pokud máte hlavní práci a samostatný praktický nebo experimentální dokument, začněte dvěma chaty:
+
+1. **MAIN – hlavní práce** – výsledný odborný text, do kterého se vybírají pouze důležité a ověřené informace.
+2. **EXPERIMENTY – praktický deník** – úplné záznamy postupů, nastavení, chyb, dat, grafů, fotografií a průběžných poznámek.
+
+Agent vám po onboardingu nabídne jejich vytvoření a připraví přesné úvodní zprávy. Chat smí založit pouze po vašem souhlasu. Pro hlavní chat lze použít například:
 
 > Pracuj na hlavním dokumentu `main` uvedeném v `PROJECT_CONTEXT.md`. Nejdřív mi pomoz navrhnout strukturu práce podle zadání. Zatím nepiš hotové odborné závěry a nic necituj bez dohledatelného zdroje.
+
+Pro experimentální chat:
+
+> Pracuj pouze na praktickém dokumentu registrovaném v `PROJECT_CONTEXT.md`. Zaznamenávej úplný průběh experimentů včetně neúspěchů, nastavení, dat a odkazů na soubory. Nic automaticky nezkracuj pro hlavní práci.
+
+Podle potřeby můžete později přidat chat **OTÁZKY A REŠERŠE**, kde se hledá, ověřuje a přemýšlí bez míchání rozpracovaných dotazů do hlavního textu, a samostatný chat **OBHAJOBA**. Na začátku ale není potřeba zakládat mnoho chatů.
 
 ## Běžné požadavky bez příkazového řádku
 

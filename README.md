@@ -13,9 +13,20 @@ Přenositelná projektová základna pro závěrečnou práci, další samostatn
    > Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
 
 4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
-5. Po dokončení onboardingu otevřete nový chat ve stejném projektu a pracujte už jen na konkrétním dokumentu.
+5. Po dokončení onboardingu oddělte práci do zaměřených chatů nad stejným projektem. Při hlavní práci a praktickém deníku jsou výchozí `MAIN – hlavní práce` a `EXPERIMENTY – praktický deník`; agent připraví jejich úvodní zprávy a vytvoří je pouze po vašem souhlasu.
 
 Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
+
+## Doporučené chaty
+
+Chat odděluje kontext rozhovoru, nikoli soubory nebo repozitář. Všechny chaty mají pracovat nad stejnou projektovou složkou.
+
+- `MAIN – hlavní práce` – vybírá a formuluje finální obsah hlavního dokumentu.
+- `EXPERIMENTY – praktický deník` – uchovává úplné záznamy praktické práce, včetně slepých cest a chyb.
+- `OTÁZKY A REŠERŠE` – volitelný prostor pro hledání, ověřování a nezávazné dotazy.
+- `OBHAJOBA` – zakládá se až při přípravě prezentace.
+
+Toto rozdělení brání tomu, aby se úplný pracovní deník míchal s výslednou zkrácenou verzí v bakalářské práci. Agent nesmí mezi dokumenty přenášet obsah bez kontroly původu, významu a výběru.
 
 ## Profil a soukromí
 

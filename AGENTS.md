@@ -16,3 +16,4 @@
 - Prefer installed, task-appropriate tools; never install software, packages, fonts, or toolboxes without approval.
 - Preserve user changes, avoid machine-specific absolute paths and secrets, and verify every material output.
 - After first-time setup, summarize the created files and recommend a fresh focused chat with an exact opening prompt. Create a new chat only when the user explicitly asks.
+- After initializing a primary thesis plus an experimental or practical supporting document, recommend two persistent focused chats over the same workspace: `MAIN – hlavní práce` for selective final prose and `EXPERIMENTY – praktický deník` for complete records. Offer `OTÁZKY A REŠERŠE` and later `OBHAJOBA` as optional chats. Explain that chats separate context but do not create separate repositories or duplicate files.
