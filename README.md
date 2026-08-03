@@ -28,6 +28,16 @@ Chat odděluje kontext rozhovoru, nikoli soubory nebo repozitář. Všechny chat
 
 Toto rozdělení brání tomu, aby se úplný pracovní deník míchal s výslednou zkrácenou verzí v bakalářské práci. Agent nesmí mezi dokumenty přenášet obsah bez kontroly původu, významu a výběru.
 
+## Experimentální deník
+
+Praktický nebo technologický dokument může fungovat jako úplný zdroj pravdy pro praktickou část. Skill `$manage-experiments` převede i hrubý popis pokusu na dohledatelný záznam se stabilním ID `EXP-NNNN`. Uchovává cíl, datum, vzorek, zařízení, nastavení, postup, data, grafy, fotografie, odchylky, chyby a průběžné závěry. Neznámé údaje označí, ale nevymyslí.
+
+Výsledky se do hlavní práce nekopírují automaticky. Na požadavek typu:
+
+> Z experimentů EXP-0012 až EXP-0018 vyber výsledky vhodné do hlavní práce.
+
+agent ověří původní záznamy a soubory, oddělí metodiku, výsledky a diskusi, připraví potřebné grafy a vytvoří záznam o přenosu. Hlavní text tak zůstává stručný, zatímco úplná historie včetně neúspěchů zůstane zachována v deníku.
+
 ## Profil a soukromí
 
 Onboarding vytvoří `PROJECT_PROFILE.json`. Obsahuje osobní a studijní údaje a je záměrně ignorovaný Gitem. Ukázka struktury je v `PROJECT_PROFILE.example.json`.

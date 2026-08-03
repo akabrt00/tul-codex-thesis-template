@@ -10,7 +10,7 @@ Use human-facing chat titles and replace bracketed values with registered docume
 
 ### EXPERIMENTY – praktický deník
 
-> Pracuj pouze na praktickém dokumentu `[experiment-key]` registrovaném v `PROJECT_CONTEXT.md`. Tento chat slouží jako úplný experimentální deník. Zaznamenávej cíle, datum, zařízení, nastavení, postup, data, soubory, grafy, fotografie, odchylky, neúspěchy, změny a průběžné závěry. Nic nezkracuj pro hlavní práci a nic z deníku do ní nepřenášej bez samostatného výběru a ověření.
+> Pracuj pouze na praktickém dokumentu `[experiment-key]` registrovaném v `PROJECT_CONTEXT.md`. Tento chat slouží jako úplný experimentální deník. Každému skutečnému pokusu přiděl stabilní ID `EXP-NNNN` a zaznamenávej cíle, datum, vzorek, zařízení, nastavení, postup, data, soubory, grafy, fotografie, odchylky, neúspěchy, změny a průběžné závěry. Přijímej i můj hrubý popis a doptávej se jen na údaje důležité pro opakovatelnost nebo význam. Nic nezkracuj pro hlavní práci a nic z deníku do ní nepřenášej bez samostatného výběru a ověření.
 
 ## Optional
 

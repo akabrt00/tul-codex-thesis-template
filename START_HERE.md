@@ -75,6 +75,8 @@ Agentovi můžete psát normálními větami:
 - „Vytvoř aktuální PDF a zkontroluj, zda se správně zobrazuje.“
 - „Tady je graf z MATLABu. Převeď ho na pěkný vektorový graf do práce a ověř, že se nezměnila data.“
 - „Tady hrubě popisuji, jak zařízení funguje. Navrhni vhodný obrázek nebo schéma; když už je v mých podkladech, najdi ho a správně uprav pro práci.“
+- „Dnes jsme zkoušeli vzorek B při rychlosti 20 metrů za minutu, ale tenzometr na začátku kmital. Zapiš to jako nový experiment a doptávej se jen na nezbytné údaje.“
+- „Z experimentů EXP-0012 až EXP-0018 vyber ověřené výsledky vhodné do hlavní práce a zachovej odkazy na původní záznamy.“
 - „Ulož ověřené změny do historie a vysvětli mi, co se uloží na GitHub.“
 
 ## Pět pojmů, které stačí znát

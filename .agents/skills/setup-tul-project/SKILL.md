@@ -82,6 +82,8 @@ Use these entry points:
 - `prace/dokumenty/<slug>/main.tex` for each supporting document;
 - `obhajoba/main.tex` for defense slides.
 
+When a supporting document's confirmed purpose is a practical, laboratory, experimental, or technological diary, record that purpose in `PROJECT_CONTEXT.md` and use `$manage-experiments` for its records. Do not create a placeholder experiment during onboarding; create `EXP-0001` only when the user supplies the first real practical record.
+
 Do not treat an ordinary chapter or a PDF appendix embedded in the primary work as a separate document. Create a supporting workspace only when it needs its own compilation, title metadata, page numbering, or independent output PDF.
 
 ## Plan focused chats

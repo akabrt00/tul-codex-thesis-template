@@ -1,0 +1,6 @@
+interface:
+  display_name: "Manage Experiments"
+  short_description: "Records experiments and promotes verified results"
+  default_prompt: "Use $manage-experiments to record this experiment completely and prepare verified results for the main thesis when requested."
+policy:
+  allow_implicit_invocation: true
