@@ -15,9 +15,19 @@ if (-not (Test-Path -LiteralPath $DestinationRoot)) {
 }
 $destinationRootPath = (Resolve-Path -LiteralPath $DestinationRoot).Path
 $upstreamRoot = (Resolve-Path (Join-Path $repoRoot 'templates\upstream')).Path
+$profilePath = Join-Path $destinationRootPath 'PROJECT_PROFILE.json'
 
 if ($destinationRootPath.StartsWith($upstreamRoot, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'DestinationRoot must not be inside templates/upstream.'
+}
+if ($Target -in @('All', 'Thesis', 'Document') -and -not (Test-Path -LiteralPath $profilePath -PathType Leaf)) {
+    throw 'PROJECT_PROFILE.json is required before initializing a formal document. Run setup-profile.ps1 and confirm the male or female generated title-page variant first.'
+}
+if ($Target -in @('All', 'Thesis', 'Document')) {
+    $initialProfile = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
+    if ($initialProfile.schema_version -lt 2 -or [string]$initialProfile.document_defaults.front_matter_variant -notin @('male', 'female')) {
+        throw 'PROJECT_PROFILE.json must use schema version 2 and contain document_defaults.front_matter_variant set to male or female. Update the local profile before initialization.'
+    }
 }
 
 function Get-TreeSnapshot {
@@ -83,40 +93,41 @@ function Write-ThesisStarter {
         SUPERVISOR = 'Doplnit vedoucího práce'
         CONSULTANT_COMMAND = '% \TULconsultant{Doplnit konzultanta}'
         YEAR = (Get-Date).Year.ToString()
-        FRONT_MATTER = "% Choose exactly one before the final build:`n% \ThesisStart{male}`n% \ThesisStart{female}`n% \ThesisStart{relative/path/to/stag-pages.pdf}"
+        FRONT_MATTER = ''
     }
 
-    if (Test-Path -LiteralPath $profilePath) {
-        $profile = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
-        $options = @($profile.study.faculty_code, $profile.document_defaults.work_type)
-        if ($profile.document_defaults.language -eq 'EN') {
-            $options += 'EN'
-            $values.DEFAULT_LANGUAGE = 'english'
-        }
-        $values.CLASS_OPTIONS = ($options | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join ','
-        $values.TITLE_CS = ConvertTo-LaTeXText $profile.document_defaults.title_cs
-        $values.TITLE_EN = ConvertTo-LaTeXText $profile.document_defaults.title_en
-        $values.AUTHOR = ConvertTo-LaTeXText $profile.author.full_name
-        $values.PROGRAMME_CODE = ConvertTo-LaTeXText $profile.study.programme_code
-        $values.PROGRAMME_CS = ConvertTo-LaTeXText $profile.study.programme_name_cs
-        $values.PROGRAMME_EN = ConvertTo-LaTeXText $profile.study.programme_name_en
-        $values.BRANCH_CODE = ConvertTo-LaTeXText $profile.study.branch_code
-        $values.BRANCH_CS = ConvertTo-LaTeXText $profile.study.branch_name_cs
-        $values.BRANCH_EN = ConvertTo-LaTeXText $profile.study.branch_name_en
-        $values.SUPERVISOR = ConvertTo-LaTeXText $profile.document_defaults.supervisor
-        $values.YEAR = $profile.document_defaults.year.ToString()
-
-        if (-not [string]::IsNullOrWhiteSpace($profile.document_defaults.consultant)) {
-            $consultant = ConvertTo-LaTeXText $profile.document_defaults.consultant
-            $values.CONSULTANT_COMMAND = "\TULconsultant{$consultant}"
-        }
-
-        $stagPath = [string]$profile.document_defaults.stag_intro_pdf
-        if (-not [string]::IsNullOrWhiteSpace($stagPath) -and -not [IO.Path]::IsPathRooted($stagPath)) {
-            $portableStagPath = $stagPath.Replace('\', '/')
-            $values.FRONT_MATTER = "\ThesisStart{\detokenize{$portableStagPath}}"
-        }
+    $profile = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
+    $variant = [string]$profile.document_defaults.front_matter_variant
+    if ($variant -notin @('male', 'female')) {
+        throw 'PROJECT_PROFILE.json must contain document_defaults.front_matter_variant set to male or female. Ask the user which generated title-page variant to use.'
     }
+    $options = @($profile.study.faculty_code, $profile.document_defaults.work_type)
+    if ($profile.document_defaults.language -eq 'EN') {
+        $options += 'EN'
+        $values.DEFAULT_LANGUAGE = 'english'
+    }
+    $values.CLASS_OPTIONS = ($options | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join ','
+    $values.TITLE_CS = ConvertTo-LaTeXText $profile.document_defaults.title_cs
+    $values.TITLE_EN = ConvertTo-LaTeXText $profile.document_defaults.title_en
+    $values.AUTHOR = ConvertTo-LaTeXText $profile.author.full_name
+    $values.PROGRAMME_CODE = ConvertTo-LaTeXText $profile.study.programme_code
+    $values.PROGRAMME_CS = ConvertTo-LaTeXText $profile.study.programme_name_cs
+    $values.PROGRAMME_EN = ConvertTo-LaTeXText $profile.study.programme_name_en
+    $values.BRANCH_CODE = ConvertTo-LaTeXText $profile.study.branch_code
+    $values.BRANCH_CS = ConvertTo-LaTeXText $profile.study.branch_name_cs
+    $values.BRANCH_EN = ConvertTo-LaTeXText $profile.study.branch_name_en
+    $values.SUPERVISOR = ConvertTo-LaTeXText $profile.document_defaults.supervisor
+    $values.YEAR = $profile.document_defaults.year.ToString()
+
+    if (-not [string]::IsNullOrWhiteSpace($profile.document_defaults.consultant)) {
+        $consultant = ConvertTo-LaTeXText $profile.document_defaults.consultant
+        $values.CONSULTANT_COMMAND = "\TULconsultant{$consultant}"
+    }
+
+    $maleLine = if ($variant -eq 'male') { '\ThesisStart{male}' } else { '% \ThesisStart{male}' }
+    $femaleLine = if ($variant -eq 'female') { '\ThesisStart{female}' } else { '% \ThesisStart{female}' }
+    $stagLine = '% \ThesisStart{front-matter/stag-intro.pdf}'
+    $values.FRONT_MATTER = "% TUL-FRONT-MATTER-BEGIN`n% Exactly one ThesisStart command must remain active.`n$maleLine`n$femaleLine`n$stagLine`n% TUL-FRONT-MATTER-END"
 
     foreach ($key in @('TITLE_CS', 'TITLE_EN', 'AUTHOR', 'PROGRAMME_CODE', 'PROGRAMME_CS', 'PROGRAMME_EN', 'BRANCH_CODE', 'BRANCH_CS', 'BRANCH_EN', 'SUPERVISOR')) {
         if ([string]::IsNullOrWhiteSpace($values[$key])) {
@@ -128,6 +139,10 @@ function Write-ThesisStarter {
     foreach ($entry in $values.GetEnumerator()) {
         $token = '{{' + $entry.Key + '}}'
         $content = $content.Replace($token, [string]$entry.Value)
+    }
+    $activeFrontMatter = @([regex]::Matches($content, '(?m)^\s*\\ThesisStart\{.*\}\s*$'))
+    if ($activeFrontMatter.Count -ne 1) {
+        throw "Starter generation must produce exactly one active ThesisStart command; found $($activeFrontMatter.Count)."
     }
     Set-Content -LiteralPath (Join-Path $Destination 'main.tex') -Value $content -Encoding UTF8
     Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'references.bib') -Force

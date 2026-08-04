@@ -18,6 +18,7 @@ This tracked file describes the project, its deliverables, and durable decisions
 - Main document: `prace/main.tex`
 - Bibliography and citation requirements: follow the TUL policy summary in `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`; confirm the faculty-specific citation system during onboarding
 - IS STAG introductory-pages PDF: `[not provided]`
+- Working title-page mode: generated `male` or `female` variant selected during onboarding; replace with the official IS STAG PDF before final submission
 
 ## Deliverables
 
@@ -58,6 +59,7 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Initialize main thesis: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Thesis`
 - Initialize another document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Document -DocumentName <slug>`
 - Initialize defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Presentation`
+- Replace generated title pages with IS STAG PDF: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\set-thesis-start.ps1 -ProjectDir .\prace -StagPdf <provided-pdf>`
 - Build a document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-thesis.ps1 -ProjectDir <document-directory> -MainTex main.tex -Clean`
 - Build defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentation.ps1 -ProjectDir .\obhajoba -MainTex main.tex -Clean`
 
@@ -85,3 +87,4 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: Visuals are purpose-led rather than decorative. Each used figure must be traceable as original, reproduced, adapted, or AI-generated; evidence-bearing imagery may not be generatively altered.
 - 2026-08-03: Long-running work should use role-separated chats over one shared workspace. The main chat curates final thesis content; the experimental chat preserves complete practical records; question/research and defense chats remain optional and focused.
 - 2026-08-03: The experimental diary is the complete practical source of truth. The main thesis contains only selected, verified synthesis, with every promoted method, value, graph, and conclusion traceable back to experiment IDs and files.
+- 2026-08-04: Every initialized formal document must contain exactly one active `\ThesisStart`. Onboarding selects the temporary generated `male` or `female` variant; the primary thesis later switches to the official IS STAG introductory PDF for submission.

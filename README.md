@@ -12,7 +12,7 @@ Přenositelná projektová základna pro závěrečnou práci, další samostatn
 
    > Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
 
-4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
+4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok, mužskou nebo ženskou variantu dočasné titulní strany a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
 5. Po dokončení onboardingu oddělte práci do zaměřených chatů nad stejným projektem. Při hlavní práci a praktickém deníku jsou výchozí `MAIN – hlavní práce` a `EXPERIMENTY – praktický deník`; agent připraví jejich úvodní zprávy a vytvoří je pouze po vašem souhlasu.
 
 Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
@@ -41,6 +41,8 @@ agent ověří původní záznamy a soubory, oddělí metodiku, výsledky a disk
 ## Profil a soukromí
 
 Onboarding vytvoří `PROJECT_PROFILE.json`. Obsahuje osobní a studijní údaje a je záměrně ignorovaný Gitem. Ukázka struktury je v `PROJECT_PROFILE.example.json`.
+
+Při založení práce se aktivuje právě jedna pracovní titulní strana: mužská (`male`) nebo ženská (`female`) varianta TUL šablony. Až získáte oficiální úvodní strany z IS STAG, předejte jejich PDF agentovi. Agent upozorní na osobní údaje, soubor uloží jako verzovanou součást hlavního dokumentu a původní variantu jím nahradí; nesmí ponechat dvě aktivní varianty ani všechny možnosti vypnout.
 
 `PROJECT_CONTEXT.md` je naopak verzovaný. Uchovává téma, strukturu projektu, seznam výstupů a dlouhodobá rozhodnutí, ale nemá duplikovat osobní profil.
 
@@ -71,7 +73,8 @@ Lokální profil:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-profile.ps1 `
-  -FullName "Jméno Příjmení" -Faculty FM -WorkType BP -Language CZ -Year 2026
+  -FullName "Jméno Příjmení" -Faculty FM -WorkType BP -Language CZ -Year 2026 `
+  -FrontMatterVariant male
 ```
 
 Hlavní práce a prezentace:
@@ -79,6 +82,13 @@ Hlavní práce a prezentace:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Thesis
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Presentation
+```
+
+Pozdější výměna pracovní titulní strany za oficiální PDF z IS STAG:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\set-thesis-start.ps1 `
+  -ProjectDir .\prace -StagPdf ".\uvodni-strany-ze-stag.pdf"
 ```
 
 Další samostatný dokument:

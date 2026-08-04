@@ -5,6 +5,7 @@
 - Discover repository skills under `.agents/skills/` and use a matching skill when applicable.
 - When `PROJECT_CONTEXT.md` contains `setup_state: template` and the user wants to begin a real project, use `$setup-tul-project` before initializing or editing a document. Do not force onboarding for read-only questions.
 - During onboarding, assume no prior Git, GitHub, LaTeX, or terminal experience unless the user demonstrates otherwise. Use plain language, explain jargon at the moment it becomes relevant, accept ordinary faculty and work-type names, and keep questions in small groups.
+- Before initializing any TUL formal document, ask whether its generated declaration/title-page variant should be `male` or `female`. Keep exactly one active `\ThesisStart` command at all times; when the official IS STAG introductory PDF arrives, replace the generated variant with that PDF rather than adding a second command.
 - Treat `templates/upstream/` as immutable vendor material. Never edit, compile, or use it as an expert/citable source.
 - Work on the thesis only in `prace/`, on defense slides only in `obhajoba/`, and on expert sources only in `zdroje/`.
 - Automatically use `$matlab-to-tikz` for MATLAB plots, `.fig`, `.mat`, plotting scripts, numeric plot data, and requests for publication-quality LaTeX graphs. Prefer editable PGFPlots with traceable external data over screenshots or opaque raster exports.

@@ -39,11 +39,13 @@ Pokud agent nepodporuje pojmenované skills, pošlete:
 
 ## 3. Odpovězte na krátké otázky
 
-Agent se postupně zeptá například na jméno, fakultu, druh práce, jazyk a známé údaje ze zadání. Můžete odpovídat běžně, například „Fakulta textilní“ a „bakalářská práce“; interní zkratky doplní agent.
+Agent se postupně zeptá například na jméno, fakultu, druh práce, jazyk, rok a na mužskou nebo ženskou variantu pracovní titulní strany. Můžete odpovídat běžně, například „Fakulta textilní“, „bakalářská práce“ a „mužská varianta“; interní zkratky doplní agent.
 
 Když údaj ještě neznáte, napište „nevím“ nebo „doplním později“. Agent jej nesmí vymyslet. Technicky nutnou prozatímní hodnotu smí použít jen po vašem potvrzení a musí ji označit k pozdější kontrole.
 
 Lokální `PROJECT_PROFILE.json` obsahuje osobní údaje a Git ho ignoruje. Samotná práce může obsahovat vaše jméno, proto vás agent před jeho zapsáním do verzovaných souborů upozorní.
+
+Pracovní PDF musí mít vždy právě jednu úvodní variantu, jinak začne až abstraktem. Na začátku agent aktivuje zvolenou variantu TUL šablony. Před odevzdáním si v IS STAG vygenerujete oficiální úvodní strany, pošlete jejich PDF agentovi a ten jimi pracovní variantu nahradí.
 
 ## 4. Rozdělte práci do zaměřených chatů
 

@@ -42,6 +42,7 @@ Ask only for missing values and keep the conversation in small groups. Ask with 
 - work type, normalized after confirmation to `BP`, `DP`, `Dis`, `Teze`, `Autoref`, `Hab`, `SP`, or `Proj`;
 - language: `CZ` or `EN`;
 - submission year.
+- generated TUL title-page/declaration variant: ask in plain language whether to use the male or female variant, then normalize to `male` or `female`. Never infer it from the user's name.
 
 Use these name mappings when the user answers without codes:
 
@@ -50,7 +51,7 @@ Use these name mappings when the user answers without codes:
 - Fakulta zdravotnických studií → `FZS`; Ústav pro nanomateriály, pokročilé technologie a inovace → `CXI`;
 - bakalářská práce → `BP`; diplomová práce → `DP`. For less common work types, state the interpreted code and ask for confirmation.
 
-Then collect what is already known: Czech and English title, programme code and names, branch or specialization, supervisor, consultant, and IS STAG introductory-pages PDF. Allow unknown optional values to remain empty. Never guess official institutional metadata.
+Then collect what is already known: Czech and English title, programme code and names, branch or specialization, and supervisor or consultant. Allow unknown optional values to remain empty. Explain that the selected `male` or `female` variant creates the working title and declaration pages. The official IS STAG introductory-pages PDF normally arrives later and will replace this generated variant before submission. Never guess official institutional metadata.
 
 Ask which outputs are needed:
 
@@ -64,7 +65,7 @@ Examples of supporting documents include `technologicky-denik`, `merici-protokol
 
 Explain that `PROJECT_PROFILE.json` is ignored by Git, while initialized `.tex` documents may be tracked and can contain the author's name. If the repository may be public, obtain confirmation before copying personal data into tracked files. Never write secrets or unnecessary personal identifiers.
 
-Create the profile with `scripts/setup-profile.ps1`. Pass user-provided values exactly. Do not use `-Force` unless the user explicitly approves replacing an existing profile. Parse the created JSON to verify it.
+Create the profile with `scripts/setup-profile.ps1` and pass the confirmed variant through `-FrontMatterVariant male` or `-FrontMatterVariant female`. Pass user-provided values exactly. Do not use `-Force` unless the user explicitly approves replacing an existing profile. Parse the created JSON to verify it.
 
 ## Initialize the requested workspaces
 
@@ -75,6 +76,10 @@ Use `$tul-thesis` for thesis and formal-document initialization and `$tul-presen
 - Supporting document: run `scripts/init-project.ps1 -Target Document -DocumentName <slug>`.
 
 The initializer creates a minimal starter and fills known metadata from the profile. After copying, edit only the working copy. Review `\documentclass` options and all TUL metadata; keep official data visibly marked when the user has not supplied it. Prefer an official IS STAG introductory-pages PDF for current BP/DP workflows when available.
+
+Require exactly one active `\ThesisStart` command in every initialized formal document. The initializer must activate the confirmed `male` or `female` variant; all alternatives remain commented. If no variant is confirmed, stop before initialization and ask the user instead of generating a document that begins with the abstract.
+
+When the user later provides the official IS STAG introductory-pages PDF, explain that the copied PDF becomes a tracked project file and may contain personal data; obtain confirmation before adding it to a public repository. Then use `scripts/set-thesis-start.ps1 -ProjectDir prace -StagPdf <provided-pdf>`. This copies it to `prace/front-matter/stag-intro.pdf`, deactivates both generated variants, activates only the PDF command, records the portable path in `PROJECT_CONTEXT.md`, and updates the ignored local profile. Compile and visually verify the title/front matter after the switch. Never add a second active `\ThesisStart` line.
 
 Use these entry points:
 
