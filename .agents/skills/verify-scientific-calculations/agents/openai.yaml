@@ -1,0 +1,7 @@
+interface:
+  display_name: "Verify Scientific Calculations"
+  short_description: "Cross-checks calculations and assumptions"
+  default_prompt: "Use $verify-scientific-calculations to verify this calculation with traceable assumptions and an independent method."
+
+policy:
+  allow_implicit_invocation: true

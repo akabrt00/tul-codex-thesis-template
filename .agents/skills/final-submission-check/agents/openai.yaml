@@ -1,0 +1,6 @@
+interface:
+  display_name: "Final Submission Check"
+  short_description: "Runs the final thesis submission preflight"
+  default_prompt: "Use $final-submission-check to check whether my thesis is technically ready for submission."
+policy:
+  allow_implicit_invocation: true

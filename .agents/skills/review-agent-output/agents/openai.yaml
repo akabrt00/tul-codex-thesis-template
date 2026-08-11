@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Agent Output"
+  short_description: "Routes agent work through human review"
+  default_prompt: "Use $review-agent-output to prepare this agent-created work for explicit human review."
+
+policy:
+  allow_implicit_invocation: true

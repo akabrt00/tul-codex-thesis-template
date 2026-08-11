@@ -30,6 +30,8 @@ Use supported class options and required metadata from `references/template-note
 
 Use `$local-tool-router` to inspect XeLaTeX, Biber, MakeIndex, and available fonts/packages. For the bundled examples, use XeLaTeX.
 
+Use `$diagnose-tul-latex` for environment or build failures. Optional generic LaTeX plugin compilers are supplementary diagnostics and never replace the repository's authoritative build sequence.
+
 Compile with `scripts/compile-thesis.ps1`, which enforces this sequence:
 
 1. `xelatex -interaction=nonstopmode -halt-on-error -file-line-error <main.tex>`
@@ -44,3 +46,5 @@ Inspect the final log for missing files/fonts/packages, undefined citations/refe
 Before every reported build, verify that the source contains exactly one uncommented `\ThesisStart`. Treat zero active commands (PDF begins at the abstract) and multiple active commands as blocking document errors.
 
 Deliver the working sources and verified PDF. Report any build stage that did not complete; a first-pass PDF is not a fully verified bibliography or cross-reference build.
+
+For an explicit submission-readiness request, hand off to `$final-submission-check` and `scripts/validate-deliverable.ps1`. After material prose, calculation, citation, visual, metadata, or structure changes, use `$review-agent-output`; a successful build is not human approval.

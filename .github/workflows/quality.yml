@@ -1,0 +1,69 @@
+name: Repository quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate repository skills
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-skills.ps1
+
+      - name: Audit registered sources
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\audit-sources.ps1
+
+      - name: Lint project-owned files
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\lint-project.ps1 -ReportPath .ci-artifacts/lint.json
+
+      - name: Test skill validation failures
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-skill-validation.ps1
+
+      - name: Test template initialization
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-template-initialization.ps1
+
+      - name: Test deliverable preflight
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-validate-deliverable.ps1
+
+      - name: Test review and calculation records
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-review-and-calculation-records.ps1
+
+      - name: Test local tool capability schema
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\tools\test-tool-capabilities.ps1
+
+      - name: Optional TUL build smoke test
+        id: latex
+        shell: powershell
+        run: |
+          powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-build-smoke.ps1
+          if (Test-Path .ci-artifacts\build-summary.json) {
+            $build = Get-Content -Raw .ci-artifacts\build-summary.json | ConvertFrom-Json
+            "### TUL build smoke test`nThesis: $($build.thesis_status). Presentation: $($build.presentation_status). No software was installed." | Add-Content $env:GITHUB_STEP_SUMMARY
+          } else {
+            "### TUL build smoke test`nSkipped because the runner does not provide the full TUL toolchain. No software was installed." | Add-Content $env:GITHUB_STEP_SUMMARY
+          }
+
+      - name: Upload quality artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: .ci-artifacts/
+          if-no-files-found: warn

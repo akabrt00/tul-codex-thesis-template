@@ -52,6 +52,9 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Generated outputs: next to their registered document entry points unless configured otherwise
 - Recommended chat topology: `MAIN – hlavní práce`; `EXPERIMENTY – praktický deník` when a practical record exists; optional `OTÁZKY A REŠERŠE` and `OBHAJOBA`
 - Experimental workflow: complete records use stable `EXP-NNNN` IDs in a registered practical document; selected material reaches the main thesis only through a verified promotion record
+- Calculation workflow: derived numerical claims use stable `CALC-NNNN` records, explicit assumptions, a reproducible primary method, an independent cross-check, and subsequent human review
+- Review workflow: material agent output is technically checked first and remains `awaiting-human-review` until the author explicitly approves its stated scope
+- Optional accelerators: Wolfram may cross-check symbolic or numerical work and the LaTeX plugin may assist diagnostics; neither is required, neither replaces project scripts or expert sources, and sensitive data requires confirmation before external processing
 
 ## Commands
 
@@ -62,6 +65,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Replace generated title pages with IS STAG PDF: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\set-thesis-start.ps1 -ProjectDir .\prace -StagPdf <provided-pdf>`
 - Build a document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-thesis.ps1 -ProjectDir <document-directory> -MainTex main.tex -Clean`
 - Build defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentation.ps1 -ProjectDir .\obhajoba -MainTex main.tex -Clean`
+- Validate a built deliverable: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-deliverable.ps1 -ProjectDir <document-directory> -DocumentKind <Thesis|Document|Presentation>`
+- Lint project-owned files: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\lint-project.ps1`
 
 ## Quality criteria
 
@@ -69,6 +74,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Citations, cross-references, page size, fonts, layout, and final PDF must be verified.
 - Every expert source must be traceable through `zdroje/REJSTRIK_ZDROJU.md`.
 - Every additional document must have a unique key, directory, purpose, and entry point in the deliverables table.
+- Every material agent-created or agent-modified output must receive explicit human review after technical checks; passing compilation or automated validation is not approval of meaning, evidence, or academic quality.
+- Every derived numerical claim must retain assumptions, units, reproducible inputs, an independent cross-check, and a link to its human-review decision.
 
 ## Constraints and safety
 
@@ -88,3 +95,6 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-03: Long-running work should use role-separated chats over one shared workspace. The main chat curates final thesis content; the experimental chat preserves complete practical records; question/research and defense chats remain optional and focused.
 - 2026-08-03: The experimental diary is the complete practical source of truth. The main thesis contains only selected, verified synthesis, with every promoted method, value, graph, and conclusion traceable back to experiment IDs and files.
 - 2026-08-04: Every initialized formal document must contain exactly one active `\ThesisStart`. Onboarding selects the temporary generated `male` or `female` variant; the primary thesis later switches to the official IS STAG introductory PDF for submission.
+- 2026-08-11: Agent output follows a two-gate workflow: technical validation followed by explicit human review. The agent may never approve its own work or equate a successful build with academic correctness.
+- 2026-08-11: Wolfram and LaTeX plugins are optional accelerators. Local reproducible fallbacks remain supported, project compile scripts are authoritative, and plugin output is not an expert citation.
+- 2026-08-11: Final submission readiness uses a deterministic PASS/WARN/FAIL preflight after the authoritative clean build. Technical readiness is explicitly separate from academic correctness and institutional acceptance.

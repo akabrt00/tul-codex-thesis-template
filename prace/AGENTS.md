@@ -10,5 +10,9 @@
 - Use `$matlab-to-tikz` for MATLAB and numerical plots. Keep document-owned plot data and generated TikZ under `figures/<slug>/`, preserve relative paths, and verify both numerical fidelity and the rendered graph.
 - Use `$create-project-visuals` to recommend and produce explanatory visuals from rough content requests. Keep document-ready assets under `figures/<slug>/` with provenance, caption intent, and source-page links; never alter evidentiary imagery in a meaning-changing way.
 - Use `$manage-experiments` for every practical or experimental record and for every transfer from a registered diary into the main thesis. Keep stable `EXP-NNNN` identifiers, complete raw history, file links, and explicit promotion records.
+- Use `$verify-scientific-calculations` for every derived numerical claim and preserve its `CALC-NNNN` record next to the registered document.
+- After material content changes, use `$review-agent-output`. A successful build is only a technical check; the author must still approve meaning, evidence, calculations, visuals, and readability.
+- Use `$diagnose-tul-latex` for environment or build failures without replacing the project compile script or installing anything without approval.
+- Use `$final-submission-check` only for an explicit submission-readiness request; use `$check-assignment-compliance`, `$review-supervisor-feedback`, and `$review-thesis-chapter` for their distinct review scopes.
 - Compile with `scripts/compile-thesis.ps1`. A valid build follows XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX.
 - Inspect the final log and rendered PDF before reporting completion. Do not claim resolved citations when Biber failed or timed out.

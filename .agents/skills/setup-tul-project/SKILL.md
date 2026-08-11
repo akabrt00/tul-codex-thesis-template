@@ -14,6 +14,7 @@ At the start, briefly explain that:
 - the user should work in a personal project copy and the agent will verify that assumption before publishing or writing personal data into tracked files;
 - the agent will handle most file and LaTeX operations while the user controls content and confirms personal or official data;
 - the editable sources produce a PDF for reading and submission.
+- technical checks do not approve meaning or academic correctness; material agent output remains awaiting explicit human review.
 
 When Git metadata exists, inspect the `origin` URL. If it still points to the original template repository, explain the difference between the original, a personal repository, and a local-only copy before writing personal data into tracked files. Recommend **Use this template** and a private repository to a beginner. Do not create, publish, or reconnect a repository without the user's authorization.
 
@@ -113,6 +114,8 @@ Keep personal author data in `PROJECT_PROFILE.json`; do not duplicate it in `PRO
 ## Verify and hand off
 
 Run `scripts/validate-skills.ps1`, `scripts/audit-sources.ps1`, and a relevant environment check. Compile initialized documents only when their required metadata and toolchain are ready. Report missing components without installing anything.
+
+Treat LaTeX and Wolfram plugins as optional accelerators that may require a fresh chat after installation. Do not make onboarding depend on them. Use `$review-agent-output` for material tracked metadata or initialized document content, explain the exact review scope in beginner language, and never record approval without the user's explicit decision.
 
 Finish in the user's language with:
 

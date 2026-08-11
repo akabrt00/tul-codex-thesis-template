@@ -81,6 +81,38 @@ Agentovi můžete psát normálními větami:
 - „Z experimentů EXP-0012 až EXP-0018 vyber ověřené výsledky vhodné do hlavní práce a zachovej odkazy na původní záznamy.“
 - „Ulož ověřené změny do historie a vysvětli mi, co se uloží na GitHub.“
 
+## Agent připravuje, člověk schvaluje
+
+AI agent může text napsat, výpočet přepočítat, zdroj dohledat a PDF technicky zkontrolovat. Pořád ale může špatně pochopit význam, použít nepřiměřené tvrzení nebo vytvořit výsledek, který sice projde kompilací, ale nedává odborně smysl.
+
+Každou důležitou změnu proto projekt rozděluje na dvě brány:
+
+1. **technická kontrola** – soubory, výpočty, citace, odkazy a PDF projdou dostupnými automatickými testy;
+2. **lidská kontrola** – vy si přečtete přesně vymezenou změnu a teprve potom ji schválíte nebo vrátíte k opravě.
+
+Agent nesmí označit vlastní materiální změnu jako schválenou. Bez vašeho rozhodnutí má říct, že je technicky zkontrolovaná a čeká na lidskou kontrolu. Můžete napsat například:
+
+> Připrav tuto kapitolu ke kontrole a vypiš mi, co mám ověřit já.
+
+> Ověř tento důležitý výpočet nezávislou metodou, ale do práce ho vlož až po mé kontrole.
+
+## Čtyři pokročilé požadavky obyčejnou větou
+
+Nemusíte znát názvy skriptů ani skills. Stačí později napsat například:
+
+- „Zkontroluj práci před odevzdáním.“
+- „Porovnej hotovou práci s oficiálním zadáním.“
+- „Zapracuj připomínky vedoucího a udržuj seznam jejich stavu.“
+- „Připrav mě k obhajobě podle skutečného obsahu práce.“
+
+Finální kontrola ověří čistý build, zdroje, citace, odkazy, placeholdery, fonty a výsledné PDF. Je to technický preflight, nikoli potvrzení, že je práce automaticky obsahově správná.
+
+## Volitelné pluginy
+
+LaTeX nebo Wolfram plugin může práci urychlit, ale není povinný. LaTeX plugin pomáhá s diagnostikou prostředí; závazný build TUL práce stále provádějí projektové skripty. Wolfram je vhodný jako výpočetní kontrola symbolické matematiky nebo jednotek, nikoli jako náhrada odborného zdroje. Po instalaci pluginu může být potřeba otevřít nový chat, aby jej agent viděl.
+
+Citlivá nebo neveřejná data se do externí služby neposílají bez vašeho předchozího souhlasu. Když plugin není dostupný, agent má použít bezpečný místní nástroj nebo srozumitelně popsat omezení; nemá nic automaticky instalovat.
+
 ## Pět pojmů, které stačí znát
 
 - **Repozitář** – projektová složka společně s historií změn.

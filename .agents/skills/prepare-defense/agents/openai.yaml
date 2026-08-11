@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prepare Defense"
+  short_description: "Transforms thesis findings into a defense story"
+  default_prompt: "Use $prepare-defense to turn my thesis into a focused defense presentation."
+policy:
+  allow_implicit_invocation: true

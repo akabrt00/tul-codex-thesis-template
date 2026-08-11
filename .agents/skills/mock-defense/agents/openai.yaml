@@ -1,0 +1,6 @@
+interface:
+  display_name: "Mock Defense"
+  short_description: "Runs an evidence-grounded defense simulation"
+  default_prompt: "Use $mock-defense to question me interactively about my actual thesis."
+policy:
+  allow_implicit_invocation: true

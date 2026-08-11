@@ -1,0 +1,7 @@
+interface:
+  display_name: "Diagnose TUL LaTeX"
+  short_description: "Diagnoses the TUL LaTeX toolchain"
+  default_prompt: "Use $diagnose-tul-latex to diagnose this TUL LaTeX build without changing the machine."
+
+policy:
+  allow_implicit_invocation: true

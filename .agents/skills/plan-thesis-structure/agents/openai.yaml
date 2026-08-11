@@ -1,0 +1,6 @@
+interface:
+  display_name: "Plan Thesis Structure"
+  short_description: "Plans evidence-led thesis chapter structure"
+  default_prompt: "Use $plan-thesis-structure to design a thesis outline from my assignment and goals."
+policy:
+  allow_implicit_invocation: true

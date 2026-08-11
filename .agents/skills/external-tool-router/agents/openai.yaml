@@ -1,0 +1,6 @@
+interface:
+  display_name: "External Tool Router"
+  short_description: "Routes optional external scientific tools safely"
+  default_prompt: "Use $external-tool-router to choose a safe external or local tool for this scientific task."
+policy:
+  allow_implicit_invocation: true

@@ -59,6 +59,31 @@ Každý samostatně kompilovaný dokument má vlastní `main.tex` a záznam v ta
 
 Běžná kapitola nebo příloha vložená do hlavní práce nepotřebuje vlastní workspace. Samostatný dokument se zakládá tehdy, když má mít vlastní titulní údaje, číslování nebo výsledné PDF.
 
+## Kontrola člověkem a finální preflight
+
+Automatická kontrola není totéž jako schválení práce. Materiální texty, výpočty, interpretace, citace, tabulky, obrázky a prezentace po technické kontrole zůstávají ve stavu `awaiting-human-review`, dokud autor výslovně neposoudí jejich význam a kvalitu. Agent nesmí schválit vlastní výstup.
+
+Začátečník nemusí znát interní příkazy. Požadavek:
+
+> Zkontroluj práci před odevzdáním.
+
+spustí orchestraci auditu zdrojů, čistého buildu, kontroly logů a PDF preflightu. Deterministický skript rozlišuje `PASS`, `WARN` a `FAIL`, umí vytvořit i kompaktní JSON report a při kritickém problému vrací nenulový exit code. Technický verdikt neprohlašuje obsah za odborně správný.
+
+U hlavní práce finální preflight také odmítne pracovní `male`/`female` úvodní strany. Před skutečným odevzdáním musí být nahrazeny oficiálním PDF z IS STAG; výjimka existuje pouze pro automatický test šablony.
+
+Další běžné vstupy jsou „Porovnej práci se zadáním“, „Zapracuj připomínky vedoucího“, „Zkontroluj kapitolu“ a „Připrav mě k obhajobě“. Detailní postupy jsou načítány až prostřednictvím příslušných repository skills, aby základní kontext zůstal malý.
+
+## Volitelné pluginy a vědecké nástroje
+
+Projekt funguje bez pluginů. Nainstalované schopnosti se používají pouze tehdy, když jsou pro úlohu vhodné a v aktuálním chatu skutečně dostupné.
+
+- LaTeX plugin je doplňková diagnostika. Nenahrazuje projektový build XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX.
+- Wolfram může ověřovat symbolické nebo numerické výpočty, jednotky a transformace. Je to výpočetní nástroj, ne odborný citační zdroj.
+- MATLAB a Simulink se volí pro úlohy, kde přinášejí konkrétní výhodu; jednoduché operace mohou použít lehčí místní nástroj.
+- Po instalaci pluginu může být nutné otevřít nový chat. Nedostupnost pluginu není chyba projektu a agent má hledat reprodukovatelný fallback.
+
+Projekt nic automaticky neinstaluje a neposílá citlivá nebo neveřejná data do externí služby bez předchozího vysvětlení a potvrzení uživatele.
+
 ## Ruční inicializace
 
 AI onboarding používá stejné reprodukovatelné PowerShell skripty, které lze spustit i ručně.

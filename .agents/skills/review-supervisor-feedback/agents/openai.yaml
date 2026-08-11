@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Supervisor Feedback"
+  short_description: "Tracks and resolves supervisor feedback"
+  default_prompt: "Use $review-supervisor-feedback to process these supervisor comments."
+policy:
+  allow_implicit_invocation: true
