@@ -162,15 +162,15 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 
 ## Grafy z MATLABu
 
-MATLAB grafy, soubory `.fig`, vykreslovací skripty, `.mat` data a tabulkové exporty automaticky spouštějí skill `$matlab-to-tikz`. Agent zachová vykreslená data v přenositelném souboru, vytvoří editovatelný graf TikZ/PGFPlots a zkontroluje jeho číselnou shodu i vzhled ve výsledném PDF. Uživatel nemusí instalovat `matlab2tikz` ani znát příkazy převodu.
+Skill `$matlab-to-tikz` se spustí, když uživatel chce MATLABový nebo numerický graf vytvořit, převést, upravit či vložit do dokumentu. Samotné otevření `.mat` dat bez požadavku na graf jej nespouští. Při převodu agent zachová vykreslená data v přenositelném souboru, vytvoří editovatelný graf TikZ/PGFPlots a zkontroluje jeho číselnou shodu i vzhled ve výsledném PDF. Uživatel nemusí instalovat `matlab2tikz` ani znát příkazy převodu.
 
 Příklad běžného požadavku:
 
 > Tady je MATLAB graf. Převeď ho do práce jako pěkný vektorový graf, zachovej data a zkontroluj jednotky i legendu.
 
-## Automatické návrhy obrázků a schémat
+## Obrázky a schémata
 
-Uživatel může obsah popsat hrubě, například „tady vysvětluju tok materiálu výrobní linkou“. Skill `$create-project-visuals` sám posoudí, zda pomůže schéma, graf, fotografie, výřez ze zdroje nebo žádný obrázek. Jednoduchá odborná schémata kreslí v TikZ, datové grafy předává workflow PGFPlots a vhodné obrázky z registrovaných dokumentů umí dohledat, vytáhnout a připravit pro sazbu.
+Uživatel může obsah popsat hrubě, například „tady vysvětluju tok materiálu výrobní linkou“. Běžný textový workflow může stručně doporučit vhodný vizuál bez načtení dalšího skillu. `$create-project-visuals` se načte až tehdy, když se má vizuál skutečně vytvořit, dohledat, upravit, vložit nebo cíleně zkontrolovat. Jednoduchá odborná schémata kreslí v TikZ, datové grafy předává workflow PGFPlots a vhodné obrázky z registrovaných dokumentů umí dohledat, vytáhnout a připravit pro sazbu.
 
 Každý použitý vizuál uchovává informaci o původu, stránce, licenci a provedené úpravě. Převzatý obrázek se cituje, překreslení se označí jako zpracované podle zdroje a AI ilustrace nesmí sloužit jako odborný důkaz. Experimentální fotografie, mikroskopické snímky ani naměřené grafy se generativně „nevylepšují“ způsobem, který by změnil jejich význam.
 

@@ -9,6 +9,8 @@ description: Select and safely route work to optional external APIs, MCP servers
 
 Read the task, project constraints, and available tool capabilities. Identify the concrete benefit of an external service: authoritative retrieval, symbolic computation, specialized database access, or an operation unavailable locally. Do not use an external tool merely because it is installed.
 
+Discover only the external capability needed for the current decision. Prefer a compact capability summary or structured result over loading broad service catalogs or large raw responses.
+
 Use `$local-tool-router` for installed MATLAB, Python, R, LaTeX, document, or media tools. Prefer a reproducible local route when it satisfies the task, especially for unpublished or sensitive data. Use `$verify-scientific-calculations` for derived scientific values regardless of engine.
 
 ## Apply the data boundary

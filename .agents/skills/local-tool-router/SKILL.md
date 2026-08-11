@@ -1,11 +1,13 @@
 ---
 name: local-tool-router
-description: Detect locally installed developer, scientific, document, media, and build tools and select the most suitable reproducible workflow. Use before computation, data analysis, simulation, optimization, signal or image processing, document/media conversion, compiling, or when a task may benefit from MATLAB, Simulink, Python, R, Julia, Octave, Wolfram, Node.js, .NET, LaTeX, Pandoc, FFmpeg, ImageMagick, Graphviz, Docker, or native build tools.
+description: Detect and select locally installed executables for a task-specific reproducible workflow. Use when the current task needs proof that a local runtime, version, license session, toolbox, compiler, converter, or native utility is usable, or when choosing among installed tools such as MATLAB, Python, LaTeX, FFmpeg, or Graphviz. Do not scan capabilities for a routine repository task whose native command is already known. MCP, plugins, connectors, and external APIs belong to external-tool-router.
 ---
 
 # Local Tool Router
 
 ## Scan capabilities
+
+Scan only when the current decision depends on local capability evidence. Prefer the smallest sufficient context: select task-relevant tool IDs and summarize large probe output instead of loading a full machine inventory.
 
 Run the scanner for the current operating system from the repository root.
 
@@ -39,7 +41,7 @@ The cache is Git-ignored, machine-specific, and stale evidence. Regenerate it af
 2. Match the task to the narrowest appropriate tool. Read `references/tool-selection.md` when several candidates fit.
 3. Prefer the established project toolchain. Introduce a different tool only for a concrete benefit.
 4. Check required packages, MATLAB toolboxes, licenses, services, or runtime versions without changing the machine. Never infer their presence from another user's report.
-5. Discover MCP or plugin capabilities lazily for the required task. A local scanner cannot prove current-chat MCP availability.
+5. If the task instead depends on MCP, plugin, connector, or API capability, use `$external-tool-router`; a local scanner cannot prove current-chat availability.
 6. Use non-interactive, reproducible commands. Save important scripts and parameters in the repository.
 7. Verify the output with task-appropriate assertions or tests and report the exact tool used.
 

@@ -1,6 +1,6 @@
 ---
 name: create-project-visuals
-description: Automatically recommend, source, extract, adapt, redraw, create, insert, and verify useful academic visuals from rough user descriptions or document content. Use while planning, drafting, or reviewing a thesis, formal document, or presentation whenever a figure, image, diagram, schematic, flowchart, process illustration, screenshot, photograph, extracted PDF figure, or graph could improve understanding; route data plots to PGFPlots or matlab-to-tikz, draw deterministic technical visuals in TikZ, manage sourced images with page-level provenance, and use image generation only for clearly illustrative non-evidence raster assets.
+description: Source, extract, adapt, redraw, create, insert, and verify academic visuals from rough descriptions or document content. Use when the user asks to create or insert a visual, when visual production is an explicit part of the current deliverable, or when a dedicated visual audit requires a concrete fix. A routine planning or prose-review task may recommend a possible figure briefly without loading this skill. Route actual data-plot production to PGFPlots or matlab-to-tikz and preserve provenance.
 ---
 
 # Create Project Visuals
@@ -11,7 +11,7 @@ Read `PROJECT_CONTEXT.md`, the nearest `AGENTS.md`, and the target document cont
 
 Extract a compact visual brief from the available context: teaching purpose, intended claim, audience, placement, required labels, language, physical or logical relationships, source basis, and final size. Infer routine layout and styling. Ask only when missing scientific meaning, units, uncertainty, identity, permissions, or a major design choice could change the result.
 
-During planning or review, recommend a visual only when it materially improves explanation, comparison, navigation, or evidence. State its purpose, proposed form, likely placement, and required source/data. Do not add an image merely to decorate or fill space.
+If a primary planning or review workflow only notices a possible visual, let it state the purpose, proposed form, likely placement, and required source/data without activating this workflow. Continue here only when creation, sourcing, adaptation, insertion, or a concrete visual fix is in scope. Do not add an image merely to decorate or fill space.
 
 ## Choose the best form
 
@@ -46,7 +46,7 @@ Store code and supporting data under `<document>/figures/<slug>/`. Use relative 
 
 ## Insert and verify
 
-When the user only asks for recommendations, do not modify the document. When the user asks to write, revise, or prepare the target document and the visual brief is sufficiently determined, create and insert the visual as part of that work. Present a recommendation first when copyright, scientific interpretation, or a substantial creative choice requires confirmation.
+When the user only asks for recommendations, do not modify the document and normally remain in the primary planning or review workflow. When visual production is explicitly part of writing, revising, or preparing the target document and the brief is sufficiently determined, create and insert it. Present a recommendation first when copyright, scientific interpretation, or a substantial creative choice requires confirmation.
 
 Use `$tul-thesis` or `$tul-presentation` to insert, compile, and visually inspect the result. Verify:
 

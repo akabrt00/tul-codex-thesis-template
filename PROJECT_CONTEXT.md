@@ -43,8 +43,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 ## Technical environment
 
 - Primary format: LaTeX
-- Scientific figures: editable TikZ/PGFPlots with traceable external data; MATLAB conversions use the automatic `$matlab-to-tikz` workflow
-- Visual workflow: rough content requests trigger automatic visual recommendations; create original TikZ where suitable, or extract/adapt registered source figures with page-level provenance and permission checks
+- Scientific figures: editable TikZ/PGFPlots with traceable external data; use `$matlab-to-tikz` when a MATLAB or numerical graph is actually created or converted
+- Visual workflow: ordinary planning may recommend a useful visual briefly; load `$create-project-visuals` only when creating, sourcing, adapting, inserting, or specifically auditing one
 - Expected runtime: XeLaTeX, Biber, and MakeIndex
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
@@ -52,8 +52,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Generated outputs: next to their registered document entry points unless configured otherwise
 - Recommended chat topology: `MAIN – hlavní práce`; `EXPERIMENTY – praktický deník` when a practical record exists; optional `OTÁZKY A REŠERŠE` and `OBHAJOBA`
 - Experimental workflow: complete records use stable `EXP-NNNN` IDs in a registered practical document; selected material reaches the main thesis only through a verified promotion record
-- Calculation workflow: derived numerical claims use stable `CALC-NNNN` records, explicit assumptions, a reproducible primary method, an independent cross-check, and subsequent human review
-- Review workflow: material agent output is technically checked first and remains `awaiting-human-review` until the author explicitly approves its stated scope
+- Calculation workflow: material scientific results use stable `CALC-NNNN` records, explicit assumptions, a reproducible primary method, an independent cross-check, and subsequent human review; routine arithmetic and trivial checks do not
+- Review workflow: iterative agent output remains `agent-draft`; grouped review checkpoints are technically checked and remain `awaiting-human-review` until the author explicitly approves their stated scope
 - Optional accelerators: Wolfram may cross-check symbolic or numerical work and the LaTeX plugin may assist diagnostics; neither is required, neither replaces project scripts or expert sources, and sensitive data requires confirmation before external processing
 
 ## Commands
@@ -74,8 +74,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Citations, cross-references, page size, fonts, layout, and final PDF must be verified.
 - Every expert source must be traceable through `zdroje/REJSTRIK_ZDROJU.md`.
 - Every additional document must have a unique key, directory, purpose, and entry point in the deliverables table.
-- Every material agent-created or agent-modified output must receive explicit human review after technical checks; passing compilation or automated validation is not approval of meaning, evidence, or academic quality.
-- Every derived numerical claim must retain assumptions, units, reproducible inputs, an independent cross-check, and a link to its human-review decision.
+- Every handed-off or checkpointed material agent output must receive explicit human review after technical checks; passing compilation or automated validation is not approval of meaning, evidence, or academic quality.
+- Every material scientific result must retain assumptions, units, reproducible inputs, an independent cross-check, and a link to its grouped human-review decision.
 
 ## Constraints and safety
 

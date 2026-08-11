@@ -1,7 +1,7 @@
 interface:
   display_name: "Local Tool Router"
-  short_description: "Detects and selects useful local project tools"
-  default_prompt: "Use $local-tool-router to inspect available tools and choose the best reproducible workflow for this task."
+  short_description: "Probes task-relevant installed executables"
+  default_prompt: "Use $local-tool-router to verify the local executables needed for this task and choose a reproducible workflow."
 
 policy:
   allow_implicit_invocation: true

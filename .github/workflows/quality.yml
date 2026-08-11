@@ -32,6 +32,10 @@ jobs:
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-skill-validation.ps1
 
+      - name: Test lazy skill routing policy
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-skill-routing.ps1
+
       - name: Test template initialization
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-template-initialization.ps1

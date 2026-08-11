@@ -1,6 +1,6 @@
 ---
 name: matlab-to-tikz
-description: Convert MATLAB plots, .fig files, plotting scripts, .mat data, tables, CSV exports, or described numerical results into polished, editable TikZ/PGFPlots figures for LaTeX theses and TUL presentations. Invoke automatically when the user asks to create, convert, restyle, repair, or insert a MATLAB graph, diagram, plot, subplot, curve, scatter plot, bar chart, error-bar chart, heatmap, or publication-quality scientific figure; also use when replacing MATLAB screenshots or raster graphs with vector LaTeX output.
+description: Convert MATLAB plots, .fig files, plotting scripts, .mat data, tables, CSV exports, or described numerical results into polished, editable TikZ/PGFPlots figures for LaTeX theses and TUL presentations. Use when the user asks to create, convert, restyle, repair, or insert a MATLAB or numerical graph, or to replace a raster plot with vector LaTeX output. Merely reading or analysing `.mat` data without a graph deliverable does not activate this workflow.
 ---
 
 # MATLAB to TikZ
@@ -10,6 +10,8 @@ description: Convert MATLAB plots, .fig files, plotting scripts, .mat data, tabl
 Read `PROJECT_CONTEXT.md`, the nearest `AGENTS.md`, and the registered document entry point. Use `$local-tool-router` before running MATLAB, Python, or LaTeX. Use `$tul-thesis` or `$tul-presentation` when inserting or compiling the result.
 
 Determine the intended document, figure width, language, units, caption, label, series meaning, uncertainty definition, and whether exact visual reproduction or a clearer redesign is wanted. Infer routine styling from the document, but never invent units, data, uncertainty, or scientific meaning.
+
+If the current task only inspects, summarizes, or computes from `.mat` data and does not create or modify a graph, keep the analysis workflow primary and do not continue with this skill.
 
 Store document-owned figure material below `<document>/figures/<slug>/`. Keep generated `.tex`, manifest, and compact data files together with portable relative paths. If input data are externally sourced evidence, register and cite them through `$manage-project-sources`; do not move expert originals into the document tree.
 

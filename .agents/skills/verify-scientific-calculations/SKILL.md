@@ -1,13 +1,19 @@
 ---
 name: verify-scientific-calculations
-description: Create traceable scientific calculation records and cross-check equations, algebra, symbolic manipulation, numerical values, units, uncertainty, fits, statistics, and derived thesis results with independent methods. Use whenever an agent computes or validates a value, formula, conversion, derivative, integral, equation solution, model, regression, uncertainty, or comparison, especially when optional Wolfram tools, MATLAB, Python, spreadsheets, or calculator outputs may be used before inserting results into a thesis, experiment diary, table, graph, or presentation.
+description: Create traceable calculation records and independently cross-check material scientific results, including thesis or experiment results, statistics, fitted parameters, derived scientific values, calculations behind figures or tables, argument-changing results, and nontrivial symbolic or numerical work that must be reproduced. Do not start the full workflow for simple arithmetic, routine sum checks, trivial unit conversions, short sanity checks, or internal helper calculations that will not become project results.
 ---
 
 # Verify Scientific Calculations
 
+## Decide whether the result is material
+
+Use a `CALC-NNNN` record when the result enters a thesis, experiment, figure, table, argument, conclusion, or other durable project evidence, or when nontrivial symbolic or numerical work must be reproducible.
+
+For simple arithmetic, routine sum checks, trivial unit conversions, short sanity checks, and internal helper calculations, use the narrowest deterministic tool and report the check briefly. Do not create a calculation record or require an independent workflow unless the result later becomes material.
+
 ## Establish a traceable calculation
 
-Read `PROJECT_CONTEXT.md`, the nearest `AGENTS.md`, and the registered target document. Create the next stable record under the target document with `scripts/new-calculation-record.ps1`. Never renumber `CALC-NNNN` records.
+For a material result, read `PROJECT_CONTEXT.md`, the nearest `AGENTS.md`, and the registered target document. Create the next stable record under the target document with `scripts/new-calculation-record.ps1`. Never renumber `CALC-NNNN` records.
 
 Capture the purpose, exact inputs, symbols, units, assumptions, source files, requested output, primary method, independent method, software or plugin versions when available, and unresolved questions. Never invent a missing measurement, unit, boundary condition, material property, precision, or uncertainty.
 
@@ -39,7 +45,7 @@ Resolve or expose differences in assumptions, branches, domains, sign convention
 
 A computational result is project evidence, not an expert citation. Wolfram, MATLAB, Python, or a calculator cannot replace a source for a theoretical, material, historical, or standards-based claim. Use `$manage-project-sources` for those claims.
 
-Before inserting a calculation or interpretation into a formal document, use `$review-agent-output`. Link the resulting `REV-NNNN` in the calculation metadata. Never mark the result academically correct or human-approved on the strength of software output alone.
+Before handing a calculation or interpretation to a person or reaching another review boundary, use `$review-agent-output` and include related results in one suitable review scope. Link the resulting `REV-NNNN` in the calculation metadata. Never mark the result academically correct or human-approved on the strength of software output alone.
 
 ## Finish
 
