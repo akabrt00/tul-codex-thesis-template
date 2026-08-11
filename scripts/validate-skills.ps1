@@ -30,6 +30,30 @@ foreach ($directory in Get-ChildItem -LiteralPath $skillsPath -Force -Directory 
     if ($name -notmatch '^[a-z0-9]+(?:-[a-z0-9]+)*$' -or $name.Length -gt 64) { $errors += "$($directory.Name): invalid skill name" }
     if ($description.Length -eq 0 -or $description.Length -gt 1024 -or $description -match '[<>]') { $errors += "$($directory.Name): invalid description" }
     if ($content -match '\[TODO|TODO:') { $errors += "$($directory.Name): template TODO remains" }
+
+    $openAiPath = Join-Path $directory.FullName 'agents\openai.yaml'
+    if (-not (Test-Path -LiteralPath $openAiPath -PathType Leaf)) {
+        $errors += "$($directory.Name): missing agents/openai.yaml"
+    } else {
+        $openAi = Get-Content -Raw -Encoding UTF8 -LiteralPath $openAiPath
+        foreach ($field in @('display_name', 'short_description', 'default_prompt')) {
+            if ($openAi -notmatch "(?m)^\s+$field\s*:\s*\S") { $errors += "$($directory.Name): openai.yaml missing interface.$field" }
+        }
+        if ($openAi -notmatch [regex]::Escape("`$$name")) {
+            $errors += "$($directory.Name): openai.yaml default prompt does not reference `$$name"
+        }
+        if ($openAi -match '(?m)^\s*allow_implicit_invocation\s*:\s*(.+?)\s*$' -and $Matches[1] -notin @('true', 'false')) {
+            $errors += "$($directory.Name): allow_implicit_invocation must be true or false"
+        }
+    }
+
+    foreach ($markdownLink in [regex]::Matches($content, '\[[^\]]+\]\(([^)]+)\)')) {
+        $target = $markdownLink.Groups[1].Value.Split('#')[0]
+        if ($target -and $target -notmatch '^(https?://|#|mailto:)' -and -not [IO.Path]::IsPathRooted($target)) {
+            $resolvedTarget = Join-Path $directory.FullName $target
+            if (-not (Test-Path -LiteralPath $resolvedTarget)) { $errors += "$($directory.Name): missing linked file $target" }
+        }
+    }
     $validated += [pscustomobject]@{ Skill = $name; DescriptionLength = $description.Length; SkillFile = $skillFile }
 }
 
