@@ -48,6 +48,10 @@ jobs:
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-review-and-calculation-records.ps1
 
+      - name: Test handoff packages
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-handoff-packages.ps1
+
       - name: Test local tool capability schema
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\tools\test-tool-capabilities.ps1

@@ -34,6 +34,12 @@ tmp/
 slprj/
 *.slxc
 
+# Exchanged handoff payloads stay local; keep only the tracked folder structure
+predavani/odchozi/*
+!predavani/odchozi/.gitkeep
+predavani/prijate/*
+!predavani/prijate/.gitkeep
+
 # LaTeX generated files
 *.aux
 *.bbl

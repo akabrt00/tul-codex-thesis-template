@@ -30,6 +30,16 @@ Register every independently compiled output. Use a stable lowercase key and kee
 
 Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Examples include a technological diary, measurement report, project report, or a separately compiled appendix. Defense slides belong in `obhajoba/main.tex`.
 
+## Current work
+
+- Current task: `[not started]`
+- Last output and relative path: `[none]`
+- Validation and human-review status: `[not applicable]`
+- Missing input: `[not assessed]`
+- Next useful action: understand the user's intended result and available inputs, then prepare the first useful proposal
+
+Keep this checkpoint short and non-sensitive. Update it after meaningful progress, verify referenced files when resuming, and retain `setup_state: template` until a formal document is actually initialized.
+
 ## Scope
 
 ### In scope
@@ -39,6 +49,14 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 ### Out of scope
 
 - `[define during onboarding]`
+
+## Storage and collaboration
+
+- Versioned repository and history: `[not configured: private Git hosting / local Git / other]`
+- Shared or large data: `[not configured: institution-managed Google Drive / another supported online storage / local storage / other]`
+- Additional backup policy: `[not configured]`
+- External connector status: optional capability only; availability never authorizes upload or sharing
+- Storage rule: keep `.git/` out of ordinary synchronized shared folders; record only portable logical locations, never credentials, private share links, or machine-specific paths
 
 ## Technical environment
 
@@ -54,6 +72,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Experimental workflow: complete records use stable `EXP-NNNN` IDs in a registered practical document; selected material reaches the main thesis only through a verified promotion record
 - Calculation workflow: material scientific results use stable `CALC-NNNN` records, explicit assumptions, a reproducible primary method, an independent cross-check, and subsequent human review; routine arithmetic and trivial checks do not
 - Review workflow: iterative agent output remains `agent-draft`; grouped review checkpoints are technically checked and remain `awaiting-human-review` until the author explicitly approves their stated scope
+- Collaboration workflow: exchange between separate project copies uses verified packages under `predavani/`; integrity checks precede a target-by-target diff, and no package is applied as an automatic merge
+- Storage workflow: the author chooses private Git hosting, institution-managed Google Drive or another online store supported by the current Codex, a combination, or local-only work; Git history and file-storage backups remain distinct, connector access is verified before it is claimed, and every external transfer has an explicit destination and data scope
 - Optional accelerators: Wolfram may cross-check symbolic or numerical work and the LaTeX plugin may assist diagnostics; neither is required, neither replaces project scripts or expert sources, and sensitive data requires confirmation before external processing
 
 ## Commands
@@ -67,6 +87,8 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - Build defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentation.ps1 -ProjectDir .\obhajoba -MainTex main.tex -Clean`
 - Validate a built deliverable: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-deliverable.ps1 -ProjectDir <document-directory> -DocumentKind <Thesis|Document|Presentation>`
 - Lint project-owned files: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\lint-project.ps1`
+- Create a handoff package: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new-handoff-package.ps1 -Name <name> -SourcePaths <paths>`
+- Verify and archive a handoff package: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-handoff-package.ps1 -PackagePath <package-directory> [-CreateZip]`
 
 ## Quality criteria
 
@@ -98,3 +120,6 @@ Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Exam
 - 2026-08-11: Agent output follows a two-gate workflow: technical validation followed by explicit human review. The agent may never approve its own work or equate a successful build with academic correctness.
 - 2026-08-11: Wolfram and LaTeX plugins are optional accelerators. Local reproducible fallbacks remain supported, project compile scripts are authoritative, and plugin output is not an expert citation.
 - 2026-08-11: Final submission readiness uses a deterministic PASS/WARN/FAIL preflight after the authoritative clean build. Technical readiness is explicitly separate from academic correctness and institutional acceptance.
+- 2026-08-31: Collaboration across separate project copies uses portable handoff packages with relative target paths, SHA-256 integrity checks, sensitive-file blocking, and mandatory review before integration. Package integrity never substitutes for content review.
+- 2026-09-02: The public collaboration example starts with wholly synthetic data. A real thesis excerpt may replace it only after a separate privacy, confidentiality, provenance, and redistribution review.
+- 2026-09-03: Onboarding presents storage as a human decision. Private Git hosting is suitable for versioned project history, while Google Drive or another online store that the current Codex can actually access may hold authorized shared data, large media, handoff ZIPs, or additional archives. Missing connector access falls back to manual transfer or local export, and connector availability never implies permission to upload.

@@ -1,70 +1,86 @@
-# Začněte tady – i pokud jste dosud psali jen ve Wordu
+# Začněte tím, co chcete vytvořit
 
-Tento projekt je pracovní prostředí pro závěrečnou práci s AI asistentem. Nemusíte umět Git, GitHub, LaTeX ani příkazový řádek. Na začátku stačí vytvořit vlastní kopii projektu, otevřít ji v AI agentovi a odpovídat na jeho otázky.
+S tímto projektem pracujete hlavně přes chat s Codexem. Popíšete svůj záměr,
+přidáte dostupné podklady a Codex připraví návrh, upraví projektové soubory a
+provede potřebné technické kontroly. Nemusíte znát příkazy ani ručně psát LaTeX.
+Obsah práce řídíte vy.
 
-## Co je oproti Wordu jiné
+## 1. Otevřete vlastní kopii projektu
 
-| Ve Wordu | V tomto projektu |
-|---|---|
-| Práce bývá hlavně jeden soubor `.docx`. | Práce je bezpečně rozdělená na text, zdroje, obrázky a nastavení. |
-| Formátování často upravujete ručně. | Vzhled hlídá oficiální TUL šablona a LaTeX. |
-| Změny ukládáte jako další kopie souboru. | Git uchovává historii a umožňuje návrat ke starší verzi. |
-| Citace vkládáte ručně nebo přes doplněk. | Zdroje se evidují a seznam literatury se vytváří z jejich záznamů. |
-| Dokument upravujete sami. | AI agent provádí technické změny, ale obsah a správnost stále řídíte vy. |
+Na GitHubu můžete použít **Use this template** a vytvořit vlastní soukromý
+repozitář, tedy projekt s historií změn. Pokud zatím nechcete řešit GitHub,
+stáhněte ZIP a rozbalte jej do vlastní místní složky. Otevřete celou složku
+v Codexu jako projekt, aby viděl také pravidla a podklady.
 
-Soubor `prace/main.tex` je zdroj hlavní práce. Je podobný dokumentu ve Wordu, ale většinu času ho nemusíte ručně upravovat: řeknete agentovi, co potřebujete, a ke čtení nebo odevzdání si necháte vytvořit PDF.
+Pracujte ve vlastní kopii; změny pak nezasáhnou původní šablonu. O zálohování se
+s Codexem domluvíte během nastavení. Můžete zvolit soukromý Git, univerzitní
+Google Drive nebo jiné podporované úložiště, jejich kombinaci, nebo zatím jen
+místní práci. Nerozhodnuté úložiště nebrání prvnímu návrhu. Podrobnosti jsou
+v [návodu k ukládání a sdílení](README.md#zálohování-github-a-online-úložiště).
 
-## 1. Vytvořte si vlastní kopii
+## 2. Napište, co potřebujete a co už máte
 
-Nepracujte přímo v původním repozitáři šablony. Na GitHubu použijte **Use this template** a vytvořte nový repozitář pod svým účtem. Pro školní práci je bezpečná výchozí volba **Private**.
+Například:
 
-Příklad:
+> Chci začít bakalářskou práci. Tady je moje zadání. Pomoz mi z něj připravit strukturu práce a první pracovní dokument. Proveď mě tím, technické věci zatím neznám.
 
-- původní šablona: `akabrt00/tul-codex-thesis-template`;
-- vaše pracovní kopie: `vas-ucet/moje-bakalarska-prace`.
+Můžete také napsat:
 
-Vaše změny se pak ukládají pouze do vaší kopie. Původní šablonu tím nemůžete přepsat. Pokud tlačítko **Use this template** nevidíte, můžete použít **Fork** nebo stáhnout ZIP; vlastní repozitář je ale vhodnější kvůli záloze a historii.
+- „Mám zatím jen nápad na téma. Pomoz mi ujasnit, co by práce měla řešit.“
+- „Mám rozepsanou práci. Nejdřív se podívej, co už mám, a pomoz mi s další kapitolou.“
+- „Chci zatím jen nastavit projekt, obsah doplním později.“
 
-## 2. Otevřete projekt v AI agentovi
+Codex nejdřív využije informace, které dostal. Zeptá se na to, co potřebuje pro
+nejbližší krok; nemusíte znovu přepisovat celé zadání do odpovědí. Neznámý údaj
+můžete označit „nevím“ nebo „doplním později“.
 
-Stáhněte svou kopii do počítače a otevřete celou složku jako projekt nebo workspace v Codexu či jiném AI agentovi. Neotvírejte jen jeden `.tex` soubor, protože agent potřebuje vidět i instrukce, zdroje a nastavení.
+Pokud agent pravidla projektu sám nenačte, napište:
 
-Do nového chatu pošlete:
+> Přečti `AGENTS.md`, `PROJECT_CONTEXT.md` a `.agents/skills/setup-tul-project/SKILL.md`. Proveď mě od mého zadání k prvnímu užitečnému výsledku.
 
-> Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
+## 3. Prohlédněte si první výsledek
 
-Pokud agent nepodporuje pojmenované skills, pošlete:
+Ze zadání může vzniknout přehled požadavků a návrh kapitol s vysvětlením jejich
+účelu. Z nápadu pracovní vymezení tématu a nejbližší krok. Codex odliší, co plyne
+z podkladů a co sám navrhuje; nevymýšlí odborné výsledky ani oficiální údaje.
+První návrh vám může ukázat přímo v chatu ještě před nastavením dokumentu.
 
-> Přečti `AGENTS.md`, `PROJECT_CONTEXT.md` a `.agents/skills/setup-tul-project/SKILL.md`. Proveď mě prvním nastavením jako úplného začátečníka a nic o mých školních údajích neodhaduj.
+Před vytvořením formální práce si postupně potvrdí jméno, fakultu, druh práce,
+jazyk, rok a mužskou nebo ženskou variantu pracovní titulní strany a prohlášení.
+Ostatní neznámé údaje nechá k doplnění. Bez povinných údajů dokument zatím
+nevytvoří, ale může pomoci s návrhem obsahu.
 
-## 3. Odpovězte na krátké otázky
+Když jsou údaje a potřebné programy připravené, vytvoří pracovní dokument,
+zapracuje dohodnutý počáteční obsah a sestaví a zkontroluje PDF. Ukáže vám
+skutečný výstup a řekne, co ještě chybí. Pokud PDF zatím vytvořit nelze,
+vysvětlí překážku; programy ani balíky automaticky neinstaluje.
 
-Agent se postupně zeptá například na jméno, fakultu, druh práce, jazyk, rok a na mužskou nebo ženskou variantu pracovní titulní strany. Můžete odpovídat běžně, například „Fakulta textilní“, „bakalářská práce“ a „mužská varianta“; interní zkratky doplní agent.
+Osobní profil zůstává v souboru ignorovaném Gitem. Jméno může být také v samotné
+práci; před jeho vložením do veřejného projektu je nutný váš souhlas.
+Pracovní titulní strany později nahradíte oficiálním PDF z IS STAG.
 
-Když údaj ještě neznáte, napište „nevím“ nebo „doplním později“. Agent jej nesmí vymyslet. Technicky nutnou prozatímní hodnotu smí použít jen po vašem potvrzení a musí ji označit k pozdější kontrole.
+## 4. Upravujte výsledek a příště na něj navažte
 
-Lokální `PROJECT_PROFILE.json` obsahuje osobní údaje a Git ho ignoruje. Samotná práce může obsahovat vaše jméno, proto vás agent před jeho zapsáním do verzovaných souborů upozorní.
+> Praktickou část rozděl na návrh a ověření. Uprav dokument a ukaž mi nové PDF.
 
-Pracovní PDF musí mít vždy právě jednu úvodní variantu, jinak začne až abstraktem. Na začátku agent aktivuje zvolenou variantu TUL šablony. Před odevzdáním si v IS STAG vygenerujete oficiální úvodní strany, pošlete jejich PDF agentovi a ten jimi pracovní variantu nahradí.
+Codex provede požadovanou změnu v souborech a ověří výsledek. Technická kontrola
+nepotvrzuje odbornou správnost; význam a obsah posuzujete vy.
 
-## 4. Rozdělte práci do zaměřených chatů
+Při návratu do stejného projektu stačí:
 
-Po nastavení vám agent řekne, co vytvořil, co ještě chybí a kde vznikne výsledné PDF. Chat je samostatný pracovní rozhovor, nikoli kopie projektu: všechny chaty pracují nad stejnými soubory, ale každý si drží vlastní téma a historii.
+> Chci pokračovat v rozpracované práci.
 
-Pokud máte hlavní práci a samostatný praktický nebo experimentální dokument, začněte dvěma chaty:
+Codex přečte uložený stav a příslušné soubory, stručně připomene poslední
+výsledek a naváže. Pokud není jasné, kde pokračovat, položí cílenou otázku.
 
-1. **MAIN – hlavní práce** – výsledný odborný text, do kterého se vybírají pouze důležité a ověřené informace.
-2. **EXPERIMENTY – praktický deník** – úplné záznamy postupů, nastavení, chyb, dat, grafů, fotografií a průběžných poznámek.
+Po prvním nastavení doporučí zaměřený chat **MAIN – hlavní práce**, a pokud
+vznikl i praktický deník, také **EXPERIMENTY – praktický deník**. Připraví úvodní
+zprávy; chaty vytvoří jen na vaše přání. Všechny pracují se stejnými soubory.
+Rozpracovaný požadavek můžete dokončit i v původním chatu. Další možnosti jsou
+v [přehledu doporučených chatů](README.md#doporučené-chaty).
 
-Agent vám po onboardingu nabídne jejich vytvoření a připraví přesné úvodní zprávy. Chat smí založit pouze po vašem souhlasu. Pro hlavní chat lze použít například:
-
-> Pracuj na hlavním dokumentu `main` uvedeném v `PROJECT_CONTEXT.md`. Nejdřív mi pomoz navrhnout strukturu práce podle zadání. Zatím nepiš hotové odborné závěry a nic necituj bez dohledatelného zdroje.
-
-Pro experimentální chat:
-
-> Pracuj pouze na praktickém dokumentu registrovaném v `PROJECT_CONTEXT.md`. Zaznamenávej úplný průběh experimentů včetně neúspěchů, nastavení, dat a odkazů na soubory. Nic automaticky nezkracuj pro hlavní práci.
-
-Podle potřeby můžete později přidat chat **OTÁZKY A REŠERŠE**, kde se hledá, ověřuje a přemýšlí bez míchání rozpracovaných dotazů do hlavního textu, a samostatný chat **OBHAJOBA**. Na začátku ale není potřeba zakládat mnoho chatů.
+Další inspiraci najdete v [praktických ukázkách zadání](ukazky/ZADANI_PRO_CODEX.md).
+Následující příklady a vysvětlení můžete číst až ve chvíli, kdy je potřebujete.
 
 ## Běžné požadavky bez příkazového řádku
 
@@ -79,7 +95,14 @@ Agentovi můžete psát normálními větami:
 - „Tady hrubě popisuji, jak zařízení funguje. Navrhni vhodný obrázek nebo schéma; když už je v mých podkladech, najdi ho a správně uprav pro práci.“
 - „Dnes jsme zkoušeli vzorek B při rychlosti 20 metrů za minutu, ale tenzometr na začátku kmital. Zapiš to jako nový experiment a doptávej se jen na nezbytné údaje.“
 - „Z experimentů EXP-0012 až EXP-0018 vyber ověřené výsledky vhodné do hlavní práce a zachovej odkazy na původní záznamy.“
+- „Připrav předávací balíček této kapitoly pro vedoucího, ale nepřidávej osobní profil ani jiné citlivé soubory.“
+- „Ověř přijatý balíček od kolegy, porovnej každý soubor s mojí prací a nejdřív mi ukaž konflikty.“
 - „Ulož ověřené změny do historie a vysvětli mi, co se uloží na GitHub.“
+
+Předávací balíčky patří do `predavani/`. Jejich obsah se do Gitu standardně neukládá.
+Kontrola balíčku ověří jeho integritu a bezpečné cesty, ale Codex stále nesmí bez
+porovnání přepsat vaši práci ani považovat převzatý odborný obsah za automaticky
+správný. Podrobný návod je v `predavani/README.md`.
 
 ## Agent připravuje, člověk schvaluje
 

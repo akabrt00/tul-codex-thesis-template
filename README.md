@@ -2,20 +2,56 @@
 
 Přenositelná projektová základna pro závěrečnou práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty. Je navržená i pro studenty, kteří dosud pracovali pouze ve Wordu a neznají Git ani LaTeX.
 
-> **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX.
+> **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX. Chcete-li nejdřív vidět, jak člověk se šablonou pracuje, otevřete [simulaci práce s Codexem](ukazky/prace-s-codexem/README.md) a [ukázky konkrétních zadání](ukazky/ZADANI_PRO_CODEX.md).
+
+![Simulovaný pracovní cyklus člověka a Codexu](ukazky/prace-s-codexem/vizual/clovek-a-codex.png)
+
+*Člověk zadá skutečný úkol běžnou větou, Codex pracuje v projektových souborech a
+provede technické kontroly, ale konečné obsahové rozhodnutí zůstává na člověku.
+Ukázka používá pouze syntetická data.*
 
 ## Nejrychlejší začátek
 
 1. Na GitHubu klikněte na **Use this template** a vytvořte si vlastní, ideálně soukromý repozitář. Vaše práce tím nemůže přepsat původní šablonu.
 2. Stáhněte svou kopii a otevřete celou její složku jako workspace AI agenta.
-3. Pošlete agentovi:
+3. Napište, co potřebujete. Například:
 
-   > Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
+   > Chci začít bakalářskou práci. Tady je moje zadání. Pomoz mi z něj připravit strukturu práce a první pracovní dokument. Proveď mě tím, technické věci zatím neznám.
 
-4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok, mužskou nebo ženskou variantu dočasné titulní strany a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
-5. Po dokončení onboardingu oddělte práci do zaměřených chatů nad stejným projektem. Při hlavní práci a praktickém deníku jsou výchozí `MAIN – hlavní práce` a `EXPERIMENTY – praktický deník`; agent připraví jejich úvodní zprávy a vytvoří je pouze po vašem souhlasu.
+4. Codex projde dodané podklady, shrne požadavky a připraví první užitečný návrh. Pokud máte jen nápad, začněte jeho popisem. Zeptá se na informace potřebné pro nejbližší krok.
+5. Před vytvořením formálního dokumentu potvrdíte povinné údaje a mužskou nebo ženskou variantu pracovní titulní strany. Když je potřebné prostředí připravené, Codex vytvoří a zkontroluje první pracovní PDF. Chybějící nástroje vysvětlí; nic sám neinstaluje.
+6. Pokračujte běžnou větou, například „Praktickou část rozděl na návrh a ověření.“ Ukládání a zaměřené chaty vyřešíte v průběhu nastavení; jejich možnosti jsou níže. Po návratu stačí „Chci pokračovat“ — Codex ověří uložený stav projektu a naváže na rozpracovaný úkol.
 
 Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
+
+## Zálohování, GitHub a online úložiště
+
+Uživatel si při prvním nastavení zvolí způsob ukládání a sdílení. Šablona žádnou
+cloudovou službu nevynucuje.
+
+- **Soukromý GitHub nebo jiný Git server** uchovává verzovanou historii textů,
+  skriptů, nastavení a vhodných menších souborů. Umožňuje přesně zjistit, co se
+  změnilo, a vrátit se ke starší verzi.
+- **Univerzitní Google Drive nebo jiné online úložiště**, ke kterému má aktuální
+  Codex skutečně dostupné připojení, může být vhodné pro autorizovaná sdílená data,
+  velké fotografie a videa, předávací ZIP balíčky nebo další archivní kopie.
+- **Lokální úložiště** může být správnou volbou pro citlivé podklady, ale potřebuje
+  samostatnou zálohu, kterou uživatel skutečně kontroluje.
+
+Git a online úložiště se doplňují; nejsou zaměnitelné. Aktivní repozitář včetně
+`.git/` se nemá používat jako obyčejná synchronizovaná sdílená složka. Bezpečnější
+je mít projekt v běžné lokální složce a v online úložišti samostatné adresáře pro
+sdílené vstupy, velká data, exportované archivy nebo balíčky z `predavani/`.
+
+Pokud má daný Codex pro zvolené úložiště skutečně dostupný konektor, může po
+výslovném zadání pomáhat s dohledáním, uložením nebo uspořádáním povolených souborů.
+Podpora jedné služby neznamená podporu všech a dostupné připojení samo o sobě není
+souhlas s přenosem. Před odesláním neveřejných, osobních, licencovaných nebo
+firemních dat musí Codex uvést, co přesně má opustit lokální projekt, kam to půjde a
+jaká existuje lokální alternativa. Když konektor není dostupný, Codex připraví
+místní složku nebo ověřený ZIP a uživatel jej do zvoleného úložiště vloží ručně.
+O dlouhodobé kopii je vhodné rozhodnout také s ohledem na to, že přístup k
+univerzitnímu účtu nemusí být trvalý.
 
 ## Doporučené chaty
 
@@ -27,6 +63,27 @@ Chat odděluje kontext rozhovoru, nikoli soubory nebo repozitář. Všechny chat
 - `OBHAJOBA` – zakládá se až při přípravě prezentace.
 
 Toto rozdělení brání tomu, aby se úplný pracovní deník míchal s výslednou zkrácenou verzí v bakalářské práci. Agent nesmí mezi dokumenty přenášet obsah bez kontroly původu, významu a výběru.
+
+## Spolupráce mezi více kopiemi projektu
+
+Když student, kolega nebo vedoucí pracují v samostatných kopiích projektu, mohou si
+předat vybrané soubory přes `predavani/`. Odchozí balíček zachová projektové cesty,
+přidá lidský popis práce, manifest, velikosti a SHA-256. Přijatý balíček se nejdřív
+ověří a porovná s místními soubory; nikdy se automaticky nekopíruje přes existující
+práci.
+
+Balíček vytvoří `scripts/new-handoff-package.ps1` a zkontroluje
+`scripts/verify-handoff-package.ps1`. Obsah `predavani/odchozi/` a
+`predavani/prijate/` zůstává lokální a Git jej ignoruje. Podrobný postup, příklad
+příkazu a pravidla pro přijímající Codex jsou v [predavani/README.md](predavani/README.md).
+
+Kontrolní součty dokazují, že se soubory během přenosu nezměnily. Nedokazují jejich
+odbornou správnost, licenci ani vhodnost k začlenění. Citlivé a generované soubory
+skript blokuje; oprávnění ke sdílení odborných podkladů musí posoudit člověk.
+
+Celý princip ukazuje malý veřejný syntetický scénář
+[spolupráce dvou lidí a jejich Codexů](ukazky/spoluprace/README.md): příjemce má
+vlastní platnou změnu, kolega pošle doplnění a správné začlenění musí zachovat obojí.
 
 ## Experimentální deník
 
@@ -158,6 +215,8 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 - `prace/` — pracovní kopie hlavní práce a dalších formálních dokumentů.
 - `obhajoba/` — pracovní kopie TULpresentation.
 - `zdroje/` — odborné a citovatelné materiály s registry `SRC-NNNN`.
+- `predavani/` — lokální odchozí a přijaté balíčky pro řízenou spolupráci.
+- `ukazky/` — veřejné syntetické příklady použití bez osobních dat.
 - `scripts/` — inicializace, kompilace, extrakce a kontroly.
 
 ## Grafy z MATLABu
