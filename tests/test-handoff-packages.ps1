@@ -148,6 +148,25 @@ Bez zvláštních omezení pro tento syntetický test.
     $demoPackage = Join-Path $repoRoot 'ukazky\spoluprace\balicek'
     & (Join-Path $repoRoot 'scripts\verify-handoff-package.ps1') -PackagePath $demoPackage | Out-Null
 
+    # Verify the published fixture after a real Git checkout on both line-ending policies.
+    foreach ($autoCrlf in @('true', 'false')) {
+        $gitRoot = Join-Path $testRoot "git-$autoCrlf"
+        $checkoutRoot = Join-Path $testRoot "checkout-$autoCrlf"
+        $fixtureParent = Join-Path $gitRoot 'ukazky\spoluprace'
+        New-Item -ItemType Directory -Path $fixtureParent, $checkoutRoot -Force | Out-Null
+        Copy-Item -LiteralPath (Join-Path $repoRoot '.gitattributes') -Destination $gitRoot
+        Copy-Item -LiteralPath $demoPackage -Destination $fixtureParent -Recurse
+        & git -C $gitRoot init --quiet
+        if ($LASTEXITCODE -ne 0) { throw 'Could not initialize checkout regression repository.' }
+        & git -C $gitRoot -c "core.autocrlf=$autoCrlf" add -- .gitattributes ukazky/spoluprace/balicek
+        if ($LASTEXITCODE -ne 0) { throw 'Could not stage checkout regression fixture.' }
+        $checkoutPrefix = $checkoutRoot.Replace('\', '/') + '/'
+        & git -C $gitRoot -c "core.autocrlf=$autoCrlf" checkout-index --all "--prefix=$checkoutPrefix"
+        if ($LASTEXITCODE -ne 0) { throw 'Could not export checkout regression fixture.' }
+        & (Join-Path $repoRoot 'scripts\verify-handoff-package.ps1') `
+            -PackagePath (Join-Path $checkoutRoot 'ukazky\spoluprace\balicek') | Out-Null
+    }
+
     Write-Output 'Handoff package tests passed.'
 } finally {
     if (Test-Path -LiteralPath $testRoot) {
