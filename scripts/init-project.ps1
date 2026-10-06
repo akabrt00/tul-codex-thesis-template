@@ -148,6 +148,35 @@ function Write-ThesisStarter {
     Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'references.bib') -Force
 }
 
+function Write-PresentationStarter {
+    param([string]$Destination, [string]$ProfileRoot)
+    $values = [ordered]@{
+        CLASS_OPTIONS = 'TUL'; DEFAULT_LANGUAGE = 'czech'
+        TITLE = 'Doplnit název prezentace'; AUTHOR = 'Doplnit autora'
+        INSTITUTE = 'Doplnit pracoviště'; YEAR = (Get-Date).Year.ToString()
+    }
+    $presentationProfile = Join-Path $ProfileRoot 'PROJECT_PROFILE.json'
+    if (Test-Path -LiteralPath $presentationProfile -PathType Leaf) {
+        $profile = Get-Content -Raw -Encoding UTF8 -LiteralPath $presentationProfile | ConvertFrom-Json
+        if ($profile.study.faculty_code) { $values.CLASS_OPTIONS = [string]$profile.study.faculty_code }
+        if ($profile.document_defaults.language -eq 'EN') {
+            $values.CLASS_OPTIONS += ',EN'; $values.DEFAULT_LANGUAGE = 'english'
+            if ($profile.document_defaults.title_en) { $values.TITLE = ConvertTo-LaTeXText $profile.document_defaults.title_en }
+        } elseif ($profile.document_defaults.title_cs) { $values.TITLE = ConvertTo-LaTeXText $profile.document_defaults.title_cs }
+        if ($profile.author.full_name) { $values.AUTHOR = ConvertTo-LaTeXText $profile.author.full_name }
+        if ($profile.study.faculty_code) { $values.INSTITUTE = ConvertTo-LaTeXText ($profile.study.faculty_code + ' TUL') }
+        if ($profile.document_defaults.year) { $values.YEAR = [string]$profile.document_defaults.year }
+    }
+    $content = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot 'templates\starters\tulpresentation-main.tex')
+    foreach ($entry in $values.GetEnumerator()) { $content = $content.Replace(('{{' + $entry.Key + '}}'), [string]$entry.Value) }
+    Set-Content -LiteralPath (Join-Path $Destination 'main.tex') -Value $content -Encoding UTF8
+    $fontDestination = Join-Path $Destination 'fonts'
+    New-Item -ItemType Directory -Path $fontDestination -Force | Out-Null
+    Get-ChildItem -LiteralPath (Join-Path $repoRoot 'templates\starters\presentation-fonts') -File | ForEach-Object {
+        Copy-Item -LiteralPath $_.FullName -Destination $fontDestination
+    }
+}
+
 function Copy-WorkingTree {
     param(
         [Parameter(Mandatory)][string]$Source,
@@ -205,7 +234,9 @@ if ($Target -in @('All', 'Thesis')) {
     Write-ThesisStarter -Destination $thesisPath -ProfileRoot $destinationRootPath
 }
 if ($Target -in @('All', 'Presentation')) {
-    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULpresentation') -Destination (Join-Path $destinationRootPath 'obhajoba') -MainSource 'manual-tulpresentaion.tex'
+    $presentationPath = Join-Path $destinationRootPath 'obhajoba'
+    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULpresentation') -Destination $presentationPath -MainSource 'manual-tulpresentaion.tex'
+    Write-PresentationStarter -Destination $presentationPath -ProfileRoot $destinationRootPath
 }
 
 if ($Target -eq 'Document') {

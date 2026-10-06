@@ -5,6 +5,8 @@ description: Set up a TUL thesis template for a new user or project, including c
 
 # Set up a TUL project
 
+Read `AI_NA_TUL.md` before inspecting supplied inputs. Establish the allowed input scope first; do not read protected content merely to classify it. See the TUL AI policy section below.
+
 ## Orient a beginner
 
 Match the user's language. Unless the user demonstrates technical experience, use plain language and teach only what is needed for the current decision. Do not begin with a lecture, commands, internal file structure, or unexplained codes.
@@ -167,3 +169,7 @@ Lead the closing response with the actual result and a link to it when available
 Recommend role-separated fresh chats after onboarding so document work starts with clean context. Create no chat without explicit user agreement.
 
 When only the primary document exists, recommend `MAIN – hlavní práce`. When a practical record also exists, recommend both `MAIN – hlavní práce` and `EXPERIMENTY – praktický deník`; keep the additional chats optional.
+
+## Apply TUL AI policy before onboarding inputs
+
+Read `AI_NA_TUL.md` before collecting or accessing project materials. Briefly explain substantive-use declaration, independent author verification, and the protected-data boundary. Ask about already announced teacher restrictions and whether protected inputs are planned. Establish evidence of TUL approval of the actual AI system/configuration before accessing protected data; user consent alone is insufficient. Do not assume Codex approval or inspect protected files merely to classify them. Continue safe setup with public/synthetic inputs when approval is unknown. Record confirmed restrictions, approval evidence and permitted input scope in `PROJECT_CONTEXT.md`. Introduce `POUZITI_AI.md`, recording actual substantive work rather than fake example entries or a declaration of no AI use. Record name/version only when available.

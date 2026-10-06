@@ -123,3 +123,16 @@ Keep this checkpoint short and non-sensitive. Update it after meaningful progres
 - 2026-08-31: Collaboration across separate project copies uses portable handoff packages with relative target paths, SHA-256 integrity checks, sensitive-file blocking, and mandatory review before integration. Package integrity never substitutes for content review.
 - 2026-09-02: The public collaboration example starts with wholly synthetic data. A real thesis excerpt may replace it only after a separate privacy, confidentiality, provenance, and redistribution review.
 - 2026-09-03: Onboarding presents storage as a human decision. Private Git hosting is suitable for versioned project history, while Google Drive or another online store that the current Codex can actually access may hold authorized shared data, large media, handoff ZIPs, or additional archives. Missing connector access falls back to manual transfer or local export, and connector availability never implies permission to upload.
+
+## AI policy and project evidence
+
+- Policy baseline: user-supplied TUL rector directive 7/2026, revision 00, effective date on cover 2026-10-01; `SRC-0006`. See `AI_NA_TUL.md` for scope and source limitations.
+- AI-use ledger: `POUZITI_AI.md`; assessed outputs need their own truthful declaration when required.
+- Evidence check: `scripts/check-ai-evidence.ps1 -DocumentKey <key>`; `-Submission` compares a supplied plain-text declaration with final PDF. Reports never establish institutional approval or independent author verification.
+- Teacher/assignment AI restrictions: `[not confirmed]`
+- Publisher declaration requirements: `[not applicable / not confirmed]`
+- AI system and configuration for protected inputs: `[not confirmed]`
+- TUL approval evidence, scope and verification date: `[not provided; do not infer Codex approval]`
+- Input categories authorized for this environment: `[public / synthetic / safely anonymized until protected-data approval is established]`
+- Author verification and ability to explain autonomous steps: `[pending author review]`
+- 2026-10-06: Updated AI guidance from the supplied directive 7/2026; retained historical source 4/2023 without asserting formal repeal. User consent does not replace institutional system approval for protected data.

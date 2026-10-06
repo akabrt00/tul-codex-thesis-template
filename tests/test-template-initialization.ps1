@@ -43,6 +43,11 @@ try {
     if ($activeStarts.Count -ne 1) { throw "Expected exactly one active ThesisStart, found $($activeStarts.Count)." }
     if ($activeStarts[0].Value -notmatch '\{male\}') { throw 'Fictional profile title-page variant was not applied.' }
     if ($thesis -notmatch 'Test Student') { throw 'Fictional profile metadata was not applied.' }
+    $presentation = Get-Content -Raw -Encoding UTF8 -LiteralPath $presentationMain
+    if ($presentation -notmatch 'Test Student' -or $presentation -notmatch 'Testovaci prace') { throw 'Presentation profile metadata was not applied.' }
+    if ($presentation -notmatch 'Path=./fonts/' -or -not (Test-Path -LiteralPath (Join-Path $testRoot 'obhajoba\fonts\LICENSE.txt'))) { throw 'Presentation must bundle the portable Inter fonts with their license.' }
+    if ($presentation -match 'Šablona prezentace') { throw 'Presentation main.tex must be a minimal starter, not the upstream manual.' }
+    if ($presentation -notmatch '\\documentclass\[FM,aspect169\]' -or $presentation -notmatch 'FM TUL') { throw 'Presentation faculty must come from study.faculty_code.' }
 
     $afterHash = Get-UpstreamHash
     if ($afterHash -ne $beforeHash) { throw 'templates/upstream changed during initialization test.' }

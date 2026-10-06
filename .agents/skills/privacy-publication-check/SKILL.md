@@ -21,3 +21,7 @@ Use `$manage-project-sources` for license, provenance, and source-registry restr
 Never print a complete secret or sensitive value. Report category, safely localized file, tracked status, severity, and remediation; redact values and avoid copying personal data into the report. Distinguish `blocking`, `review-needed`, and `informational` findings.
 
 Do not delete, rewrite history, revoke credentials, change repository visibility, or publish anything without explicit authorization. If the user asks for safe file changes, preserve recoverability, verify the tracked state afterward, and use `$review-agent-output` for material publication decisions.
+
+## Do not expose protected inputs during the audit
+
+Apply `AI_NA_TUL.md` before reading protected documents into an AI environment. Publication consent does not establish TUL approval of the processing system. If approval is unknown, prepare local checks or work from redacted/public metadata; never read protected contents merely to determine whether they are protected. Check that any published assessed output retains its required truthful AI declaration and synthetic-data labeling.

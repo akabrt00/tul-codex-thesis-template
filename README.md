@@ -10,7 +10,23 @@ Přenositelná projektová základna pro závěrečnou práci, další samostatn
 provede technické kontroly, ale konečné obsahové rozhodnutí zůstává na člověku.
 Ukázka používá pouze syntetická data.*
 
+## AI na TUL od 1. 10. 2026
+
+Před vložením školních podkladů do AI si přečtěte [AI_NA_TUL.md](AI_NA_TUL.md).
+TUL použití AI a autonomních agentů podporuje; autor ověřuje výsledky, rozumí
+postupu a deklaruje podstatné použití. Chráněná data patří jen do AI systému
+schváleného TUL; schválení Codexu dodané znění nedokládá.
+[POUZITI_AI.md](POUZITI_AI.md) slouží k průběžné evidenci pro konečnou deklaraci.
+
 ## Nejrychlejší začátek
+
+Než vložíte vlastní podklady, můžete projít [syntetické cvičení od projektu po
+PDF](ukazky/prvni-projekt/README.md). Práce i minimální třístránková prezentace se
+sestavují projektovými skripty. Prezentace má Inter přibalený s licencí, takže
+nevyžaduje jeho systémovou instalaci. Kontrola `scripts/check-ai-evidence.ps1`
+ověřuje strukturu evidence a přítomnost celé deklarace ve výsledném PDF; lidské
+ověření a institucionální podmínky musí být doloženy zvlášť.
+
 
 1. Na GitHubu klikněte na **Use this template** a vytvořte si vlastní, ideálně soukromý repozitář. Vaše práce tím nemůže přepsat původní šablonu.
 2. Stáhněte svou kopii a otevřete celou její složku jako workspace AI agenta.

@@ -55,6 +55,11 @@ try {
         $text = [regex]::Replace($text, $starterPattern, 'CI test content.')
     }
     $text = $text.Replace('\printbibliography', '\nocite{ci-source}' + [Environment]::NewLine + '\printbibliography')
+    $declaration = 'Ukázkový text a technické skripty tohoto cvičení byly připraveny s pomocí nástroje Codex; verze nebyla zaznamenána. Jde pouze o syntetický test šablony, nikoli skutečnou školní práci. Samostatná kontrola autora není tímto testem potvrzena.'
+    $text = $text.Replace('\chapter{Úvod}', ('\chapter*{Použití AI v cvičení}' + [Environment]::NewLine + $declaration + [Environment]::NewLine + '\chapter{Úvod}'))
+    Set-Content -LiteralPath (Join-Path $workPath 'declaration.txt') -Value $declaration -Encoding UTF8
+    $today = (Get-Date).ToString('yyyy-MM-dd')
+    "| $today | main: prace/main.tex, syntetické cvičení a skripty | Codex, verze nezaznamenána | Technický test vytvoření PDF | Čistý build a preflight | Čeká na autora |" | Set-Content -LiteralPath (Join-Path $workPath 'POUZITI_AI.md') -Encoding UTF8
     Set-Content -LiteralPath $main -Value $text -Encoding UTF8
     '@book{ci-source,author={Student, Test},title={CI fixture},year={2026},publisher={Test Publisher}}' | Set-Content -LiteralPath (Join-Path $workPath 'prace\references.bib') -Encoding UTF8
 
@@ -62,16 +67,33 @@ try {
     & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\validate-deliverable.ps1') -ProjectDir (Join-Path $workPath 'prace') -DocumentKind Thesis -AllowGeneratedFrontMatter -ReportJson (Join-Path $artifactPath 'thesis-preflight.json')
     if ($LASTEXITCODE -ne 0) { throw 'Thesis deliverable preflight failed.' }
 
+    & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\check-ai-evidence.ps1') -ProjectRoot $workPath -Submission -DeclarationPath declaration.txt -PdfPath prace/main.pdf -ReportJson (Join-Path $artifactPath 'ai-evidence.json')
+    if ($LASTEXITCODE -ne 0) { throw 'Actual PDF must contain the full synthetic AI declaration.' }
+    $aiEvidence = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $artifactPath 'ai-evidence.json') | ConvertFrom-Json
+    if (-not @($aiEvidence.checks | Where-Object { $_.id -eq 'declaration-pdf' -and $_.status -eq 'PASS' }).Count) { throw 'AI declaration extraction was not verified; smoke test cannot claim a pass.' }
+    $falseDeclaration = Join-Path $workPath 'absent-declaration.txt'
+    'This deliberately different declaration is absent from the generated PDF.' | Set-Content -LiteralPath $falseDeclaration -Encoding UTF8
+    $negativeReport = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\check-ai-evidence.ps1') -ProjectRoot $workPath -Submission -DeclarationPath absent-declaration.txt -PdfPath prace/main.pdf -Json
+    if ($LASTEXITCODE -ne 1) { throw 'A declaration absent from PDF must fail.' }
+    $negativeEvidence = $negativeReport -join "`n" | ConvertFrom-Json
+    if (-not @($negativeEvidence.checks | Where-Object { $_.id -eq 'declaration-pdf' -and $_.status -eq 'FAIL' }).Count) { throw 'Missing declaration must fail for the intended reason.' }
+
     Copy-Item -LiteralPath (Join-Path $workPath 'prace\main.pdf') -Destination (Join-Path $artifactPath 'thesis.pdf')
     $presentationStatus = 'skipped'
     $kpsewhich = Get-Command 'kpsewhich' -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($kpsewhich) {
         $previousPreference = $ErrorActionPreference
         $ErrorActionPreference = 'Continue'
-        $beamerPath = (& $kpsewhich.Source beamer.cls 2>$null | Select-Object -First 1)
+        $beamerOutput = @(& $kpsewhich.Source beamer.cls 2>$null)
         $kpseExitCode = $LASTEXITCODE
+        $beamerPath = $beamerOutput | Select-Object -First 1
         $ErrorActionPreference = $previousPreference
         if ($kpseExitCode -eq 0 -and $beamerPath) {
+            $presentationMain = Join-Path $workPath 'obhajoba\main.tex'
+            $presentationText = Get-Content -Raw -Encoding UTF8 -LiteralPath $presentationMain
+            $presentationText = $presentationText.Replace('Doplňte cíl práce.', 'Synthetic build fixture, not an academic result.')
+            $presentationText = $presentationText.Replace('Doplňte hlavní postup a ověřený výsledek.', 'The purpose is to verify the template build.')
+            Set-Content -LiteralPath $presentationMain -Value $presentationText -Encoding UTF8
             & (Join-Path $repoRoot 'scripts\compile-presentation.ps1') -ProjectDir (Join-Path $workPath 'obhajoba') -MainTex main.tex -Clean
             & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\validate-deliverable.ps1') -ProjectDir (Join-Path $workPath 'obhajoba') -DocumentKind Presentation -ReportJson (Join-Path $artifactPath 'presentation-preflight.json')
             if ($LASTEXITCODE -ne 0) { throw 'Presentation deliverable preflight failed.' }

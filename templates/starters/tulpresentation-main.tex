@@ -1,0 +1,30 @@
+% Community starter; original tulpresentation class remains unchanged.
+% Inter is bundled under SIL OFL 1.1; see fonts/LICENSE.txt.
+\AddToHook{package/fontspec/after}{
+  \defaultfontfeatures[Inter]{
+    Path=./fonts/, Extension=.otf,
+    UprightFont=Inter, ItalicFont=Inter Italic,
+    BoldItalicFont=Inter BoldItalic
+  }
+  % The class uses a bold series even though its local font is already Bold.
+  \defaultfontfeatures[TULMono-Bold.otf]{BoldFont=TULMono-Bold.otf}
+}
+\documentclass[{{CLASS_OPTIONS}},aspect169]{tulpresentation}
+\setdefaultlanguage{{{DEFAULT_LANGUAGE}}}
+\title{{{TITLE}}}
+\author{{{AUTHOR}}}
+\institute{{{INSTITUTE}}}
+\newcommand{\authorMail}{}
+\newcommand{\authorPhone}{}
+\date{{{YEAR}}}
+
+\begin{document}
+\TULtitleframe
+\begin{frame}{Cíl a postup}
+  \begin{itemize}
+    \item Doplňte cíl práce.
+    \item Doplňte hlavní postup a ověřený výsledek.
+  \end{itemize}
+\end{frame}
+\TULendframe
+\end{document}

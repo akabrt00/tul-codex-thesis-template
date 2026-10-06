@@ -28,3 +28,7 @@ Minimize payloads and remove unrelated identifiers. Never expose credentials in 
 Record the service, query or expression, inputs, relevant options, response date, and derived artifacts when the output enters project work. Treat computational output as project evidence, not an expert citation. Use `$manage-project-sources` for factual, standards-based, or literature claims and verify authoritative originals.
 
 Cross-check material results independently when possible. Route any inserted prose, calculation, figure, table, or presentation change through the applicable project skill and `$review-agent-output`. Report which external and local tools were actually used, what data left the local workflow, fallback limitations, and remaining human review.
+
+## Institutional approval for AI processing
+
+Apply `AI_NA_TUL.md` before the data-boundary confirmation above. For protected inputs going to AI, first establish TUL approval of the specific system/configuration; user consent does not override this requirement. Unknown approval means use public/synthetic/safely anonymized inputs or prepare a route to an approved environment without exposing protected content. Check prohibited-system status regardless of payload. This boundary also applies to cloud-agent reads, not only plugin uploads. Ordinary non-AI storage still follows the existing disclosure and storage rules. Record substantive assessed AI use in `POUZITI_AI.md`.

@@ -5,6 +5,16 @@ přidáte dostupné podklady a Codex připraví návrh, upraví projektové soub
 provede potřebné technické kontroly. Nemusíte znát příkazy ani ručně psát LaTeX.
 Obsah práce řídíte vy.
 
+## Než dáte podklady AI
+
+Přečtěte si [pravidla AI na TUL](AI_NA_TUL.md) podle dodané směrnice 7/2026.
+AI smí pomáhat i autonomně, ale podstatné použití přiznáte a výsledek samostatně
+ověříte a obhájíte. Codex průběžně vede [evidenci použití](POUZITI_AI.md).
+Nepublikovaná vědecká data, chráněný kód, citlivé údaje, neveřejné dokumenty TUL
+a osobní údaje třetích osob nevkládejte do AI bez doloženého schválení systému
+univerzitou. Souhlas s nahráním ani soukromý GitHub toto schválení nenahrazují.
+Dodané PDF schválení Codexu nedokládá.
+
 ## 1. Otevřete vlastní kopii projektu
 
 Na GitHubu můžete použít **Use this template** a vytvořit vlastní soukromý
@@ -143,3 +153,7 @@ Citlivá nebo neveřejná data se do externí služby neposílají bez vašeho p
 - **Git** – historie změn, ke které se lze vracet.
 - **LaTeX** – systém, který ze zdrojového textu vytvoří správně vysázené PDF.
 - **AI agent** – technický spolupracovník, který může měnit soubory a spouštět kontroly; za obsah práce a odevzdaný výsledek odpovídá autor.
+
+## Bezpečné cvičení před vlastní prací
+
+Chcete nejprve vyzkoušet postup bez skutečných údajů? Použijte [oddělené cvičení od projektu po první PDF](ukazky/prvni-projekt/README.md). Nevytváří vaši práci a nepotvrzuje schválení obsahu. U chráněných podkladů nejprve doložte schválení konkrétního AI systému TUL podle AI_NA_TUL.md; samotný souhlas s přenosem nestačí.

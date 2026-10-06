@@ -40,6 +40,10 @@ jobs:
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-template-initialization.ps1
 
+      - name: Test AI evidence checks
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-ai-evidence.ps1
+
       - name: Test deliverable preflight
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-validate-deliverable.ps1

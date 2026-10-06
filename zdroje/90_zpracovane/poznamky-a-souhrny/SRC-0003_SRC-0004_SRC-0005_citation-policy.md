@@ -45,10 +45,15 @@ Při rozporu se nesmí automaticky upřednostnit výstup softwaru. Pravidla faku
 
 ## Použití AI
 
+Aktualizace 2026-10-06: pro AI použijte novější dodanou směrnici 7/2026
+(`SRC-0006`) a `AI_NA_TUL.md`. `SRC-0005` zachovává historickou provenienci;
+tento výtah netvrdí jeho formální zrušení.
+
+
 - Za správnost výsledku odpovídá autor práce, nikoli AI.
 - Výstupy AI kriticky kontrolovat proti odborným a primárním zdrojům.
-- AI není spoluautor a podle směrnice TUL se neuvádí v seznamu použité literatury.
-- Použití AI výslovně přiznat v textu, uvést konkrétní nástroj a podle rozsahu také části práce, ve kterých byl použit. Bez upřesnění se deklarace vztahuje na celou práci.
+- AI není spoluautor. Směrnice 7/2026 požaduje dokumentování použití deklarací, metodikou nebo formou stanovenou vyučujícím, vydavatelem či citační normou; nestanoví obecný zákaz bibliografického záznamu AI.
+- Deklarovat generativní AI ovlivňující obsah, argumentaci, strukturu, analýzu, kód, literaturu nebo jiný hodnocený výstup. Uvést nástroj, dostupnou verzi, konkrétní části a způsob použití. Běžný pravopis a typografie jsou vyňaty, pokud vyučující předem neurčí jinak; stylistika není automatickou výjimkou.
 - Přesné znění deklarace přizpůsobit skutečně použitému nástroji, jeho verzi a rozsahu práce; nevkládat nepravdivý nebo obecný placeholder.
 
 ## Kontrola před odevzdáním
