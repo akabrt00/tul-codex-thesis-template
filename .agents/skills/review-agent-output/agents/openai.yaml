@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Agent Output"
+  short_description: "Groups agent work into human review checkpoints"
+  default_prompt: "Use $review-agent-output to prepare this defined bundle as one explicit human-review checkpoint."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Terminology Consistency"
+  short_description: "Checks terminology across project documents"
+  default_prompt: "Use $terminology-consistency to check terminology across my thesis, abstracts, and presentation."
+policy:
+  allow_implicit_invocation: true

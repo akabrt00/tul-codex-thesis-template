@@ -37,8 +37,9 @@ Require `titlesec` 2.10.2 or newer. Core dependencies include `tul.sty`, ifthen,
 
 ## Front matter and environments
 
-- `\ThesisStart{male}` or `\ThesisStart{female}` generates class front matter.
-- `\ThesisStart{introductory-pages.pdf}` inserts IS STAG pages. For current BP/DP workflows, prefer the official STAG PDF when available.
+- `\ThesisStart{male}` or `\ThesisStart{female}` generates working class front matter. Onboarding must ask which variant to use and must not infer it from the author's name.
+- Exactly one `\ThesisStart` command must be active. With none, the output starts at the abstract; with more than one, front matter is duplicated or invalid.
+- `\ThesisStart{introductory-pages.pdf}` inserts IS STAG pages. For current BP/DP workflows, replace the generated variant with the official STAG PDF before submission; do not leave both active.
 - Use `abstractCZ`, `keywordsCZ`, `abstractEN`, `keywordsEN`, `acknowledgement`, and `abbrList`.
 - `[wide]` is available for abstracts, keywords, and acknowledgement.
 - The manual describes older one-page abbreviation limitations, but the bundled class now uses long `tabularray`; still test multipage lists visually.

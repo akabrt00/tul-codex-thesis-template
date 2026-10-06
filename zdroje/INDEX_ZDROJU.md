@@ -17,3 +17,9 @@ Sem agent zapisuje pouze dlouhodobě relevantní chybějící podklady. Jednorá
 
 | Potřebný důkaz nebo téma | Co už bylo prohledáno | Doporučený typ nového zdroje | Stav |
 |---|---|---|---|
+
+## AI na TUL
+
+- `SRC-0006`: odpovědnost, deklarace, autonomní agenti, chráněná data, schválené a zakázané systémy, omezení výuky a zkoušek; str. 1-3.
+- [Mapa obsahu směrnice 7/2026](90_zpracovane/poznamky-a-souhrny/SRC-0006_smernice-rektora-7-2026-ai_mapa-obsahu.md). Originál je externě dodaný, není v místním fulltextovém indexu; před citací si vyžádejte originál podle identifikačních údajů registru.
+- Mezera: aktuální schválení konkrétní konfigurace Codexu a oficiální veřejná URL směrnice nejsou doloženy.

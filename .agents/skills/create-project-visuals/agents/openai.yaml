@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Project Visuals"
+  short_description: "Creates, adapts, and inserts thesis visuals"
+  default_prompt: "Use $create-project-visuals to create and insert the most useful traceable visual for this section."
+policy:
+  allow_implicit_invocation: true

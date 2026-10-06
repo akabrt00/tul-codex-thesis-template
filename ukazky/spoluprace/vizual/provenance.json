@@ -1,0 +1,41 @@
+{
+  "visual_id": "demo-handoff-process-simulation",
+  "status": "verified",
+  "category": "original",
+  "purpose": "Ukázat novému uživateli bezpečné předání vybraných souborů, ověření integrity, zjištění konfliktu a lidské rozhodnutí.",
+  "target_document": "github-collaboration-example",
+  "target_section": "úvod ukázky spolupráce",
+  "asset_files": [
+    "simulace.html",
+    "proces-spoluprace.png"
+  ],
+  "source_ids": [],
+  "citation_keys": [],
+  "source_pages": [],
+  "source_figure_labels": [],
+  "license_or_reuse_basis": "Původní syntetický obsah vytvořený pro tento repozitář; bez externích obrazových podkladů.",
+  "transformations": [
+    "Deterministické HTML/CSS vykreslené místním prohlížečem Microsoft Edge do PNG."
+  ],
+  "semantic_invariants": [
+    "Balíček obsahuje pouze dva výslovně vybrané soubory.",
+    "PROJECT_PROFILE.json je blokován.",
+    "Kontrola integrity předchází porovnání cílového souboru.",
+    "Místní informace o kalibraci se nesmí slepým přepsáním ztratit.",
+    "Konečné začlenění vyžaduje lidské rozhodnutí."
+  ],
+  "generated_with_ai": true,
+  "ai_role": "Codex navrhl původní syntetický scénář a deterministické HTML/CSS; nebyl použit generativní obrazový model.",
+  "caption_intent": "Simulovaný proces předání mezi dvěma lidmi a jejich Codexy; syntetická data.",
+  "verified_against": [
+    "scripts/new-handoff-package.ps1",
+    "scripts/verify-handoff-package.ps1",
+    "tests/test-handoff-packages.ps1",
+    "ukazky/spoluprace/balicek/manifest.json",
+    "Vizuální kontrola PNG 1600 × 1050: bez ořezu, překryvů a nečitelných částí."
+  ],
+  "verification_date": "2026-09-02",
+  "open_questions": [
+    "Potvrdit, že text a vizuální hierarchie jsou srozumitelné úplnému začátečníkovi."
+  ]
+}

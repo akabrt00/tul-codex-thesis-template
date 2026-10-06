@@ -32,8 +32,12 @@ Keep the class, required TUL symbol, local TUL Mono font, and any selected exter
 
 Use `$local-tool-router` to check XeLaTeX and dependencies. This template requires XeLaTeX because it uses `fontspec` and `polyglossia`.
 
+Use `$diagnose-tul-latex` for environment or build failures. Keep content selection and defense narrative in `$prepare-defense`; this skill owns technical Beamer realization and validation.
+
 Compile with `scripts/compile-presentation.ps1`, which runs XeLaTeX twice from a clean auxiliary state when requested. Never install missing packages without approval.
 
 If the build reports a missing `beamer.cls`, report the missing Beamer package; do not patch `tulpresentation.cls` to bypass it. Check the log for missing Inter/TUL Mono fonts, missing graphics, overfull boxes, undefined references, and option warnings.
 
 Render the latest PDF to images and inspect the title frame, a dense representative frame, figure/table frames, section transitions, and final frame. Verify aspect ratio, clipping, typography, contrast, page count, and handout sheet size. Deliver only the working source and verified PDF, never generated files from the master directory.
+
+Use `$review-agent-output` after material slide-content changes. Rendering success does not approve scientific meaning, slide selection, or presentation clarity on the author's behalf.

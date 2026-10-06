@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audit Figures and Tables"
+  short_description: "Audits existing thesis visuals and tables"
+  default_prompt: "Use $audit-figures-and-tables to audit every existing figure and table in my thesis."
+policy:
+  allow_implicit_invocation: true

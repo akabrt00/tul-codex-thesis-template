@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "package_id": "2026-09-02_demo-spoluprace",
+  "created_at": "2026-09-02T12:00:00+02:00",
+  "sender_project": "synteticka-ukazka-odesilatel",
+  "recipient": "autor demonstrační práce",
+  "purpose": "Ukázat bezpečné porovnání a začlenění metodiky",
+  "integration_mode": "review-before-apply",
+  "file_count": 2,
+  "files": [
+    {
+      "relative_path": "obsah/prace/data/mereni.csv",
+      "suggested_target": "prace/data/mereni.csv",
+      "bytes": 51,
+      "sha256": "79ebd179efb05782d8a397557ca88f3acac0f61d8b41e2c9cd2d798b6b195180"
+    },
+    {
+      "relative_path": "obsah/prace/kapitoly/metodika.tex",
+      "suggested_target": "prace/kapitoly/metodika.tex",
+      "bytes": 261,
+      "sha256": "d0bb4100f289b47a860d99a54caeb547b105c803a07b9edd82b1fa7bad389fdc"
+    }
+  ]
+}

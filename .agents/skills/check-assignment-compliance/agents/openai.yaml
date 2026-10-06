@@ -1,0 +1,6 @@
+interface:
+  display_name: "Check Assignment Compliance"
+  short_description: "Maps thesis evidence to assignment requirements"
+  default_prompt: "Use $check-assignment-compliance to compare my thesis with the official assignment."
+policy:
+  allow_implicit_invocation: true

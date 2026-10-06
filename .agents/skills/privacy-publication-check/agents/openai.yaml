@@ -1,0 +1,6 @@
+interface:
+  display_name: "Privacy Publication Check"
+  short_description: "Checks repository safety before publication"
+  default_prompt: "Use $privacy-publication-check to check whether this repository is safe to publish."
+policy:
+  allow_implicit_invocation: true

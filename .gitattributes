@@ -6,3 +6,6 @@
 
 # Preserve immutable upstream vendor files byte-for-byte so manifest hashes remain valid.
 templates/upstream/** -text
+
+# Package manifests verify exact bytes; checkout must not convert payload line endings.
+ukazky/spoluprace/balicek/obsah/** -text

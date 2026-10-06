@@ -1,0 +1,7 @@
+interface:
+  display_name: "Verify Scientific Calculations"
+  short_description: "Cross-checks material scientific results"
+  default_prompt: "Use $verify-scientific-calculations to record and independently verify this material scientific result."
+
+policy:
+  allow_implicit_invocation: true

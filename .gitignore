@@ -7,6 +7,7 @@
 
 # Local onboarding profile (may contain personal data)
 PROJECT_PROFILE.json
+.tool-capabilities.json
 
 # Editor and operating-system state
 .vscode/
@@ -25,11 +26,19 @@ build/
 coverage/
 tmp/
 .tmp-*/
+.ci-work/
+.ci-artifacts/
 .build-logs/
 *.asv
 *.m~
 slprj/
 *.slxc
+
+# Exchanged handoff payloads stay local; keep only the tracked folder structure
+predavani/odchozi/*
+!predavani/odchozi/.gitkeep
+predavani/prijate/*
+!predavani/prijate/.gitkeep
 
 # LaTeX generated files
 *.aux

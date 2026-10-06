@@ -6,12 +6,13 @@ $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $results = @()
 
 function Add-Result {
-    param([string]$Component, [bool]$Available, [string]$Detail, [string]$Remedy)
+    param([string]$Component, [bool]$Available, [string]$Detail, [string]$Remedy, [bool]$Required = $true)
     $script:results += [pscustomobject]@{
         Component = $Component
-        Status = if ($Available) { 'OK' } else { 'MISSING' }
+        Status = if ($Available) { 'OK' } elseif ($Required) { 'MISSING' } else { 'OPTIONAL' }
         Detail = $Detail
         Remedy = if ($Available) { '' } else { $Remedy }
+        Required = $Required
     }
 }
 
@@ -81,8 +82,14 @@ $pythonPdfProbe = Test-CommandProbe -Name 'python' -Arguments @('-c', 'import py
 $pdfBackendAvailable = ($pdfInfoProbe.ok -and $pdfTextProbe.ok) -or $pythonPdfProbe.ok
 Add-Result 'PDF page tools' $pdfBackendAvailable "pdfinfo: $($pdfInfoProbe.detail); pdftotext: $($pdfTextProbe.detail); Python/pypdf: $($pythonPdfProbe.detail)" 'Install Poppler (pdfinfo + pdftotext) and put it on PATH, or install Python and run: python -m pip install pypdf.'
 
+$qpdfProbe = Test-CommandProbe -Name 'qpdf' -Arguments @('--version')
+Add-Result 'qpdf PDF validator' $qpdfProbe.ok $qpdfProbe.detail 'Optional: install qpdf for an additional structural PDF check. The deliverable preflight will report this check as unavailable and continue with its fallback.' $false
+
+$pdfFontsProbe = Test-CommandProbe -Name 'pdffonts' -Arguments @('-v')
+Add-Result 'pdffonts embedding check' $pdfFontsProbe.ok $pdfFontsProbe.detail 'Optional: install Poppler pdffonts to verify that output fonts are embedded. The deliverable preflight will mark this check unavailable when missing.' $false
+
 $results | Format-Table -AutoSize -Wrap
-$missing = @($results | Where-Object Status -eq 'MISSING')
+$missing = @($results | Where-Object { $_.Required -and $_.Status -eq 'MISSING' })
 if ($missing.Count -gt 0) {
     Write-Output "`nRemediation required:"
     $missing | ForEach-Object { Write-Output "- $($_.Component): $($_.Remedy)" }

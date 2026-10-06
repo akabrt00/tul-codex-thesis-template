@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Thesis Chapter"
+  short_description: "Audits one thesis chapter for academic quality"
+  default_prompt: "Use $review-thesis-chapter to review this chapter before I revise it."
+policy:
+  allow_implicit_invocation: true

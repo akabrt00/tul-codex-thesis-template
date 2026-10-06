@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "author": {
     "full_name": "Jmeno Prijmeni",
     "preferred_name": "Jmeno"
@@ -21,6 +21,7 @@
     "title_en": "",
     "supervisor": "",
     "consultant": "",
+    "front_matter_variant": "male",
     "stag_intro_pdf": ""
   },
   "privacy": {

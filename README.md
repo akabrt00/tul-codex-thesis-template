@@ -2,24 +2,120 @@
 
 Přenositelná projektová základna pro závěrečnou práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty. Je navržená i pro studenty, kteří dosud pracovali pouze ve Wordu a neznají Git ani LaTeX.
 
-> **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX.
+> **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX. Chcete-li nejdřív vidět, jak člověk se šablonou pracuje, otevřete [simulaci práce s Codexem](ukazky/prace-s-codexem/README.md) a [ukázky konkrétních zadání](ukazky/ZADANI_PRO_CODEX.md).
+
+![Simulovaný pracovní cyklus člověka a Codexu](ukazky/prace-s-codexem/vizual/clovek-a-codex.png)
+
+*Člověk zadá skutečný úkol běžnou větou, Codex pracuje v projektových souborech a
+provede technické kontroly, ale konečné obsahové rozhodnutí zůstává na člověku.
+Ukázka používá pouze syntetická data.*
+
+## AI na TUL od 1. 10. 2026
+
+Před vložením školních podkladů do AI si přečtěte [AI_NA_TUL.md](AI_NA_TUL.md).
+TUL použití AI a autonomních agentů podporuje; autor ověřuje výsledky, rozumí
+postupu a deklaruje podstatné použití. Chráněná data patří jen do AI systému
+schváleného TUL; schválení Codexu dodané znění nedokládá.
+[POUZITI_AI.md](POUZITI_AI.md) slouží k průběžné evidenci pro konečnou deklaraci.
 
 ## Nejrychlejší začátek
 
+Než vložíte vlastní podklady, můžete projít [syntetické cvičení od projektu po
+PDF](ukazky/prvni-projekt/README.md). Práce i minimální třístránková prezentace se
+sestavují projektovými skripty. Prezentace má Inter přibalený s licencí, takže
+nevyžaduje jeho systémovou instalaci. Kontrola `scripts/check-ai-evidence.ps1`
+ověřuje strukturu evidence a přítomnost celé deklarace ve výsledném PDF; lidské
+ověření a institucionální podmínky musí být doloženy zvlášť.
+
+
 1. Na GitHubu klikněte na **Use this template** a vytvořte si vlastní, ideálně soukromý repozitář. Vaše práce tím nemůže přepsat původní šablonu.
 2. Stáhněte svou kopii a otevřete celou její složku jako workspace AI agenta.
-3. Pošlete agentovi:
+3. Napište, co potřebujete. Například:
 
-   > Přečti `AGENTS.md` a `START_HERE.md`. Použij `$setup-tul-project` a proveď mě prvním nastavením. S Gitem ani LaTeXem jsem zatím nepracoval, proto mi každý důležitý krok vysvětli jednoduše a nic o mých školních údajích neodhaduj.
+   > Chci začít bakalářskou práci. Tady je moje zadání. Pomoz mi z něj připravit strukturu práce a první pracovní dokument. Proveď mě tím, technické věci zatím neznám.
 
-4. Agent se v malých krocích zeptá na jméno, fakultu, typ práce, jazyk, rok a známé školní údaje. Můžete odpovídat běžnými názvy; interní zkratky vyřeší agent. Nic oficiálního nesmí hádat.
-5. Po dokončení onboardingu otevřete nový chat ve stejném projektu a pracujte už jen na konkrétním dokumentu.
+4. Codex projde dodané podklady, shrne požadavky a připraví první užitečný návrh. Pokud máte jen nápad, začněte jeho popisem. Zeptá se na informace potřebné pro nejbližší krok.
+5. Před vytvořením formálního dokumentu potvrdíte povinné údaje a mužskou nebo ženskou variantu pracovní titulní strany. Když je potřebné prostředí připravené, Codex vytvoří a zkontroluje první pracovní PDF. Chybějící nástroje vysvětlí; nic sám neinstaluje.
+6. Pokračujte běžnou větou, například „Praktickou část rozděl na návrh a ověření.“ Ukládání a zaměřené chaty vyřešíte v průběhu nastavení; jejich možnosti jsou níže. Po návratu stačí „Chci pokračovat“ — Codex ověří uložený stav projektu a naváže na rozpracovaný úkol.
 
 Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
+
+## Zálohování, GitHub a online úložiště
+
+Uživatel si při prvním nastavení zvolí způsob ukládání a sdílení. Šablona žádnou
+cloudovou službu nevynucuje.
+
+- **Soukromý GitHub nebo jiný Git server** uchovává verzovanou historii textů,
+  skriptů, nastavení a vhodných menších souborů. Umožňuje přesně zjistit, co se
+  změnilo, a vrátit se ke starší verzi.
+- **Univerzitní Google Drive nebo jiné online úložiště**, ke kterému má aktuální
+  Codex skutečně dostupné připojení, může být vhodné pro autorizovaná sdílená data,
+  velké fotografie a videa, předávací ZIP balíčky nebo další archivní kopie.
+- **Lokální úložiště** může být správnou volbou pro citlivé podklady, ale potřebuje
+  samostatnou zálohu, kterou uživatel skutečně kontroluje.
+
+Git a online úložiště se doplňují; nejsou zaměnitelné. Aktivní repozitář včetně
+`.git/` se nemá používat jako obyčejná synchronizovaná sdílená složka. Bezpečnější
+je mít projekt v běžné lokální složce a v online úložišti samostatné adresáře pro
+sdílené vstupy, velká data, exportované archivy nebo balíčky z `predavani/`.
+
+Pokud má daný Codex pro zvolené úložiště skutečně dostupný konektor, může po
+výslovném zadání pomáhat s dohledáním, uložením nebo uspořádáním povolených souborů.
+Podpora jedné služby neznamená podporu všech a dostupné připojení samo o sobě není
+souhlas s přenosem. Před odesláním neveřejných, osobních, licencovaných nebo
+firemních dat musí Codex uvést, co přesně má opustit lokální projekt, kam to půjde a
+jaká existuje lokální alternativa. Když konektor není dostupný, Codex připraví
+místní složku nebo ověřený ZIP a uživatel jej do zvoleného úložiště vloží ručně.
+O dlouhodobé kopii je vhodné rozhodnout také s ohledem na to, že přístup k
+univerzitnímu účtu nemusí být trvalý.
+
+## Doporučené chaty
+
+Chat odděluje kontext rozhovoru, nikoli soubory nebo repozitář. Všechny chaty mají pracovat nad stejnou projektovou složkou.
+
+- `MAIN – hlavní práce` – vybírá a formuluje finální obsah hlavního dokumentu.
+- `EXPERIMENTY – praktický deník` – uchovává úplné záznamy praktické práce, včetně slepých cest a chyb.
+- `OTÁZKY A REŠERŠE` – volitelný prostor pro hledání, ověřování a nezávazné dotazy.
+- `OBHAJOBA` – zakládá se až při přípravě prezentace.
+
+Toto rozdělení brání tomu, aby se úplný pracovní deník míchal s výslednou zkrácenou verzí v bakalářské práci. Agent nesmí mezi dokumenty přenášet obsah bez kontroly původu, významu a výběru.
+
+## Spolupráce mezi více kopiemi projektu
+
+Když student, kolega nebo vedoucí pracují v samostatných kopiích projektu, mohou si
+předat vybrané soubory přes `predavani/`. Odchozí balíček zachová projektové cesty,
+přidá lidský popis práce, manifest, velikosti a SHA-256. Přijatý balíček se nejdřív
+ověří a porovná s místními soubory; nikdy se automaticky nekopíruje přes existující
+práci.
+
+Balíček vytvoří `scripts/new-handoff-package.ps1` a zkontroluje
+`scripts/verify-handoff-package.ps1`. Obsah `predavani/odchozi/` a
+`predavani/prijate/` zůstává lokální a Git jej ignoruje. Podrobný postup, příklad
+příkazu a pravidla pro přijímající Codex jsou v [predavani/README.md](predavani/README.md).
+
+Kontrolní součty dokazují, že se soubory během přenosu nezměnily. Nedokazují jejich
+odbornou správnost, licenci ani vhodnost k začlenění. Citlivé a generované soubory
+skript blokuje; oprávnění ke sdílení odborných podkladů musí posoudit člověk.
+
+Celý princip ukazuje malý veřejný syntetický scénář
+[spolupráce dvou lidí a jejich Codexů](ukazky/spoluprace/README.md): příjemce má
+vlastní platnou změnu, kolega pošle doplnění a správné začlenění musí zachovat obojí.
+
+## Experimentální deník
+
+Praktický nebo technologický dokument může fungovat jako úplný zdroj pravdy pro praktickou část. Skill `$manage-experiments` převede i hrubý popis pokusu na dohledatelný záznam se stabilním ID `EXP-NNNN`. Uchovává cíl, datum, vzorek, zařízení, nastavení, postup, data, grafy, fotografie, odchylky, chyby a průběžné závěry. Neznámé údaje označí, ale nevymyslí.
+
+Výsledky se do hlavní práce nekopírují automaticky. Na požadavek typu:
+
+> Z experimentů EXP-0012 až EXP-0018 vyber výsledky vhodné do hlavní práce.
+
+agent ověří původní záznamy a soubory, oddělí metodiku, výsledky a diskusi, připraví potřebné grafy a vytvoří záznam o přenosu. Hlavní text tak zůstává stručný, zatímco úplná historie včetně neúspěchů zůstane zachována v deníku.
 
 ## Profil a soukromí
 
 Onboarding vytvoří `PROJECT_PROFILE.json`. Obsahuje osobní a studijní údaje a je záměrně ignorovaný Gitem. Ukázka struktury je v `PROJECT_PROFILE.example.json`.
+
+Při založení práce se aktivuje právě jedna pracovní titulní strana: mužská (`male`) nebo ženská (`female`) varianta TUL šablony. Až získáte oficiální úvodní strany z IS STAG, předejte jejich PDF agentovi. Agent upozorní na osobní údaje, soubor uloží jako verzovanou součást hlavního dokumentu a původní variantu jím nahradí; nesmí ponechat dvě aktivní varianty ani všechny možnosti vypnout.
 
 `PROJECT_CONTEXT.md` je naopak verzovaný. Uchovává téma, strukturu projektu, seznam výstupů a dlouhodobá rozhodnutí, ale nemá duplikovat osobní profil.
 
@@ -36,6 +132,31 @@ Každý samostatně kompilovaný dokument má vlastní `main.tex` a záznam v ta
 
 Běžná kapitola nebo příloha vložená do hlavní práce nepotřebuje vlastní workspace. Samostatný dokument se zakládá tehdy, když má mít vlastní titulní údaje, číslování nebo výsledné PDF.
 
+## Kontrola člověkem a finální preflight
+
+Automatická kontrola není totéž jako schválení práce. Materiální texty, výpočty, interpretace, citace, tabulky, obrázky a prezentace po technické kontrole zůstávají ve stavu `awaiting-human-review`, dokud autor výslovně neposoudí jejich význam a kvalitu. Agent nesmí schválit vlastní výstup.
+
+Začátečník nemusí znát interní příkazy. Požadavek:
+
+> Zkontroluj práci před odevzdáním.
+
+spustí orchestraci auditu zdrojů, čistého buildu, kontroly logů a PDF preflightu. Deterministický skript rozlišuje `PASS`, `WARN` a `FAIL`, umí vytvořit i kompaktní JSON report a při kritickém problému vrací nenulový exit code. Technický verdikt neprohlašuje obsah za odborně správný.
+
+U hlavní práce finální preflight také odmítne pracovní `male`/`female` úvodní strany. Před skutečným odevzdáním musí být nahrazeny oficiálním PDF z IS STAG; výjimka existuje pouze pro automatický test šablony.
+
+Další běžné vstupy jsou „Porovnej práci se zadáním“, „Zapracuj připomínky vedoucího“, „Zkontroluj kapitolu“ a „Připrav mě k obhajobě“. Detailní postupy jsou načítány až prostřednictvím příslušných repository skills, aby základní kontext zůstal malý.
+
+## Volitelné pluginy a vědecké nástroje
+
+Projekt funguje bez pluginů. Nainstalované schopnosti se používají pouze tehdy, když jsou pro úlohu vhodné a v aktuálním chatu skutečně dostupné.
+
+- LaTeX plugin je doplňková diagnostika. Nenahrazuje projektový build XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX.
+- Wolfram může ověřovat symbolické nebo numerické výpočty, jednotky a transformace. Je to výpočetní nástroj, ne odborný citační zdroj.
+- MATLAB a Simulink se volí pro úlohy, kde přinášejí konkrétní výhodu; jednoduché operace mohou použít lehčí místní nástroj.
+- Po instalaci pluginu může být nutné otevřít nový chat. Nedostupnost pluginu není chyba projektu a agent má hledat reprodukovatelný fallback.
+
+Projekt nic automaticky neinstaluje a neposílá citlivá nebo neveřejná data do externí služby bez předchozího vysvětlení a potvrzení uživatele.
+
 ## Ruční inicializace
 
 AI onboarding používá stejné reprodukovatelné PowerShell skripty, které lze spustit i ručně.
@@ -50,7 +171,8 @@ Lokální profil:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-profile.ps1 `
-  -FullName "Jméno Příjmení" -Faculty FM -WorkType BP -Language CZ -Year 2026
+  -FullName "Jméno Příjmení" -Faculty FM -WorkType BP -Language CZ -Year 2026 `
+  -FrontMatterVariant male
 ```
 
 Hlavní práce a prezentace:
@@ -58,6 +180,13 @@ Hlavní práce a prezentace:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Thesis
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -Target Presentation
+```
+
+Pozdější výměna pracovní titulní strany za oficiální PDF z IS STAG:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\set-thesis-start.ps1 `
+  -ProjectDir .\prace -StagPdf ".\uvodni-strany-ze-stag.pdf"
 ```
 
 Další samostatný dokument:
@@ -102,7 +231,27 @@ Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → Xe
 - `prace/` — pracovní kopie hlavní práce a dalších formálních dokumentů.
 - `obhajoba/` — pracovní kopie TULpresentation.
 - `zdroje/` — odborné a citovatelné materiály s registry `SRC-NNNN`.
+- `predavani/` — lokální odchozí a přijaté balíčky pro řízenou spolupráci.
+- `ukazky/` — veřejné syntetické příklady použití bez osobních dat.
 - `scripts/` — inicializace, kompilace, extrakce a kontroly.
+
+## Grafy z MATLABu
+
+Skill `$matlab-to-tikz` se spustí, když uživatel chce MATLABový nebo numerický graf vytvořit, převést, upravit či vložit do dokumentu. Samotné otevření `.mat` dat bez požadavku na graf jej nespouští. Při převodu agent zachová vykreslená data v přenositelném souboru, vytvoří editovatelný graf TikZ/PGFPlots a zkontroluje jeho číselnou shodu i vzhled ve výsledném PDF. Uživatel nemusí instalovat `matlab2tikz` ani znát příkazy převodu.
+
+Příklad běžného požadavku:
+
+> Tady je MATLAB graf. Převeď ho do práce jako pěkný vektorový graf, zachovej data a zkontroluj jednotky i legendu.
+
+## Obrázky a schémata
+
+Uživatel může obsah popsat hrubě, například „tady vysvětluju tok materiálu výrobní linkou“. Běžný textový workflow může stručně doporučit vhodný vizuál bez načtení dalšího skillu. `$create-project-visuals` se načte až tehdy, když se má vizuál skutečně vytvořit, dohledat, upravit, vložit nebo cíleně zkontrolovat. Jednoduchá odborná schémata kreslí v TikZ, datové grafy předává workflow PGFPlots a vhodné obrázky z registrovaných dokumentů umí dohledat, vytáhnout a připravit pro sazbu.
+
+Každý použitý vizuál uchovává informaci o původu, stránce, licenci a provedené úpravě. Převzatý obrázek se cituje, překreslení se označí jako zpracované podle zdroje a AI ilustrace nesmí sloužit jako odborný důkaz. Experimentální fotografie, mikroskopické snímky ani naměřené grafy se generativně „nevylepšují“ způsobem, který by změnil jejich význam.
+
+Příklad:
+
+> Vysvětluju tu postup měření jen hrubě. Navrhni, jestli by pomohl obrázek nebo schéma, a připrav nejlepší variantu do práce.
 
 ## Zdroje a kontroly
 

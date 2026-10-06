@@ -20,6 +20,10 @@ param(
     [ValidateRange(2000, 2100)]
     [int]$Year = (Get-Date).Year,
 
+    [Parameter(Mandatory)]
+    [ValidateSet('male', 'female')]
+    [string]$FrontMatterVariant,
+
     [string]$ProgrammeCode = '',
     [string]$ProgrammeNameCs = '',
     [string]$ProgrammeNameEn = '',
@@ -57,7 +61,7 @@ if ([string]::IsNullOrWhiteSpace($PreferredName)) {
 }
 
 $profile = [ordered]@{
-    schema_version = 1
+    schema_version = 2
     setup_state = 'profile_created'
     author = [ordered]@{
         full_name = $FullName
@@ -80,6 +84,7 @@ $profile = [ordered]@{
         title_en = $TitleEn
         supervisor = $Supervisor
         consultant = $Consultant
+        front_matter_variant = $FrontMatterVariant
         stag_intro_pdf = $StagIntroPdf
     }
     privacy = [ordered]@{
@@ -89,8 +94,8 @@ $profile = [ordered]@{
 
 $profile | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $profilePath -Encoding UTF8
 
-$parsed = Get-Content -Raw -LiteralPath $profilePath | ConvertFrom-Json
-if ($parsed.schema_version -ne 1 -or $parsed.study.faculty_code -ne $Faculty) {
+$parsed = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
+if ($parsed.schema_version -ne 2 -or $parsed.study.faculty_code -ne $Faculty -or $parsed.document_defaults.front_matter_variant -ne $FrontMatterVariant) {
     throw 'Profile verification failed.'
 }
 

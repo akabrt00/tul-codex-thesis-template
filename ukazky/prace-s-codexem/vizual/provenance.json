@@ -1,0 +1,43 @@
+{
+  "visual_id": "demo-human-codex-work-cycle",
+  "status": "verified",
+  "category": "original",
+  "purpose": "Ukázat novému uživateli konkrétní pracovní cyklus člověka a Codexu uvnitř TUL šablony.",
+  "target_document": "github-usage-example",
+  "target_section": "ukázka práce člověka s Codexem",
+  "asset_files": [
+    "simulace.html",
+    "clovek-a-codex.png"
+  ],
+  "source_ids": [],
+  "citation_keys": [],
+  "source_pages": [],
+  "source_figure_labels": [],
+  "license_or_reuse_basis": "Původní syntetický obsah vytvořený pro tento repozitář; bez externích obrazových nebo datových podkladů.",
+  "transformations": [
+    "Deterministické HTML/CSS vykreslené místním prohlížečem Microsoft Edge do PNG."
+  ],
+  "semantic_invariants": [
+    "Codex se doptá na údaj, který ovlivňuje význam a dohledatelnost záznamu.",
+    "Viditelný obsah fotografie a videa se odděluje od interpretace potvrzené uživatelem.",
+    "Vybraný snímek zachovává vazbu na původní video a časovou pozici.",
+    "Neplatný pokus se zachová v úplné historii experimentu.",
+    "Původní datový soubor zůstává propojen se záznamem.",
+    "Experimentální obrazový obsah se generativně nemění.",
+    "Výsledek se nepřenáší automaticky do hlavní práce.",
+    "Technická kontrola nenahrazuje lidské schválení."
+  ],
+  "generated_with_ai": true,
+  "ai_role": "Codex navrhl původní syntetický scénář a deterministické HTML/CSS; nebyl použit generativní obrazový model.",
+  "caption_intent": "Simulovaný pracovní cyklus člověka a Codexu na syntetickém experimentu.",
+  "verified_against": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "ukazky/ZADANI_PRO_CODEX.md",
+    "Vizuální kontrola PNG 1600 × 1050: bez ořezu, překryvů a nečitelných částí."
+  ],
+  "verification_date": "2026-09-02",
+  "open_questions": [
+    "Potvrdit, že příklad vystihuje očekávaný vztah člověka a Codexu a je srozumitelný začátečníkovi."
+  ]
+}

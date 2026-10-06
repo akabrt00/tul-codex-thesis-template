@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulace práce člověka s Codexem</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #14233a;
+      --muted: #627087;
+      --navy: #17365d;
+      --blue: #e8f1ff;
+      --blue-line: #bad3ff;
+      --green: #e6f7ee;
+      --green-strong: #158451;
+      --amber: #fff4d4;
+      --amber-strong: #a96a00;
+      --paper: #f4f7fb;
+      --panel: #ffffff;
+      --line: #d7dfeb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    main {
+      width: 1600px;
+      height: 1050px;
+      margin: 0 auto;
+      padding: 44px 54px 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 5% 0%, #dceaff 0, transparent 23%),
+        radial-gradient(circle at 97% 100%, #daf4e7 0, transparent 22%),
+        var(--paper);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 6px 0 7px;
+      color: var(--navy);
+      font-size: 43px;
+      line-height: 1.08;
+      letter-spacing: -0.7px;
+    }
+
+    .subtitle { margin: 0; color: var(--muted); font-size: 20px; }
+
+    .badge {
+      padding: 10px 15px;
+      border: 1px solid #94a9c8;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 58px 1fr 58px 1fr;
+      height: 730px;
+      align-items: stretch;
+    }
+
+    .arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #7b899f;
+      font-size: 38px;
+    }
+
+    .screen {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 16px 38px rgba(43, 64, 98, 0.12);
+    }
+
+    .chrome {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fafc;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #c7d0de; }
+    .screen-title { margin-left: 7px; color: #536178; font-size: 14px; font-weight: 650; }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 17px 20px 9px;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 11px;
+      background: var(--navy);
+      color: white;
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    h2 { margin: 0; color: var(--navy); font-size: 22px; }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 10px 20px 20px;
+    }
+
+    .bubble {
+      padding: 13px 15px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.38;
+    }
+
+    .user { margin-left: 20px; background: var(--blue); border: 1px solid var(--blue-line); }
+    .assistant { margin-right: 14px; background: #f3f5f8; border: 1px solid #dfe4ec; }
+
+    .attachments {
+      display: flex;
+      justify-content: flex-end;
+      gap: 7px;
+      margin-top: -5px;
+    }
+
+    .attachment {
+      padding: 7px 10px;
+      border: 1px solid var(--blue-line);
+      border-radius: 999px;
+      background: #f4f8ff;
+      color: #31527f;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .context {
+      display: grid;
+      gap: 9px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfcfe;
+      font-size: 14px;
+    }
+
+    .context-row {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 7px;
+      align-items: start;
+    }
+
+    .context-row strong { color: var(--navy); }
+
+    .file-list {
+      display: grid;
+      gap: 8px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfcfe;
+      font: 13px/1.35 Consolas, monospace;
+    }
+
+    .ok { color: var(--green-strong); font-weight: 700; }
+    .hold { color: var(--amber-strong); font-weight: 700; }
+
+    pre {
+      margin: 0;
+      padding: 13px 14px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #172234;
+      color: #edf2fa;
+      font: 12.5px/1.45 Consolas, monospace;
+      white-space: pre-wrap;
+    }
+
+    .callout {
+      padding: 11px 13px;
+      border-radius: 11px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .success { color: #0d633b; background: var(--green); border-left: 4px solid var(--green-strong); }
+    .warning { color: #765000; background: var(--amber); border-left: 4px solid var(--amber-strong); }
+
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .button {
+      padding: 10px 8px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .approve { color: white; background: var(--green-strong); }
+    .return { color: var(--navy); background: #edf1f7; border: 1px solid var(--line); }
+
+    footer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .principle {
+      padding: 14px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #45536a;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .principle strong { color: var(--navy); }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Jak člověk pracuje s Codexem v této šabloně</h1>
+      <p class="subtitle">Řeknete cíl běžnou větou · Codex pracuje v projektu · vy rozhodnete</p>
+    </div>
+    <div class="badge">Simulace · syntetický experiment</div>
+  </header>
+
+  <section class="flow" aria-label="Tři kroky práce člověka s Codexem">
+    <article class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="screen-title">Rozhovor s Codexem</span></div>
+      <div class="step"><span class="step-number">1</span><h2>Popíšete skutečný úkol</h2></div>
+      <div class="content">
+        <div class="bubble user">
+          <span class="label">Student</span>
+          Vzorek B jsme měřili při 20 m/min. Tenzometr kmital a druhé měření jsme opakovali. Přikládám foto sestavy a video problému.
+        </div>
+        <div class="attachments"><span class="attachment">▣ sestava.jpg</span><span class="attachment">▶ kmitani.mp4</span></div>
+        <div class="bubble assistant">
+          <span class="label">Codex</span>
+          Na fotografii vidím měřicí sestavu; ve videu je mezi 00:04–00:07 viditelné kmitání. Který datový soubor k pokusu patří a je první měření neplatné?
+        </div>
+        <div class="bubble user">
+          <span class="label">Student doplní</span>
+          Data jsou v mer_2026-09-02.csv. První měření zachovej, ale označ jako neplatné.
+        </div>
+        <div class="callout warning"><strong>Codex nic nevymyslel.</strong><br>Zeptal se jen na údaj, který mění význam záznamu.</div>
+      </div>
+    </article>
+
+    <div class="arrow" aria-hidden="true">→</div>
+
+    <article class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="screen-title">Práce uvnitř projektu</span></div>
+      <div class="step"><span class="step-number">2</span><h2>Codex použije šablonu</h2></div>
+      <div class="content">
+        <div class="context">
+          <div class="context-row"><span>①</span><div><strong>Přečte kontext</strong><br>pravidla, dokumenty a existující ID</div></div>
+          <div class="context-row"><span>②</span><div><strong>Zvolí workflow</strong><br>úplný experimentální záznam</div></div>
+          <div class="context-row"><span>③</span><div><strong>Zachová původ</strong><br>data, odchylku i neplatný pokus</div></div>
+          <div class="context-row"><span>④</span><div><strong>Spustí kontroly</strong><br>struktura, odkazy a opakovatelnost</div></div>
+        </div>
+        <div class="file-list">
+          <div class="ok">✓ EXP-0012 vytvořen</div>
+          <div class="ok">✓ foto + snímek videa 00:05 propojen</div>
+          <div class="ok">✓ kmitání a opakování zachováno</div>
+          <div class="hold">⏸ hlavní práce zatím nezměněna</div>
+        </div>
+        <pre>Technická kontrola
+
+[PASS] povinná pole záznamu
+[PASS] původ foto/videa + čas snímku
+[PASS] úplná historie pokusu</pre>
+      </div>
+    </article>
+
+    <div class="arrow" aria-hidden="true">→</div>
+
+    <article class="screen">
+      <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="screen-title">Výsledek pro člověka</span></div>
+      <div class="step"><span class="step-number">3</span><h2>Dostanete kontrolovatelný výsledek</h2></div>
+      <div class="content">
+        <div class="bubble assistant">
+          <span class="label">Codex hlásí</span>
+          Zapsal jsem EXP-0012, propojil data, foto a snímek videa v čase 00:05. Neplatný pokus zůstal v historii. Hlavní práci jsem nezměnil.
+        </div>
+        <div class="file-list">
+          <div class="ok">→ záznam experimentu</div>
+          <div class="ok">→ foto s věcným popiskem</div>
+          <div class="ok">→ videosnímek + čas a původ</div>
+          <div class="hold">? odborný význam posoudí autor</div>
+        </div>
+        <div class="callout success"><strong>Stav:</strong> technicky zkontrolováno · čeká na lidskou kontrolu.</div>
+        <div class="decision">
+          <div class="button approve">Schválit záznam</div>
+          <div class="button return">Vrátit k doplnění</div>
+        </div>
+        <div class="callout warning"><strong>Další krok:</strong> teprve po výběru lze připravit ověřený výsledek do hlavní práce.</div>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <div class="principle"><strong>1.</strong> Běžný jazyk</div>
+    <div class="principle"><strong>2.</strong> Trvalý kontext</div>
+    <div class="principle"><strong>3.</strong> Skutečné soubory a kontroly</div>
+    <div class="principle"><strong>4.</strong> Člověk schvaluje</div>
+  </footer>
+</main>
+</body>
+</html>
