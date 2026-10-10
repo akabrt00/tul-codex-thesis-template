@@ -154,6 +154,16 @@ Citlivá nebo neveřejná data se do externí služby neposílají bez vašeho p
 - **LaTeX** – systém, který ze zdrojového textu vytvoří správně vysázené PDF.
 - **AI agent** – technický spolupracovník, který může měnit soubory a spouštět kontroly; za obsah práce a odevzdaný výsledek odpovídá autor.
 
+## Semestrálka nebo kratší protokol
+
+Stačí zadat například: „Chci semestrální práci pro Fakultu textilní, předmět
+Materiály. Tady je zadání; pomoz mi připravit dokument.“ Agent použije samostatnou
+semestrální šablonu 1.1, potvrdí název, autora a údaje o předmětu a připraví
+`prace/main.tex`. Není potřeba řešit mužskou/ženskou variantu ani úvodní listy
+STAG. Platí skutečné pokyny vyučujícího, ověřování zdrojů a evidence použití AI.
+Závěrečná práce používá uspořádanou TULthesis 0.8; rozpracované soubory se
+automaticky nepřevádějí. [Podrobnosti o variantách](templates/TEMPLATE_VARIANTS.md).
+
 ## Bezpečné cvičení před vlastní prací
 
 Chcete nejprve vyzkoušet postup bez skutečných údajů? Použijte [oddělené cvičení od projektu po první PDF](ukazky/prvni-projekt/README.md). Nevytváří vaši práci a nepotvrzuje schválení obsahu. U chráněných podkladů nejprve doložte schválení konkrétního AI systému TUL podle AI_NA_TUL.md; samotný souhlas s přenosem nestačí.

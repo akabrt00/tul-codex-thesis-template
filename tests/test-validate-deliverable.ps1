@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param()
 
 $ErrorActionPreference = 'Stop'
@@ -119,6 +119,14 @@ try {
     $duplicateFrontMatter = New-CaseDirectory 'duplicate-front-matter' $duplicateText
     Copy-Item -LiteralPath $fixturePdf -Destination (Join-Path $duplicateFrontMatter 'main.pdf')
     Assert-Case 'duplicate ThesisStart fails' 1 (Invoke-ValidatorCase $duplicateFrontMatter @('-ExpectedPageSize','Any') 'Thesis') 'ThesisStart'
+
+    $semester = New-CaseDirectory 'semester' '\documentclass{article}\begin{document}\TitulniStrana Complete semester text.\bibliography{literatura}\end{document}'
+    Copy-Item -LiteralPath $fixturePdf -Destination (Join-Path $semester 'main.pdf')
+    Set-Content -LiteralPath (Join-Path $semester 'main.bbl') -Value '\begin{thebibliography}{1}\bibitem{verified} Synthetic test source.\end{thebibliography}' -Encoding UTF8
+    Assert-Case 'semester title and BibTeX bibliography pass' 0 (Invoke-ValidatorCase $semester @('-ExpectedPageSize','Any') 'Semester') '"fail":0'
+    Remove-Item -LiteralPath (Join-Path $semester 'main.bbl')
+    Assert-Case 'missing semester bibliography fails' 1 (Invoke-ValidatorCase $semester @('-ExpectedPageSize','Any') 'Semester') 'Bibliography'
+    Assert-Case 'missing semester title fails' 1 (Invoke-ValidatorCase $noFrontMatter @('-ExpectedPageSize','Any') 'Semester') 'Semester title page'
 
     $noTools = New-CaseDirectory 'missing-utilities'
     Copy-Item -LiteralPath $fixturePdf -Destination (Join-Path $noTools 'main.pdf')

@@ -1,9 +1,11 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet('All', 'Thesis', 'Presentation', 'Document')]
     [string]$Target = 'All',
     [string]$DestinationRoot,
-    [string]$DocumentName
+    [string]$DocumentName,
+    [ValidateSet('Auto', 'Original', 'Organized', 'Semester')]
+    [string]$TemplateVariant = 'Auto'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -20,12 +22,25 @@ $profilePath = Join-Path $destinationRootPath 'PROJECT_PROFILE.json'
 if ($destinationRootPath.StartsWith($upstreamRoot, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'DestinationRoot must not be inside templates/upstream.'
 }
+$communityRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'templates\community'))
+if ($destinationRootPath.StartsWith($communityRoot, [StringComparison]::OrdinalIgnoreCase)) { throw 'DestinationRoot must not be inside templates/community.' }
 if ($Target -in @('All', 'Thesis', 'Document') -and -not (Test-Path -LiteralPath $profilePath -PathType Leaf)) {
-    throw 'PROJECT_PROFILE.json is required before initializing a formal document. Run setup-profile.ps1 and confirm the male or female generated title-page variant first.'
+    throw 'PROJECT_PROFILE.json is required before initializing a formal document. Run setup-profile.ps1 with confirmed metadata first.'
 }
 if ($Target -in @('All', 'Thesis', 'Document')) {
     $initialProfile = Get-Content -Raw -Encoding UTF8 -LiteralPath $profilePath | ConvertFrom-Json
-    if ($initialProfile.schema_version -lt 2 -or [string]$initialProfile.document_defaults.front_matter_variant -notin @('male', 'female')) {
+    if ($TemplateVariant -eq 'Auto') {
+        if ($initialProfile.document_defaults.template_variant -and $initialProfile.document_defaults.template_variant -ne 'Auto') {
+            $TemplateVariant = [string]$initialProfile.document_defaults.template_variant
+        } elseif ($initialProfile.document_defaults.work_type -eq 'SP' -and $initialProfile.document_defaults.language -eq 'CZ' -and $initialProfile.study.faculty_code -in @('FS','FT','FP','EF','FA','FM','FZS')) {
+            $TemplateVariant = 'Semester'
+        } else { $TemplateVariant = 'Organized' }
+    }
+    if ($TemplateVariant -notin @('Original', 'Organized', 'Semester')) { throw 'Unknown template variant in profile.' }
+    if ($TemplateVariant -eq 'Semester' -and ($initialProfile.document_defaults.language -ne 'CZ' -or $initialProfile.study.faculty_code -notin @('FS','FT','FP','EF','FA','FM','FZS'))) {
+        throw 'Semester 1.1 supports Czech and the seven faculties only. Use Original or Organized for other units/languages.'
+    }
+    if ($initialProfile.schema_version -lt 2 -or ($TemplateVariant -ne 'Semester' -and [string]$initialProfile.document_defaults.front_matter_variant -notin @('male', 'female'))) {
         throw 'PROJECT_PROFILE.json must use schema version 2 and contain document_defaults.front_matter_variant set to male or female. Update the local profile before initialization.'
     }
 }
@@ -144,8 +159,67 @@ function Write-ThesisStarter {
     if ($activeFrontMatter.Count -ne 1) {
         throw "Starter generation must produce exactly one active ThesisStart command; found $($activeFrontMatter.Count)."
     }
+    if ($TemplateVariant -eq 'Organized') {
+        $metadataStart = $content.IndexOf('\TULtitle')
+        $documentStart = $content.IndexOf('\begin{document}')
+        $metadata = $content.Substring($metadataStart, $documentStart - $metadataStart).Trim()
+        $packagesStart = $content.IndexOf('\usepackage')
+        $packages = $content.Substring($packagesStart, $metadataStart - $packagesStart).Trim().Replace('references.bib', 'literatura/zdroje.bib')
+        Set-Content -LiteralPath (Join-Path $Destination 'nastaveni\udaje.tex') -Value $metadata -Encoding UTF8
+        Set-Content -LiteralPath (Join-Path $Destination 'nastaveni\balicky.tex') -Value $packages -Encoding UTF8
+        $content = $content.Substring(0, $packagesStart) + "\input{nastaveni/balicky}`n\input{nastaveni/udaje}`n`n" + $content.Substring($documentStart)
+        Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'literatura\zdroje.bib') -Force
+    } else {
+        Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'references.bib') -Force
+    }
     Set-Content -LiteralPath (Join-Path $Destination 'main.tex') -Value $content -Encoding UTF8
-    Copy-Item -LiteralPath $referencesPath -Destination (Join-Path $Destination 'references.bib') -Force
+}
+
+function Write-SemesterStarter {
+    param([string]$Destination, [string]$ProfileRoot)
+    $profile = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $ProfileRoot 'PROJECT_PROFILE.json') | ConvertFrom-Json
+    $faculty = [string]$profile.study.faculty_code
+    if ($faculty -eq 'FA') { $faculty = 'FUA' }
+    $values = @{
+        FACULTY = $faculty; AUTHOR = ConvertTo-LaTeXText $profile.author.full_name
+        TITLE_CS = ConvertTo-LaTeXText $profile.document_defaults.title_cs
+        YEAR = [string]$profile.document_defaults.year
+        COURSE = ConvertTo-LaTeXText $profile.document_defaults.course
+        WORK_DATE = ConvertTo-LaTeXText $profile.document_defaults.work_date
+        ASSIGNMENT_VERSION = ConvertTo-LaTeXText $profile.document_defaults.assignment_version
+        SOFTWARE = ConvertTo-LaTeXText $profile.document_defaults.software
+    }
+    foreach ($key in @('TITLE_CS','COURSE','WORK_DATE','ASSIGNMENT_VERSION','SOFTWARE')) {
+        if ([string]::IsNullOrWhiteSpace($values[$key])) { $values[$key] = 'Doplnit' }
+    }
+    $content = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot 'templates\starters\tul-semestralni-main.tex')
+    foreach ($entry in $values.GetEnumerator()) { $content = $content.Replace(('{{' + $entry.Key + '}}'), [string]$entry.Value) }
+    Set-Content -LiteralPath (Join-Path $Destination 'main.tex') -Value $content -Encoding UTF8
+    # No fabricated source/example measurement is promoted into the student's document.
+    Copy-Item -LiteralPath (Join-Path $repoRoot 'templates\starters\references.bib') -Destination (Join-Path $Destination 'literatura.bib') -Force
+}
+
+function Initialize-FormalDocument {
+    param([string]$Destination)
+    switch ($TemplateVariant) {
+        Original { $source = Join-Path $upstreamRoot 'TUL\TULthesis'; $mainSource = 'manual-tulthesis.tex' }
+        Organized { $source = Join-Path $repoRoot 'templates\community\tulthesis-0.8-loga'; $mainSource = 'main.tex' }
+        Semester { $source = Join-Path $repoRoot 'templates\community\tul-semestralni-1.1'; $mainSource = 'semestralni-prace.tex' }
+    }
+    if ($TemplateVariant -ne 'Original') {
+        $manifest = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $repoRoot ('templates\manifests\' + (Split-Path -Leaf $source) + '.json')) | ConvertFrom-Json
+        if (@(Get-ChildItem -LiteralPath $source -Recurse -File -Force).Count -ne $manifest.files.Count) { throw 'Community snapshot file count differs from its manifest.' }
+        foreach ($entry in $manifest.files) {
+            $vendorFile = Join-Path $source $entry.path
+            if (-not (Test-Path -LiteralPath $vendorFile -PathType Leaf) -or (Get-FileHash -Algorithm SHA256 -LiteralPath $vendorFile).Hash.ToLowerInvariant() -ne $entry.sha256) {
+                throw "Community snapshot integrity check failed: $($entry.path)"
+            }
+        }
+    }
+    Copy-WorkingTree -Source $source -Destination $Destination -MainSource $mainSource
+    if ($TemplateVariant -eq 'Semester') { Write-SemesterStarter -Destination $Destination -ProfileRoot $destinationRootPath }
+    else { Write-ThesisStarter -Destination $Destination -ProfileRoot $destinationRootPath }
+    Write-Output "Template variant: $TemplateVariant."
 }
 
 function Write-PresentationStarter {
@@ -221,6 +295,7 @@ function Copy-WorkingTree {
         upstream_tree_sha256 = $before.tree_sha256
         initialized_at = (Get-Date).ToString('o')
         main_file = 'main.tex'
+        template_variant = if ($Destination -eq (Join-Path $destinationRootPath 'obhajoba')) { 'Presentation' } else { $TemplateVariant }
     } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $Destination '.upstream-origin.json') -Encoding UTF8
 
     $after = Get-TreeSnapshot -Path $Source
@@ -230,8 +305,7 @@ function Copy-WorkingTree {
 
 if ($Target -in @('All', 'Thesis')) {
     $thesisPath = Join-Path $destinationRootPath 'prace'
-    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination $thesisPath -MainSource 'manual-tulthesis.tex'
-    Write-ThesisStarter -Destination $thesisPath -ProfileRoot $destinationRootPath
+    Initialize-FormalDocument -Destination $thesisPath
 }
 if ($Target -in @('All', 'Presentation')) {
     $presentationPath = Join-Path $destinationRootPath 'obhajoba'
@@ -251,6 +325,5 @@ if ($Target -eq 'Document') {
     }
 
     $documentPath = Join-Path $destinationRootPath (Join-Path 'prace\dokumenty' $DocumentName)
-    Copy-WorkingTree -Source (Join-Path $upstreamRoot 'TUL\TULthesis') -Destination $documentPath -MainSource 'manual-tulthesis.tex'
-    Write-ThesisStarter -Destination $documentPath -ProfileRoot $destinationRootPath
+    Initialize-FormalDocument -Destination $documentPath
 }

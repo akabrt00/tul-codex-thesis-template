@@ -15,7 +15,7 @@ Read `PROJECT_CONTEXT.md`, the nearest `AGENTS.md`, and `PROJECT_PROFILE.json` w
 2. Use `$manage-project-sources` to audit registered sources and citation traceability.
 3. Use `$audit-figures-and-tables` and `$terminology-consistency` for the target document when material.
 4. Use `$tul-thesis` or `$tul-presentation` to perform the authoritative clean build and visual inspection. Never replace project build scripts with a generic compiler.
-5. Run `scripts/validate-deliverable.ps1` against the produced PDF and build log. Never pass `-AllowGeneratedFrontMatter` for a real submission; it exists only for template smoke tests. Use `$local-tool-router` only to discover optional PDF utilities; do not install them.
+5. Run `scripts/validate-deliverable.ps1` against the produced PDF and build log. Select `-DocumentKind Semester` for the registered semester 1.1 template; it checks `TitulniStrana` and BibTeX instead of ThesisStart/STAG. Never pass `-AllowGeneratedFrontMatter` for a real submission; it exists only for template smoke tests. Use `$local-tool-router` only to discover optional PDF utilities; do not install them.
 6. Inspect unresolved metadata, placeholders, citations, references, bibliography, PDF structure, page geometry, fonts, text extraction, representative pages, and warnings through the routed workflows.
 
 Classify every finding as `PASS`, `WARN`, `FAIL`, or `SKIP`. A missing optional validator is `SKIP`, not an invented pass. Any critical failure prevents a technically-ready verdict.

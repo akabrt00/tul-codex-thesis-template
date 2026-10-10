@@ -17,6 +17,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-thesis.ps1
 
 It enforces XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX. For TUL presentations, use `scripts/compile-presentation.ps1`. Do not replace these workflows with Tectonic, a single compiler pass, or generic `latexmk` merely because an optional plugin offers them.
 
+Exception: the imported semester 1.1 template uses `tul-semestralni.sty`. The same compile script detects it and runs pdfLaTeX → BibTeX (when citations exist) → pdfLaTeX → pdfLaTeX. Diagnose its `.aux`/`.blg` and `literatura.bib`, not a missing `.bcf` or Biber. Use `validate-deliverable.ps1 -DocumentKind Semester`; its title command is `\TitulniStrana`, not `\ThesisStart`.
+
 ## Route the diagnosis
 
 Read `references/routing.md` and proceed from narrowest evidence to broader checks:

@@ -131,6 +131,8 @@ find_tool cpp-compiler 'C/C++ compiler' clang gcc cc
 find_tool pandoc 'Pandoc' pandoc
 find_tool latexmk 'LaTeXmk' latexmk
 find_tool xelatex 'XeLaTeX' xelatex
+find_tool pdflatex 'pdfLaTeX' pdflatex
+find_tool bibtex 'BibTeX' bibtex
 find_tool biber 'Biber' biber
 find_tool makeindex 'MakeIndex' makeindex
 find_tool ffmpeg 'FFmpeg' ffmpeg

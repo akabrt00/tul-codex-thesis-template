@@ -18,7 +18,8 @@ This tracked file describes the project, its deliverables, and durable decisions
 - Main document: `prace/main.tex`
 - Bibliography and citation requirements: follow the TUL policy summary in `zdroje/90_zpracovane/poznamky-a-souhrny/SRC-0003_SRC-0004_SRC-0005_citation-policy.md`; confirm the faculty-specific citation system during onboarding
 - IS STAG introductory-pages PDF: `[not provided]`
-- Working title-page mode: generated `male` or `female` variant selected during onboarding; replace with the official IS STAG PDF before final submission
+- Template variant: `Auto` (organized TULthesis 0.8; Czech `SP` on the seven faculties uses semester 1.1); see `templates/TEMPLATE_VARIANTS.md`
+- Working title-page mode: TULthesis uses confirmed `male` or `female`, replaced by the official IS STAG PDF when required; semester 1.1 uses one `TitulniStrana` with no generated declaration variant
 
 ## Deliverables
 
@@ -26,17 +27,17 @@ Register every independently compiled output. Use a stable lowercase key and kee
 
 | Key | Role | Document type | Entry point | Status | Purpose |
 |---|---|---|---|---|---|
-| `main` | primary thesis | `[not configured]` | `prace/main.tex` | not initialized | Main academic work |
+| `main` | primary academic work | `[not configured]` | `prace/main.tex` | not initialized | Main academic work |
 
 Additional formal documents belong under `prace/dokumenty/<slug>/main.tex`. Examples include a technological diary, measurement report, project report, or a separately compiled appendix. Defense slides belong in `obhajoba/main.tex`.
 
 ## Current work
 
-- Current task: `[not started]`
-- Last output and relative path: `[none]`
-- Validation and human-review status: `[not applicable]`
-- Missing input: `[not assessed]`
-- Next useful action: understand the user's intended result and available inputs, then prepare the first useful proposal
+- Current task: reusable-template maintenance, 2026-10-10: integrate public semester 1.1 and organized TULthesis 0.8; no student document initialized
+- Last output and relative path: `templates/TEMPLATE_VARIANTS.md` and `templates/OVERENI-2026-10-10.md`
+- Validation and human-review status: technical checks passed; maintenance Git diff/PR awaits human review
+- Missing input: no technical input missing; actual student assignment and metadata remain unconfigured
+- Next useful action: review the maintenance changes, then use onboarding to initialize an actual project from this template
 
 Keep this checkpoint short and non-sensitive. Update it after meaningful progress, verify referenced files when resuming, and retain `setup_state: template` until a formal document is actually initialized.
 
@@ -63,7 +64,7 @@ Keep this checkpoint short and non-sensitive. Update it after meaningful progres
 - Primary format: LaTeX
 - Scientific figures: editable TikZ/PGFPlots with traceable external data; use `$matlab-to-tikz` when a MATLAB or numerical graph is actually created or converted
 - Visual workflow: ordinary planning may recommend a useful visual briefly; load `$create-project-visuals` only when creating, sourcing, adapting, inserting, or specifically auditing one
-- Expected runtime: XeLaTeX, Biber, and MakeIndex
+- Expected runtime: TULthesis uses XeLaTeX, Biber, MakeIndex; semester 1.1 uses pdfLaTeX and BibTeX
 - Supported operating systems: Windows first; keep paths portable
 - Expert inputs and source copies: `zdroje/`
 - Source retrieval: registry → thematic content maps → page-level fulltext index → original-page verification
@@ -85,7 +86,7 @@ Keep this checkpoint short and non-sensitive. Update it after meaningful progres
 - Replace generated title pages with IS STAG PDF: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\set-thesis-start.ps1 -ProjectDir .\prace -StagPdf <provided-pdf>`
 - Build a document: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-thesis.ps1 -ProjectDir <document-directory> -MainTex main.tex -Clean`
 - Build defense slides: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentation.ps1 -ProjectDir .\obhajoba -MainTex main.tex -Clean`
-- Validate a built deliverable: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-deliverable.ps1 -ProjectDir <document-directory> -DocumentKind <Thesis|Document|Presentation>`
+- Validate a built deliverable: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate-deliverable.ps1 -ProjectDir <document-directory> -DocumentKind <Thesis|Document|Presentation|Semester>`
 - Lint project-owned files: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\lint-project.ps1`
 - Create a handoff package: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new-handoff-package.ps1 -Name <name> -SourcePaths <paths>`
 - Verify and archive a handoff package: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-handoff-package.ps1 -PackagePath <package-directory> [-CreateZip]`
@@ -102,6 +103,7 @@ Keep this checkpoint short and non-sensitive. Update it after meaningful progres
 ## Constraints and safety
 
 - Never edit `templates/upstream/`.
+- Never edit or compile inside `templates/community/`; initialize a working copy and verify its import manifest.
 - Never commit `PROJECT_PROFILE.json`, secrets, or machine-specific absolute paths.
 - Do not guess official faculty, programme, branch, supervisor, or assignment metadata.
 - Preserve originals in `zdroje/` and place derivatives only under `zdroje/90_zpracovane/`.
@@ -136,3 +138,4 @@ Keep this checkpoint short and non-sensitive. Update it after meaningful progres
 - Input categories authorized for this environment: `[public / synthetic / safely anonymized until protected-data approval is established]`
 - Author verification and ability to explain autonomous steps: `[pending author review]`
 - 2026-10-06: Updated AI guidance from the supplied directive 7/2026; retained historical source 4/2023 without asserting formal repeal. User consent does not replace institutional system approval for protected data.
+- 2026-10-10: New documents use organized TULthesis 0.8; Czech SP on the seven faculties uses semester 1.1 with TitulniStrana and pdfLaTeX/BibTeX, exempt from the historical ThesisStart/gender/STAG rules. Existing work is preserved.

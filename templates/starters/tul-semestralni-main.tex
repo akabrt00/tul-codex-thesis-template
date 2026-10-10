@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+\usepackage{tul-semestralni}
+
+% Sedm fakult; profil FA se zde převádí na FUA.
+\Fakulta{{{FACULTY}}}
+\newcommand{\Predmet}{{{COURSE}}}
+\newcommand{\NazevPrace}{{{TITLE_CS}}}
+\newcommand{\AutorPrace}{{{AUTHOR}}}
+\newcommand{\DatumPrace}{{{WORK_DATE}}}
+\newcommand{\RokPrace}{{{YEAR}}}
+\newcommand{\VerzeZadani}{{{ASSIGNMENT_VERSION}}}
+\newcommand{\PouzitySW}{{{SOFTWARE}}}
+
+\begin{document}
+\TitulniStrana
+
+\section{Zadání a cíl práce}
+Doplňte zadání, řešený problém a cíl práce podle pokynů vyučujícího.
+
+\section{Postup řešení}
+Doplňte vlastní metody, vstupy a předpoklady. Citace patří do
+\texttt{literatura.bib}; používejte pouze ověřené zdroje z \texttt{zdroje/}.
+
+\section{Výsledky a diskuse}
+Doplňte skutečné výsledky, jejich vyhodnocení a omezení.
+
+\section{Závěr}
+Doplňte zhodnocení splnění cíle práce.
+
+% Přidejte skutečné citace pomocí \cite{klic}; bez citací bude seznam prázdný.
+% Před odevzdáním odstraňte nepoužitou bibliografii nebo doplňte ověřené zdroje.
+\bibliographystyle{unsrt}
+\bibliography{literatura}
+\end{document}

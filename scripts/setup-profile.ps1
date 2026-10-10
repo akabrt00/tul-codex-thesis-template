@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [Parameter(Mandatory)]
     [ValidateNotNullOrEmpty()]
@@ -20,9 +20,15 @@ param(
     [ValidateRange(2000, 2100)]
     [int]$Year = (Get-Date).Year,
 
-    [Parameter(Mandatory)]
     [ValidateSet('male', 'female')]
     [string]$FrontMatterVariant,
+
+    [ValidateSet('Auto', 'Original', 'Organized', 'Semester')]
+    [string]$TemplateVariant = 'Auto',
+    [string]$Course = '',
+    [string]$WorkDate = '',
+    [string]$AssignmentVersion = '',
+    [string]$Software = '',
 
     [string]$ProgrammeCode = '',
     [string]$ProgrammeNameCs = '',
@@ -40,6 +46,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+if (-not $FrontMatterVariant -and $TemplateVariant -ne 'Semester' -and -not ($TemplateVariant -eq 'Auto' -and $WorkType -eq 'SP' -and $Language -eq 'CZ' -and $Faculty -ne 'CXI')) {
+    throw 'Confirm -FrontMatterVariant male or female for TULthesis. Semester 1.1 uses its own title page without a declaration variant.'
+}
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 if (-not $DestinationRoot) { $DestinationRoot = $repoRoot }
 if (-not (Test-Path -LiteralPath $DestinationRoot)) {
@@ -50,6 +59,8 @@ $upstreamRoot = (Resolve-Path (Join-Path $repoRoot 'templates\upstream')).Path
 if ($destinationRootPath.StartsWith($upstreamRoot, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'DestinationRoot must not be inside templates/upstream.'
 }
+$communityRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'templates\community'))
+if ($destinationRootPath.StartsWith($communityRoot, [StringComparison]::OrdinalIgnoreCase)) { throw 'DestinationRoot must not be inside templates/community.' }
 $profilePath = Join-Path $destinationRootPath 'PROJECT_PROFILE.json'
 
 if ((Test-Path -LiteralPath $profilePath) -and -not $Force) {
@@ -85,6 +96,11 @@ $profile = [ordered]@{
         supervisor = $Supervisor
         consultant = $Consultant
         front_matter_variant = $FrontMatterVariant
+        template_variant = $TemplateVariant
+        course = $Course
+        work_date = $WorkDate
+        assignment_version = $AssignmentVersion
+        software = $Software
         stag_intro_pdf = $StagIntroPdf
     }
     privacy = [ordered]@{

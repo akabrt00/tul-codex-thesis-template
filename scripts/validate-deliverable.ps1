@@ -1,8 +1,8 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$ProjectDir,
     [string]$MainTex = 'main.tex',
-    [ValidateSet('Thesis', 'Document', 'Presentation')]
+    [ValidateSet('Thesis', 'Document', 'Presentation', 'Semester')]
     [string]$DocumentKind = 'Thesis',
     [string]$PdfPath,
     [ValidateSet('Auto', 'A4', 'Any')]
@@ -334,7 +334,13 @@ foreach ($file in $sourceFiles) {
 if ($placeholderHits.Count -gt 0) { Add-Check FAIL 'Placeholders' ("Found placeholder text at " + (($placeholderHits | Select-Object -First 10) -join ', ')) }
 else { Add-Check PASS 'Placeholders' "No known placeholders in $($sourceFiles.Count) document source file(s)." }
 
-if ($DocumentKind -ne 'Presentation') {
+if ($DocumentKind -eq 'Semester') {
+    $mainText = Get-Content -Raw -Encoding UTF8 -LiteralPath $mainFullPath
+    $activeText = $mainText -replace '(?m)%.*$', ''
+    $titleCount = @([regex]::Matches($activeText, '\\TitulniStrana\b')).Count
+    if ($titleCount -eq 1 -and $activeText -notmatch '\\ThesisStart\b') { Add-Check PASS 'Semester title page' 'Exactly one TitulniStrana and no ThesisStart command.' }
+    else { Add-Check FAIL 'Semester title page' 'Expected one TitulniStrana command and no ThesisStart command.' }
+} elseif ($DocumentKind -ne 'Presentation') {
     $mainText = Get-Content -Raw -Encoding UTF8 -LiteralPath $mainFullPath
     $activeStartMatches = @([regex]::Matches($mainText, '(?m)^\s*\\ThesisStart\{.*\}\s*$'))
     if ($activeStartMatches.Count -eq 1) {
@@ -390,13 +396,13 @@ $otherWarnings = [Math]::Max(0, $allWarnings - $knownWarnings)
 if ($otherWarnings -gt 0) { Add-Check WARN 'Other LaTeX warnings' "Found approximately $otherWarnings additional warning(s); inspect the final log." }
 else { Add-Check PASS 'Other LaTeX warnings' 'No additional LaTeX/package warnings found.' }
 
-if ($sourceText -match '\\printbibliography\b') {
+if (($sourceText -replace '(?m)%.*$', '') -match '\\(?:printbibliography\b|bibliography\{)') {
     $bblPath = Join-Path $projectPath "$jobName.bbl"
     if (-not (Test-Path -LiteralPath $bblPath -PathType Leaf) -or (Get-Item -LiteralPath $bblPath).Length -eq 0) {
         Add-Check FAIL 'Bibliography' 'The document prints a bibliography, but the .bbl file is missing or empty.'
     } else {
         $bblText = Get-Content -Raw -Encoding UTF8 -LiteralPath $bblPath
-        $entryCount = @([regex]::Matches($bblText, '\\entry\{')).Count
+        $entryCount = @([regex]::Matches($bblText, '\\(?:entry\{|bibitem(?:\[[^\]]*\])?\{)')).Count
         if ($entryCount -eq 0) { Add-Check FAIL 'Bibliography' 'The generated bibliography contains no entries.' }
         else { Add-Check PASS 'Bibliography' "$entryCount generated bibliography entry/entries." }
     }

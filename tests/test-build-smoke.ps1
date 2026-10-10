@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$WorkDir = '.ci-work',
     [string]$ArtifactDir = '.ci-artifacts',
@@ -61,7 +61,7 @@ try {
     $today = (Get-Date).ToString('yyyy-MM-dd')
     "| $today | main: prace/main.tex, syntetické cvičení a skripty | Codex, verze nezaznamenána | Technický test vytvoření PDF | Čistý build a preflight | Čeká na autora |" | Set-Content -LiteralPath (Join-Path $workPath 'POUZITI_AI.md') -Encoding UTF8
     Set-Content -LiteralPath $main -Value $text -Encoding UTF8
-    '@book{ci-source,author={Student, Test},title={CI fixture},year={2026},publisher={Test Publisher}}' | Set-Content -LiteralPath (Join-Path $workPath 'prace\references.bib') -Encoding UTF8
+    '@book{ci-source,author={Student, Test},title={CI fixture},year={2026},publisher={Test Publisher}}' | Set-Content -LiteralPath (Join-Path $workPath 'prace\literatura\zdroje.bib') -Encoding UTF8
 
     & (Join-Path $repoRoot 'scripts\compile-thesis.ps1') -ProjectDir (Join-Path $workPath 'prace') -MainTex main.tex -Clean
     & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\validate-deliverable.ps1') -ProjectDir (Join-Path $workPath 'prace') -DocumentKind Thesis -AllowGeneratedFrontMatter -ReportJson (Join-Path $artifactPath 'thesis-preflight.json')

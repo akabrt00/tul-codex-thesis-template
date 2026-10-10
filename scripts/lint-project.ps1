@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet('Text', 'Json')][string]$OutputFormat = 'Text',
     [string]$ReportPath
@@ -29,7 +29,7 @@ $files = @(
     Get-ChildItem -LiteralPath $repoRoot -Recurse -Force -File |
         Where-Object {
             $relative = $_.FullName.Substring($repoRoot.Length + 1).Replace('\', '/')
-            $relative -notmatch '^(templates/upstream|\.git|\.skill-staging|\.ci-work|\.ci-artifacts|node_modules|\.venv|venv|dist|build|coverage|tmp|\.tmp-|reviews)(/|$)' -and
+            $relative -notmatch '^(templates/(upstream|community)|\.git|\.skill-staging|\.ci-work|\.ci-artifacts|node_modules|\.venv|venv|dist|build|coverage|tmp|\.tmp-|reviews)(/|$)' -and
             $relative -notmatch '(^|/)(\.build-logs)(/|$)' -and
             $_.Extension -in @('.md', '.json', '.yaml', '.yml', '.ps1', '.psm1', '.tex', '.bib')
         }

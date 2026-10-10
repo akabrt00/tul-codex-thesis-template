@@ -1,0 +1,60 @@
+% !TEX program = pdflatex
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+\usepackage{tul-semestralni}
+
+% Změň pouze kód: FS, FT, FP, EF, FUA, FM nebo FZS.
+\Fakulta{FS}
+\newcommand{\Predmet}{Modelování a Simulace}
+\newcommand{\NazevPrace}{Semestrální práce 3}
+\newcommand{\AutorPrace}{Adam Kábrt}
+\newcommand{\DatumPrace}{\today}
+\newcommand{\RokPrace}{\the\year}
+\newcommand{\VerzeZadani}{2}
+\newcommand{\PouzitySW}{Creo Simulate}
+
+\begin{document}
+\TitulniStrana
+% Titulní strana se nepočítá; text začíná stránkou 1.
+\section{Zadání a cíl práce}
+Zde stručně popište zadání, řešený problém a cíl semestrální práce.
+
+\section{Postup řešení}
+Uveďte použité metody, vstupní údaje a předpoklady výpočtu.
+Na použitý zdroj odkažte citací, například \cite{ukazka}.
+\subsection{Výpočet}
+Rovnice lze zapisovat například takto:
+\begin{equation}
+  \sigma = \frac{F}{A},
+\end{equation}
+kde $F$ je zatěžující síla a $A$ plocha průřezu.
+
+\section{Výsledky}
+Výsledky doplňte obrázky, grafy nebo tabulkami. Obrázky ukládejte
+do složky projektu a vkládejte pomocí příkazu \verb|\includegraphics|.
+\begin{table}[htbp]
+  \centering
+  \caption{Ukázka přehledu výsledků}
+  \begin{tabular}{lrr}
+    \hline
+    Veličina & Hodnota & Jednotka \\
+    \hline
+    Síla & 1000 & N \\
+    Plocha & 100 & mm$^2$ \\
+    Napětí & 10 & MPa \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+\section{Závěr}
+Shrňte hlavní výsledky a zhodnoťte splnění cíle práce.
+
+% Zdroje přidávejte do literatura.bib ve stejné složce jako tento soubor.
+% V textu použijte \cite{klic}; seznam se vytvoří automaticky.
+\bibliographystyle{unsrt}
+\bibliography{literatura}
+\end{document}

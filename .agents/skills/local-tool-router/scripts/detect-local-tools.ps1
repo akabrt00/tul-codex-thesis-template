@@ -39,6 +39,8 @@ $candidates = @(
     @{ Id = 'pandoc'; Name = 'Pandoc'; Commands = @('pandoc'); ProbeArguments = @{ default = @('--version') } },
     @{ Id = 'latexmk'; Name = 'LaTeXmk'; Commands = @('latexmk'); ProbeArguments = @{ default = @('-v') } },
     @{ Id = 'xelatex'; Name = 'XeLaTeX'; Commands = @('xelatex'); ProbeArguments = @{ default = @('--version') } },
+    @{ Id = 'pdflatex'; Name = 'pdfLaTeX'; Commands = @('pdflatex'); ProbeArguments = @{ default = @('--version') } },
+    @{ Id = 'bibtex'; Name = 'BibTeX'; Commands = @('bibtex'); ProbeArguments = @{ default = @('--version') } },
     @{ Id = 'biber'; Name = 'Biber'; Commands = @('biber'); ProbeArguments = @{ default = @('--version') } },
     @{ Id = 'makeindex'; Name = 'MakeIndex'; Commands = @('makeindex'); ProbeArguments = @{ default = @('--version') } },
     @{ Id = 'ffmpeg'; Name = 'FFmpeg'; Commands = @('ffmpeg'); ProbeArguments = @{ default = @('-version') } },
