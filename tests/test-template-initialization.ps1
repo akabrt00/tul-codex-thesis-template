@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param()
 
 $ErrorActionPreference = 'Stop'
@@ -42,7 +42,9 @@ try {
     $activeStarts = @([regex]::Matches($thesis, '(?m)^\s*\\ThesisStart\{.*\}\s*$'))
     if ($activeStarts.Count -ne 1) { throw "Expected exactly one active ThesisStart, found $($activeStarts.Count)." }
     if ($activeStarts[0].Value -notmatch '\{male\}') { throw 'Fictional profile title-page variant was not applied.' }
-    if ($thesis -notmatch 'Test Student') { throw 'Fictional profile metadata was not applied.' }
+    $thesisMetadata = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $testRoot 'prace\nastaveni\udaje.tex')
+    if ($thesisMetadata -notmatch 'Test Student') { throw 'Fictional profile metadata was not applied.' }
+    if ($thesis -notmatch 'input\{nastaveni/balicky\}' -or -not (Test-Path (Join-Path $testRoot 'prace\sablona\loga\FM'))) { throw 'Default thesis must use the organized layout.' }
     $presentation = Get-Content -Raw -Encoding UTF8 -LiteralPath $presentationMain
     if ($presentation -notmatch 'Test Student' -or $presentation -notmatch 'Testovaci prace') { throw 'Presentation profile metadata was not applied.' }
     if ($presentation -notmatch 'Path=./fonts/' -or -not (Test-Path -LiteralPath (Join-Path $testRoot 'obhajoba\fonts\LICENSE.txt'))) { throw 'Presentation must bundle the portable Inter fonts with their license.' }

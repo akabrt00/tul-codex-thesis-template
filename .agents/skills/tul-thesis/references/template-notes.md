@@ -1,5 +1,9 @@
 # TULthesis reference
 
+These notes describe the TULthesis class used by Original and Organized.
+For the separate semester 1.1 article template, see `templates/TEMPLATE_VARIANTS.md`
+and the semester section in the parent skill; ThesisStart/STAG rules do not apply.
+
 ## Master and license
 
 - Historical source ID (reserved, no longer citable): `SRC-0002`

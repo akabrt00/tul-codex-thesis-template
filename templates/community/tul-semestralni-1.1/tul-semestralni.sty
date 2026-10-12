@@ -1,0 +1,64 @@
+\ProvidesPackage{tul-semestralni}[2026/10/09 v1.1 Semester paper template]
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage[left=25mm,right=25mm,top=48mm,bottom=28mm,headheight=24mm,headsep=8mm,footskip=15mm]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{amsmath}
+\graphicspath{{podklady/}}
+\newcommand{\tul@register}[5]{%
+  \expandafter\def\csname tul@faculty@#1\endcsname{%
+    \def\tul@asset{#2}\def\tul@name{#3}\definecolor{faculty}{HTML}{#4}\def\tul@address{#5}%
+    \def\tul@web{www.#2.tul.cz}}}
+\tul@register{FS}{fs}{Fakulta strojní}{888B95}{Studentská 1402/2, 461 17 Liberec 1}
+\tul@register{FT}{ft}{Fakulta textilní}{924C14}{Studentská 1402/2, 461 17 Liberec 1}
+\tul@register{FP}{fp}{Fakulta přírodovědně-humanitní a pedagogická}{0076D5}{Univerzitní náměstí 1410/1, 461 17 Liberec 1}
+\tul@register{EF}{ef}{Ekonomická fakulta}{65A812}{Voroněžská 1329/13, 460 02 Liberec 2}
+\tul@register{FUA}{fua}{Fakulta umění a architektury}{006443}{Studentská 1402/2, 461 17 Liberec 1}
+\tul@register{FM}{fm}{Fakulta mechatroniky, informatiky a mezioborových studií}{EA7603}{Studentská 1402/2, 461 17 Liberec 1}
+\tul@register{FZS}{fzs}{Fakulta zdravotnických studií}{00B0BE}{Studentská 1402/2, 461 17 Liberec 1}
+\newcommand{\Fakulta}[1]{%
+  \@ifundefined{tul@faculty@#1}{\PackageError{tul-semestralni}{Neznama fakulta #1}{Pouzij FS, FT, FP, EF, FUA, FM nebo FZS.}}{\csname tul@faculty@#1\endcsname}}
+\Fakulta{FS}
+\fancypagestyle{semestralni}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  % Podklady mají stejnou velikost písma; společné měřítko zachová
+  % stejnou výšku písmen i u víceřádkových názvů FP a FM.
+  \fancyhead[L]{\parbox[b][22mm][t]{125mm}{\includegraphics[scale=0.22]{logo-\tul@asset-txt.pdf}}}
+  \fancyhead[R]{\includegraphics[width=22mm]{symbol-\tul@asset.pdf}}
+  \fancyfoot[L]{\parbox[b]{145mm}{\sffamily\fontsize{8}{10}\selectfont\color{faculty}%
+    Technická univerzita v Liberci | \tul@name\\
+    \tul@address\ | \tul@web}}
+  \fancyfoot[R]{\sffamily\fontsize{9}{11}\selectfont\color{gray}\thepage\,/\,\pageref{LastPage}}}
+\pagestyle{semestralni}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\newcommand{\TitulniStrana}{%
+  \newgeometry{left=25mm,right=25mm,top=25mm,bottom=23mm}
+  \begin{titlepage}
+    \thispagestyle{empty}\centering
+    \includegraphics[width=40mm]{symbol-\tul@asset.pdf}\par
+    \vspace{6mm}
+    % Pevná výška bloku sjednotí polohu názvu práce u všech fakult.
+    \parbox[c][20mm][c]{\linewidth}{\centering
+      \includegraphics[scale=0.30]{logo-\tul@asset-txt-bw.pdf}}\par
+    \vspace{15mm}
+    {\Huge\bfseries\Predmet\par}
+    \vspace{3mm}
+    {\Large\bfseries\NazevPrace\par}
+    \vspace{20mm}
+    \begin{tabular}{@{}rl@{}}
+      \textbf{Jméno:} & \AutorPrace\\
+      \textbf{Datum:} & \DatumPrace\\
+      \textbf{Verze zadání:} & \VerzeZadani\\
+      \textbf{Použitý SW:} & \PouzitySW
+    \end{tabular}
+    \vfill
+    {\large\bfseries Technická univerzita v Liberci\par}
+    {\large Rok: \RokPrace\par}
+  \end{titlepage}
+  \restoregeometry
+  \setcounter{page}{1}\pagestyle{semestralni}}
+

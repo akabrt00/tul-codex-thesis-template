@@ -1,6 +1,12 @@
 # TUL Codex Thesis Template
 
-Přenositelná projektová základna pro závěrečnou práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty. Je navržená i pro studenty, kteří dosud pracovali pouze ve Wordu a neznají Git ani LaTeX.
+Přenositelná projektová základna pro závěrečnou i semestrální práci, další samostatné dokumenty a obhajobu na Technické univerzitě v Liberci. Obsahuje TUL LaTeX šablony, správu odborných zdrojů a onboarding pro AI agenty. Je navržená i pro studenty, kteří dosud pracovali pouze ve Wordu a neznají Git ani LaTeX.
+
+Nové závěrečné práce používají přehledné uspořádání TULthesis 0.8 s údaji v
+`nastaveni/`, bibliografií v `literatura/` a technickými soubory v `sablona/`.
+České semestrálky na sedmi fakultách mají samostatnou šablonu 1.1 s údaji o
+předmětu, vlastní titulní stranou a překladem pdfLaTeX/BibTeX. Původní TULthesis
+zůstává dostupný. [Výběr variant a návod](templates/TEMPLATE_VARIANTS.md).
 
 > **Jste úplný začátečník?** Začněte českým průvodcem [START_HERE.md](START_HERE.md). Nemusíte používat příkazový řádek ani ručně upravovat LaTeX. Chcete-li nejdřív vidět, jak člověk se šablonou pracuje, otevřete [simulaci práce s Codexem](ukazky/prace-s-codexem/README.md) a [ukázky konkrétních zadání](ukazky/ZADANI_PRO_CODEX.md).
 
@@ -35,7 +41,7 @@ ověření a institucionální podmínky musí být doloženy zvlášť.
    > Chci začít bakalářskou práci. Tady je moje zadání. Pomoz mi z něj připravit strukturu práce a první pracovní dokument. Proveď mě tím, technické věci zatím neznám.
 
 4. Codex projde dodané podklady, shrne požadavky a připraví první užitečný návrh. Pokud máte jen nápad, začněte jeho popisem. Zeptá se na informace potřebné pro nejbližší krok.
-5. Před vytvořením formálního dokumentu potvrdíte povinné údaje a mužskou nebo ženskou variantu pracovní titulní strany. Když je potřebné prostředí připravené, Codex vytvoří a zkontroluje první pracovní PDF. Chybějící nástroje vysvětlí; nic sám neinstaluje.
+5. Před vytvořením dokumentu potvrdíte povinné údaje. TULthesis potřebuje i mužskou nebo ženskou variantu pracovní titulní strany; semestrální šablona má vlastní titulní stranu bez této volby. Když je potřebné prostředí připravené, Codex vytvoří a zkontroluje první pracovní PDF. Chybějící nástroje vysvětlí; nic sám neinstaluje.
 6. Pokračujte běžnou větou, například „Praktickou část rozděl na návrh a ověření.“ Ukládání a zaměřené chaty vyřešíte v průběhu nastavení; jejich možnosti jsou níže. Po návratu stačí „Chci pokračovat“ — Codex ověří uložený stav projektu a naváže na rozpracovaný úkol.
 
 Podrobný vstupní postup, srovnání s Wordem a příklady běžných požadavků jsou v [START_HERE.md](START_HERE.md).
@@ -115,7 +121,7 @@ agent ověří původní záznamy a soubory, oddělí metodiku, výsledky a disk
 
 Onboarding vytvoří `PROJECT_PROFILE.json`. Obsahuje osobní a studijní údaje a je záměrně ignorovaný Gitem. Ukázka struktury je v `PROJECT_PROFILE.example.json`.
 
-Při založení práce se aktivuje právě jedna pracovní titulní strana: mužská (`male`) nebo ženská (`female`) varianta TUL šablony. Až získáte oficiální úvodní strany z IS STAG, předejte jejich PDF agentovi. Agent upozorní na osobní údaje, soubor uloží jako verzovanou součást hlavního dokumentu a původní variantu jím nahradí; nesmí ponechat dvě aktivní varianty ani všechny možnosti vypnout.
+Při založení TULthesis se aktivuje právě jedna pracovní titulní strana: mužská (`male`) nebo ženská (`female`) varianta TUL šablony. Až získáte oficiální úvodní strany z IS STAG, předejte jejich PDF agentovi. Agent upozorní na osobní údaje, soubor uloží jako verzovanou součást hlavního dokumentu a původní variantu jím nahradí; nesmí ponechat dvě aktivní varianty ani všechny možnosti vypnout.
 
 `PROJECT_CONTEXT.md` je naopak verzovaný. Uchovává téma, strukturu projektu, seznam výstupů a dlouhodobá rozhodnutí, ale nemá duplikovat osobní profil.
 
@@ -150,7 +156,7 @@ Další běžné vstupy jsou „Porovnej práci se zadáním“, „Zapracuj př
 
 Projekt funguje bez pluginů. Nainstalované schopnosti se používají pouze tehdy, když jsou pro úlohu vhodné a v aktuálním chatu skutečně dostupné.
 
-- LaTeX plugin je doplňková diagnostika. Nenahrazuje projektový build XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX.
+- LaTeX plugin je doplňková diagnostika. Nenahrazuje projektové skripty: TULthesis používá XeLaTeX/Biber/MakeIndex a semestrální šablona pdfLaTeX/BibTeX.
 - Wolfram může ověřovat symbolické nebo numerické výpočty, jednotky a transformace. Je to výpočetní nástroj, ne odborný citační zdroj.
 - MATLAB a Simulink se volí pro úlohy, kde přinášejí konkrétní výhodu; jednoduché operace mohou použít lehčí místní nástroj.
 - Po instalaci pluginu může být nutné otevřít nový chat. Nedostupnost pluginu není chyba projektu a agent má hledat reprodukovatelný fallback.
@@ -196,7 +202,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 `
   -Target Document -DocumentName technologicky-denik
 ```
 
-Inicializace kontroluje SHA-256 upstream stromů před kopírováním i po něm. Do `templates/upstream/` nikdy nezapisuje.
+Inicializace kontroluje SHA-256 dodaných stromů před kopírováním i po něm a u komunitních variant ověřuje manifest. Do `templates/upstream/` ani `templates/community/` nikdy nezapisuje.
 Pro hlavní práci a další formální dokumenty vytvoří stručný pracovní `main.tex`; nepoužije jako výchozí obsah celý manuál šablony. Pokud existuje lokální profil, bezpečně do starteru doplní známá metadata a neznámé hodnoty ponechá jako jasné položky k doplnění.
 
 ## Kompilace
@@ -222,12 +228,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compile-presentati
   -ProjectDir .\obhajoba -MainTex main.tex -Clean
 ```
 
-Práce se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX. Finální PDF a log je nutné také vizuálně a obsahově zkontrolovat.
+TULthesis se skládá v pořadí XeLaTeX → Biber → MakeIndex → XeLaTeX → XeLaTeX. Semestrální šablona 1.1 používá stejný skript, který automaticky zvolí pdfLaTeX → BibTeX (pokud jsou citace) → pdfLaTeX → pdfLaTeX. Finální PDF a log je nutné také vizuálně a obsahově zkontrolovat.
 
 ## Architektura
 
 - `.agents/skills/` — projektové skills pro onboarding, TUL dokumenty, prezentaci, lokální nástroje a zdroje.
 - `templates/upstream/TUL/` — neměnné upstream TUL šablony; nejsou odborným zdrojem a necitují se.
+- `templates/community/` — neměnné veřejné semestrální a uspořádané varianty; původ a hashe v `templates/manifests/`, návod v `templates/TEMPLATE_VARIANTS.md`.
 - `prace/` — pracovní kopie hlavní práce a dalších formálních dokumentů.
 - `obhajoba/` — pracovní kopie TULpresentation.
 - `zdroje/` — odborné a citovatelné materiály s registry `SRC-NNNN`.

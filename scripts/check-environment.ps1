@@ -1,5 +1,8 @@
-[CmdletBinding()]
-param([int]$ProbeTimeoutSeconds = 10)
+﻿[CmdletBinding()]
+param(
+    [int]$ProbeTimeoutSeconds = 10,
+    [ValidateSet('All', 'Semester')][string]$DocumentKind = 'All'
+)
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
@@ -38,6 +41,23 @@ function Test-CommandProbe {
     }
     $text = (($stdoutTask.Result + "`n" + $stderrTask.Result) -split '\r?\n' | Where-Object { $_ } | Select-Object -First 1) -join ' '
     return [pscustomobject]@{ ok = ($process.ExitCode -eq 0); detail = "$($command.Source) - $text" }
+}
+
+if ($DocumentKind -eq 'Semester') {
+    foreach ($tool in @('pdflatex','bibtex')) {
+        $probe = Test-CommandProbe -Name $tool -Arguments @('--version')
+        Add-Result $tool $probe.ok $probe.detail "Provide the $tool executable through your existing TeX distribution."
+    }
+    foreach ($package in @('babel.sty','lmodern.sty','geometry.sty','fancyhdr.sty','lastpage.sty','amsmath.sty')) {
+        $probe = Test-CommandProbe -Name 'kpsewhich' -Arguments @($package)
+        Add-Result $package $probe.ok $probe.detail "Provide $package through your existing TeX distribution."
+    }
+    $style = Join-Path $repoRoot 'templates\community\tul-semestralni-1.1\tul-semestralni.sty'
+    Add-Result 'Semester style' (Test-Path -LiteralPath $style) 'Bundled semester 1.1' 'Restore the verified community snapshot.'
+    $results | Format-Table -AutoSize -Wrap
+    if (@($results | Where-Object { $_.Required -and $_.Status -eq 'MISSING' }).Count -gt 0) { exit 1 }
+    Write-Output 'Semester build tools are ready. Use validate-deliverable.ps1 for PDF checks.'
+    exit 0
 }
 
 $xelatex = Test-CommandProbe -Name 'xelatex' -Arguments @('--version')

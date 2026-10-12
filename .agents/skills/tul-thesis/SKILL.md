@@ -11,6 +11,14 @@ Read `PROJECT_CONTEXT.md` and `references/template-notes.md`. Treat `templates/u
 
 Initialize `prace/` with `scripts/init-project.ps1`. Preserve attribution, README files, class/style files, fonts, logos, bibliography examples, and license information. Never copy changes back to upstream.
 
+Read `templates/TEMPLATE_VARIANTS.md` when selecting a layout. The initializer defaults to organized TULthesis 0.8 and to semester 1.1 for Czech `SP` on the seven faculties. Community snapshots are immutable and non-citable too. Never reinitialize a nonempty document or automatically migrate an existing thesis. Both thesis layouts retain the same class and typesetting; organized metadata lives in `nastaveni/udaje.tex`, packages in `nastaveni/balicky.tex`, bibliography in `literatura/zdroje.bib`, and technical assets in `sablona/`.
+
+## Short semester papers
+
+Semester 1.1 is a separate article template with `tul-semestralni.sty`, not the `SP` option of TULthesis. Confirm the Czech title, author, faculty, course, work date, year, assignment version and software; optional unused fields may be adapted in the working copy. Map profile `FA` to `\Fakulta{FUA}`. It supports FS, FT, FP, EF, FUA, FM and FZS in Czech; use a thesis layout for English or CXI. It has exactly one `\TitulniStrana` and no `\ThesisStart`, generated declaration or STAG dependency. Do not ask for a gender variant for this template. It has sections rather than chapters and `literatura.bib` next to `main.tex` with BibTeX `unsrt`; this does not certify ISO 690 compliance. Respect the teacher's actual requirements and the same source/AI-evidence rules.
+
+Use the same `compile-thesis.ps1`, which detects the semester style and runs pdfLaTeX → BibTeX when citations exist → pdfLaTeX → pdfLaTeX. A starter without citations may skip BibTeX; it is not submission-ready. Use `validate-deliverable.ps1 -DocumentKind Semester`, inspect the title page, faculty header/footer, A4 size, numbering and resolved citations. The TULthesis-specific rules below apply to the Original and Organized variants.
+
 ## Configure the document
 
 Determine the document type, TUL unit, language, color mode, one/two-sided output, font strategy, title in both languages, author, programme, branch, supervisor, consultants, year, IS STAG introductory PDF, bibliography style, and output path. Use the exact official names and codes supplied by the user or project context; do not guess institutional metadata.

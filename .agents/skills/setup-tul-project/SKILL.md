@@ -72,7 +72,7 @@ Ask only for missing values and keep the conversation in small groups. Ask with 
 - work type, normalized after confirmation to `BP`, `DP`, `Dis`, `Teze`, `Autoref`, `Hab`, `SP`, or `Proj`;
 - language: `CZ` or `EN`;
 - submission year.
-- generated TUL title-page/declaration variant: ask in plain language whether to use the male or female variant, then normalize to `male` or `female`. Never infer it from the user's name.
+- generated TULthesis title-page/declaration variant: ask in plain language whether to use the male or female variant, then normalize to `male` or `female`. Never infer it from the user's name. Semester 1.1 has its own title page and does not need this question.
 
 Use these name mappings when the user answers without codes:
 
@@ -107,7 +107,9 @@ Use `$tul-thesis` for thesis and formal-document initialization and `$tul-presen
 
 The initializer creates a minimal starter and fills known metadata from the profile. After copying, edit only the working copy. Review `\documentclass` options and all TUL metadata; keep official data visibly marked when the user has not supplied it. Prefer an official IS STAG introductory-pages PDF for current BP/DP workflows when available.
 
-Require exactly one active `\ThesisStart` command in every initialized formal document. The initializer must activate the confirmed `male` or `female` variant; all alternatives remain commented. If no variant is confirmed, stop before initialization and ask the user instead of generating a document that begins with the abstract.
+Read `templates/TEMPLATE_VARIANTS.md` when selecting the document. New Czech `SP` projects on the seven faculties use semester 1.1; other new formal documents use organized TULthesis 0.8. Explicit Original and Organized variants remain available. For semester work, collect course, work date, assignment version and software and pass `-Course`, `-WorkDate`, `-AssignmentVersion`, `-Software` to `setup-profile.ps1`. Store the selected `-TemplateVariant` in the profile and the deliverable type in the context. For existing profiles the automatic selection still works. Preserve existing workspaces.
+
+Require exactly one active `\ThesisStart` in Original/Organized documents and the confirmed `male` or `female` variant. Semester 1.1 instead requires one `\TitulniStrana`, no `\ThesisStart`, and no gender/STAG question. Validate it with `-DocumentKind Semester`; the build script detects its pdfLaTeX/BibTeX workflow. Confirm actual teacher requirements rather than imposing thesis abstracts or declarations on a semester paper.
 
 When the user later provides the official IS STAG introductory-pages PDF, explain that the copied PDF becomes a tracked project file and may contain personal data; obtain confirmation before adding it to a public repository. Then use `scripts/set-thesis-start.ps1 -ProjectDir prace -StagPdf <provided-pdf>`. This copies it to `prace/front-matter/stag-intro.pdf`, deactivates both generated variants, activates only the PDF command, records the portable path in `PROJECT_CONTEXT.md`, and updates the ignored local profile. Compile and visually verify the title/front matter after the switch. Never add a second active `\ThesisStart` line.
 

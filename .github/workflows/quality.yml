@@ -40,6 +40,10 @@ jobs:
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-template-initialization.ps1
 
+      - name: Test document template variants
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-template-variants.ps1
+
       - name: Test AI evidence checks
         shell: powershell
         run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-ai-evidence.ps1
@@ -71,6 +75,10 @@ jobs:
           } else {
             "### TUL build smoke test`nSkipped because the runner does not provide the full TUL toolchain. No software was installed." | Add-Content $env:GITHUB_STEP_SUMMARY
           }
+
+      - name: Optional semester build smoke test
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\test-semester-build-smoke.ps1
 
       - name: Upload quality artifacts
         if: always()

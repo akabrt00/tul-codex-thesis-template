@@ -1,9 +1,11 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$ProjectDir,
     [string]$MainTex = 'main.tex',
     [switch]$Clean,
-    [int]$StepTimeoutSeconds = 120
+    [int]$StepTimeoutSeconds = 120,
+    [ValidateSet('Auto', 'Thesis', 'Semester')]
+    [string]$DocumentKind = 'Auto'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -14,12 +16,18 @@ $upstreamPath = (Resolve-Path (Join-Path $repoRoot 'templates\upstream')).Path
 if ($projectPath.StartsWith($upstreamPath, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'Refusing to compile inside templates/upstream.'
 }
+$communityPath = [IO.Path]::GetFullPath((Join-Path $repoRoot 'templates\community'))
+if ($projectPath.StartsWith($communityPath, [StringComparison]::OrdinalIgnoreCase)) { throw 'Refusing to compile inside templates/community.' }
 
 $mainPath = (Resolve-Path -LiteralPath (Join-Path $projectPath $MainTex)).Path
 if (-not $mainPath.StartsWith($projectPath + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'MainTex must resolve inside ProjectDir.'
 }
 $jobName = [IO.Path]::GetFileNameWithoutExtension($mainPath)
+$mainText = Get-Content -Raw -Encoding UTF8 -LiteralPath $mainPath
+if ($DocumentKind -eq 'Auto') {
+    $DocumentKind = if ($mainText -match '\\usepackage(?:\[[^\]]*\])?\{tul-semestralni\}') { 'Semester' } else { 'Thesis' }
+}
 
 $auxiliarySuffixes = @('aux','bbl','bcf','blg','idx','ilg','ind','lof','log','lot','out','run.xml','toc','synctex.gz','fls','fdb_latexmk','xdv')
 if ($Clean) {
@@ -39,6 +47,9 @@ New-Item -ItemType Directory -Path $logDir -Force | Out-Null
 function Invoke-BuildStep {
     param([string]$Name, [string]$Command, [string[]]$Arguments)
     $commandInfo = Get-Command -Name $Command -CommandType Application -ErrorAction Stop | Select-Object -First 1
+    if ($Command -in @('xelatex','pdflatex','bibtex') -and $commandInfo.Source -match '(?i)miktex') {
+        $Arguments = @('--disable-installer') + $Arguments
+    }
     $stdout = Join-Path $logDir "$Name.stdout.log"
     $stderr = Join-Path $logDir "$Name.stderr.log"
     $psi = New-Object Diagnostics.ProcessStartInfo
@@ -69,6 +80,23 @@ function Invoke-BuildStep {
 }
 
 $xelatexArgs = @('-interaction=nonstopmode','-halt-on-error','-file-line-error',[IO.Path]::GetFileName($mainPath))
+if ($DocumentKind -eq 'Semester') {
+    $titleCount = @([regex]::Matches(($mainText -replace '(?m)%.*$', ''), '\\TitulniStrana\b')).Count
+    if ($titleCount -ne 1) { throw 'Semester document must contain exactly one active TitulniStrana command.' }
+    Invoke-BuildStep -Name '01-pdflatex' -Command 'pdflatex' -Arguments $xelatexArgs
+    $auxText = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectPath "$jobName.aux")
+    if ($auxText -match '\\bibdata\{' -and $auxText -match '\\citation\{') {
+        Invoke-BuildStep -Name '02-bibtex' -Command 'bibtex' -Arguments @($jobName)
+    } else {
+        Write-Output 'BibTeX skipped: no active bibliography with citations. A starter without sources is not submission-ready.'
+    }
+    Invoke-BuildStep -Name '03-pdflatex' -Command 'pdflatex' -Arguments $xelatexArgs
+    Invoke-BuildStep -Name '04-pdflatex' -Command 'pdflatex' -Arguments $xelatexArgs
+    $semesterPdf = Join-Path $projectPath "$jobName.pdf"
+    if (-not (Test-Path -LiteralPath $semesterPdf)) { throw 'Semester build did not produce a PDF.' }
+    Write-Output "Semester build completed: $semesterPdf"
+    return
+}
 Invoke-BuildStep -Name '01-xelatex' -Command 'xelatex' -Arguments $xelatexArgs
 
 $bcf = Join-Path $projectPath "$jobName.bcf"

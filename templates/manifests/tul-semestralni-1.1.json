@@ -1,0 +1,679 @@
+{
+  "schema_version": 1,
+  "version": "1.1",
+  "source_url": "https://latex-tul.adamkabrt.chatgpt.site/downloads/tul-semestralni-sablona.zip",
+  "source_commit": "b80527e40cbe6b330686e567b49935974b37fed8",
+  "imported": "2026-10-10",
+  "archive_sha256": "da4db2bceed4af2c594fe13a980014b77f29d66999dff36ca50aba3db4164a2e",
+  "root": "templates/community/tul-semestralni-1.1",
+  "files": [
+    {
+      "path": "literatura.bib",
+      "sha256": "56495f15bd8a7767fd86ef240818938f68c572429f98071ce37375aede9dee5b"
+    },
+    {
+      "path": "podklady/00README.txt",
+      "sha256": "4037528fdd4386fbf54deb43c18d51f7ee877393cc77d3ca24f3db700685649e"
+    },
+    {
+      "path": "podklady/logo-cxi-bw.pdf",
+      "sha256": "3a9014849792f8e812da9bf83cf843e9959d5e54ab3c47fdec8a144fea693d93"
+    },
+    {
+      "path": "podklady/logo-cxi-txt-bw.pdf",
+      "sha256": "b7f23e34fbdd2048bbb8bbbebe928c51aae8356d8f5d0fb92c084fc768499c4f"
+    },
+    {
+      "path": "podklady/logo-cxi-txt-en-bw.pdf",
+      "sha256": "13768d3152c80953ef76081492a5ebf7de47a964dc65fed76843597f3cd7e6fa"
+    },
+    {
+      "path": "podklady/logo-cxi-txt-en-wh.pdf",
+      "sha256": "eefcb94ec34dd1da5f856f8d5082c09a4326eb63301e60ea8caadeab7b782537"
+    },
+    {
+      "path": "podklady/logo-cxi-txt-en.pdf",
+      "sha256": "a3726783feb455eabe75b6d6b8780b5ed3853ad3dd2140957b84c5689e15ea55"
+    },
+    {
+      "path": "podklady/logo-cxi-txt-wh.pdf",
+      "sha256": "89297dadad75c243ba887522eeae8d993c6a78c1806b29c976eb107280339edf"
+    },
+    {
+      "path": "podklady/logo-cxi-txt.pdf",
+      "sha256": "93353c09c5e3a2d5a72587a6058e7ec6ae9374cfaaec2c9c198e17c88b1b4100"
+    },
+    {
+      "path": "podklady/logo-cxi-wh.pdf",
+      "sha256": "2a2490dc121ed694384c9db3bf64008262e938a0676dd054e9906546600c5d4f"
+    },
+    {
+      "path": "podklady/logo-cxi.pdf",
+      "sha256": "7ab8fe295419d34729e5d6c9f1d3969f7e8e9cec08b912ac5055270ee475c78d"
+    },
+    {
+      "path": "podklady/logo-ef-bw.pdf",
+      "sha256": "99efdd4d173ae3616633d8b3a51bdd2e834839323f85ec189a8d623618fae267"
+    },
+    {
+      "path": "podklady/logo-ef-en-bw.pdf",
+      "sha256": "81c668a423e1bda2ef1a70500f74631e5c960cef3097a4f912a9ad745f353ab2"
+    },
+    {
+      "path": "podklady/logo-ef-en-wh.pdf",
+      "sha256": "45d38bbbe0a56ca58438ab3d8b3bc05ab32f3efe25d23473759867a4ea3f57d7"
+    },
+    {
+      "path": "podklady/logo-ef-en.pdf",
+      "sha256": "9948086a8ddd262a06f42798aed04968d21fd6e3f258545e945e38299e8113c8"
+    },
+    {
+      "path": "podklady/logo-ef-txt-bw.pdf",
+      "sha256": "109900cf19bcc3ada93fd5f05a7918e18abc65844e532d58966d402db273103e"
+    },
+    {
+      "path": "podklady/logo-ef-txt-en-bw.pdf",
+      "sha256": "a1534ffe09a9a7545a5a7f079f8063b06ffaedeef9195c98c579791adf7713c1"
+    },
+    {
+      "path": "podklady/logo-ef-txt-en-wh.pdf",
+      "sha256": "f4eb9f4785375e0e4e6f976f4c16e038476d458945541903894526427a47f3ec"
+    },
+    {
+      "path": "podklady/logo-ef-txt-en.pdf",
+      "sha256": "4294675f32a2bcf2aabfac17d006ce06a0569b75319a6c760aa7a937591ec6f4"
+    },
+    {
+      "path": "podklady/logo-ef-txt-wh.pdf",
+      "sha256": "3e93ba673228d77a9fea0c7714d5484e65f1251b9d8398d9080c874eeed22ed4"
+    },
+    {
+      "path": "podklady/logo-ef-txt.pdf",
+      "sha256": "267fc355890baf67b07136f3b9ca288c1710bd789fe349310be6f950d35dd089"
+    },
+    {
+      "path": "podklady/logo-ef-wh.pdf",
+      "sha256": "501d675890b608f1453db5d3ad368bf2c71ac6aa59e4bf4c09078999cd58001d"
+    },
+    {
+      "path": "podklady/logo-ef.pdf",
+      "sha256": "aed81c2e6668471312a209a689c34e154df64ea3958d6f01a51a7a49cb521701"
+    },
+    {
+      "path": "podklady/logo-fm-bw.pdf",
+      "sha256": "d3274922f88f23598806c1f317ca03d5439c6bf22f0a75a69f1990dd765ef643"
+    },
+    {
+      "path": "podklady/logo-fm-txt-bw.pdf",
+      "sha256": "8672cdd373390b044141b68cc70d93119988ab517125f226a80616f0244da8dd"
+    },
+    {
+      "path": "podklady/logo-fm-txt-en-bw.pdf",
+      "sha256": "dea6f3e0069a329153ce80fd3aec411791b19f5c0ac5aac3b6b93eedc84376a1"
+    },
+    {
+      "path": "podklady/logo-fm-txt-en-wh.pdf",
+      "sha256": "720198b66ed6565adc45d9429db5532f5ae196ff65131541e0b257461659360d"
+    },
+    {
+      "path": "podklady/logo-fm-txt-en.pdf",
+      "sha256": "7c67ffd05cdba56858d62eb3e571322200de6a505b5436ec492113fa3d5b2a3a"
+    },
+    {
+      "path": "podklady/logo-fm-txt-wh.pdf",
+      "sha256": "c6ac5275e3c6c43102a33ecf92fd504ab6f4ffa7307a305cc51501f136f18ed9"
+    },
+    {
+      "path": "podklady/logo-fm-txt.pdf",
+      "sha256": "7b0ccae79ae7f4a44398b6fd5860ba241d47e9309dd3a53b7ea097378b070dce"
+    },
+    {
+      "path": "podklady/logo-fm-wh.pdf",
+      "sha256": "b1ba13c0f85f6260eb60ad626c940e7d38212b4135368a92186ec6e1417bd3b1"
+    },
+    {
+      "path": "podklady/logo-fm.pdf",
+      "sha256": "8ffd918dd94daf0061c59fc90f5096a95fe0cb2dde226bbbdc97f47de30485c1"
+    },
+    {
+      "path": "podklady/logo-fp-bw.pdf",
+      "sha256": "97432e9e385304f5909045de5ba9d7e13b9cf7805b50b05801fc297fe58cfb03"
+    },
+    {
+      "path": "podklady/logo-fp-en-bw.pdf",
+      "sha256": "d99634ae3bd717956e9892154a4ce417ab0bf489bebb2e671ec24d1adb7ad783"
+    },
+    {
+      "path": "podklady/logo-fp-en-wh.pdf",
+      "sha256": "6c6443ad3fe5e5c8693c1c01eff258737002bbd97f32dc9e4279c22deeed714d"
+    },
+    {
+      "path": "podklady/logo-fp-en.pdf",
+      "sha256": "39410e7b8f97b093d39e55a288e4c23c251fc450cd87b6959099d79066df72fb"
+    },
+    {
+      "path": "podklady/logo-fp-txt-bw.pdf",
+      "sha256": "3b49d5b092d212619cc9d715fa49e8868554879c3ab8f0471714084fa28072a2"
+    },
+    {
+      "path": "podklady/logo-fp-txt-en-bw.pdf",
+      "sha256": "55707b58fd09d4d44e32179da67be93d94119262bbf9ed4dba4fa0ba99234511"
+    },
+    {
+      "path": "podklady/logo-fp-txt-en-wh.pdf",
+      "sha256": "a104301689a18f85e01fc44e92d6172d8fe9fb4287dcd9066ea3973273a209be"
+    },
+    {
+      "path": "podklady/logo-fp-txt-en.pdf",
+      "sha256": "68d52bc0354bc6936155ef642d076784f5fef23a2f9ffd331662bfedde7dd67c"
+    },
+    {
+      "path": "podklady/logo-fp-txt-wh.pdf",
+      "sha256": "703b4530b635ec2bc6ddbdddd9f6bb8b909da38d11c98306a8374fa35bd4266d"
+    },
+    {
+      "path": "podklady/logo-fp-txt.pdf",
+      "sha256": "df64601aa22bb29b258db45ab87b1387af0c2129cd968051a98532565b1e01ff"
+    },
+    {
+      "path": "podklady/logo-fp-wh.pdf",
+      "sha256": "651146ea920192ecc92413a856e6f44d980f8896f45235812789af0556f2cc57"
+    },
+    {
+      "path": "podklady/logo-fp.pdf",
+      "sha256": "ebe480a4178e49d6cd6371f69fcfce501b10dd5e18479c07794908b4246d7a1b"
+    },
+    {
+      "path": "podklady/logo-fs-bw.pdf",
+      "sha256": "7cd3ce251d5d8259f213d4d4b2b0d74b5063cb09fd34c5f124ea8d6e5bf7c8f0"
+    },
+    {
+      "path": "podklady/logo-fs-en-bw.pdf",
+      "sha256": "11bec0dbb99d4bdae009de9db63eeb60c03d86cf0c5e0ae1975ffeb6adcb321d"
+    },
+    {
+      "path": "podklady/logo-fs-en-wh.pdf",
+      "sha256": "ecaee792ab03df85c458e509c56d6e78fcbbe8bc1a581ed94409ab318439d694"
+    },
+    {
+      "path": "podklady/logo-fs-en.pdf",
+      "sha256": "bd8abd3c2d7304124b26f46aaeb0dcc65ed5c08e3582504602febded18efd0bc"
+    },
+    {
+      "path": "podklady/logo-fs-txt-bw.pdf",
+      "sha256": "14709ee3dfed92c973cfdc3345d717a0c0d844767b6ceb84a3da29290c351ac1"
+    },
+    {
+      "path": "podklady/logo-fs-txt-en-bw.pdf",
+      "sha256": "246d288fbcb7c3d97780387c370bee7b0e8d0733b3a156cade3e4836374dacc1"
+    },
+    {
+      "path": "podklady/logo-fs-txt-en-wh.pdf",
+      "sha256": "558287ca9736924b78a7853cb777839f2c5e66268d6dd0f65fd64b5ed651947e"
+    },
+    {
+      "path": "podklady/logo-fs-txt-en.pdf",
+      "sha256": "425f52d659c07bf3d1fd43ec2286f86553c4eb37997890a29ba438da416f6b29"
+    },
+    {
+      "path": "podklady/logo-fs-txt-wh.pdf",
+      "sha256": "0fa9ef67241c1a15d07088b421067cf68f1b12927f6a67303bb64c86b9e1838a"
+    },
+    {
+      "path": "podklady/logo-fs-txt.pdf",
+      "sha256": "272656aa5c256db105970852d51b8eb05d8f7d6d523f05558bf34d5277b575bd"
+    },
+    {
+      "path": "podklady/logo-fs-wh.pdf",
+      "sha256": "cee2f8f759554a76ee6d1ac3a46e0e7a062f627d05a925690c0a1dbc2b186586"
+    },
+    {
+      "path": "podklady/logo-fs.pdf",
+      "sha256": "b3e53c92e9ba7c6cffbf5d68b377bb7c32bdbf4f913f0733f14bb3db61fb436b"
+    },
+    {
+      "path": "podklady/logo-ft-bw.pdf",
+      "sha256": "da5d0aeaaf44051aab1fa4ee8cab445586d6cad77f16a8cfa9149063654719f7"
+    },
+    {
+      "path": "podklady/logo-ft-txt-bw.pdf",
+      "sha256": "e78bb7d471ebbe1a1484a615810809cb2fcde2a44bb72ab2aba32b610fd31d9d"
+    },
+    {
+      "path": "podklady/logo-ft-txt-en-bw.pdf",
+      "sha256": "22d57d995c60d5a4f58f771af34f080021bf2d016180458b89fc601ad8003c22"
+    },
+    {
+      "path": "podklady/logo-ft-txt-en-wh.pdf",
+      "sha256": "be03e5e5991616a8059006afd6cc5f693934a5e2c5b0fd3c5d7fdd433b8a311f"
+    },
+    {
+      "path": "podklady/logo-ft-txt-en.pdf",
+      "sha256": "40763f8ba415ad480fe8d85629ca51d38cc0f0b08ebfb5d1f7425b9fcfb37b74"
+    },
+    {
+      "path": "podklady/logo-ft-txt-wh.pdf",
+      "sha256": "ec8aa802b603d8644a0583ed0a90869bf3e80e6eef97a1b51cec6ffba742e925"
+    },
+    {
+      "path": "podklady/logo-ft-txt.pdf",
+      "sha256": "ef3783f6313ff449195fa1ffee516d7cdc39e9033360e9a9dfdbe7ddb0e49cc0"
+    },
+    {
+      "path": "podklady/logo-ft-wh.pdf",
+      "sha256": "0aee15bf4d154341f999cad43390b26030f92ecdf99faaa7ba28f82cda4a16df"
+    },
+    {
+      "path": "podklady/logo-ft.pdf",
+      "sha256": "0458c10ceed494351e87f7dc16b9f92c6a8e0fe090867cb45d31bee0801f028d"
+    },
+    {
+      "path": "podklady/logo-fua-bw.pdf",
+      "sha256": "5374bc030e94520101bdc2eec29b00ad92c807759e1b9cdb888ff6f1cd8f27ef"
+    },
+    {
+      "path": "podklady/logo-fua-en-bw.pdf",
+      "sha256": "fc9dd6c95bf6ccd1c3df7d4bcbbd8cfd89caf3a8226b91fb7c42537b4b61929b"
+    },
+    {
+      "path": "podklady/logo-fua-en-wh.pdf",
+      "sha256": "a48457d9ba37cded330ef0842dd9f3341ad289837833a44c60ab569a21beba6c"
+    },
+    {
+      "path": "podklady/logo-fua-en.pdf",
+      "sha256": "f26086976dde7ba6c374bd33dc0b6e2ddbac639e296ea585b15dfc1c25fd49d5"
+    },
+    {
+      "path": "podklady/logo-fua-txt-bw.pdf",
+      "sha256": "6bdf75b6b8ca70eb8c7e1229fa661050412bee22f262fa181c1f17d0fd4545b6"
+    },
+    {
+      "path": "podklady/logo-fua-txt-en-bw.pdf",
+      "sha256": "02beafb468ca2dab74ad5479ea298af2eedd464ca4a56214d185c762ac922177"
+    },
+    {
+      "path": "podklady/logo-fua-txt-en-wh.pdf",
+      "sha256": "ac47fa6db0e8dec5399d55de4a4c4b1449624d947b6913e8a3ef5384780a8e03"
+    },
+    {
+      "path": "podklady/logo-fua-txt-en.pdf",
+      "sha256": "21b8dc1a20e59e273950739056c71466e3c420878f7109cf11bbd83a2e970c33"
+    },
+    {
+      "path": "podklady/logo-fua-txt-wh.pdf",
+      "sha256": "1ac0c84ae84eef43210d219ad80d8444e820eaa905a7e1606d9555488f277529"
+    },
+    {
+      "path": "podklady/logo-fua-txt.pdf",
+      "sha256": "39687222488e241c7d4748ddbb1ed1138f5d40f2cc68528d60721ef702616cfa"
+    },
+    {
+      "path": "podklady/logo-fua-wh.pdf",
+      "sha256": "a9bc974560ba9a7fad3f4929b967bee87459733bf55f974282bc85c5bd8e8502"
+    },
+    {
+      "path": "podklady/logo-fua.pdf",
+      "sha256": "71d607bf53ae74712da8491a4960cc654a737a16354b7010476701f9237fa917"
+    },
+    {
+      "path": "podklady/logo-fzs--en-bw.pdf",
+      "sha256": "6925702072f62221ed7c85b827d5dfb5f292861a6b0c78e7bfa4729267220ee4"
+    },
+    {
+      "path": "podklady/logo-fzs-bw.pdf",
+      "sha256": "4e6dbb5bfe09c413b6d8704f2bb50f93c108df47b91203f0e220651e66eec73f"
+    },
+    {
+      "path": "podklady/logo-fzs-en-bw.pdf",
+      "sha256": "6925702072f62221ed7c85b827d5dfb5f292861a6b0c78e7bfa4729267220ee4"
+    },
+    {
+      "path": "podklady/logo-fzs-en-wh.pdf",
+      "sha256": "2d4e42d803ae7015c2ee25621f0e4a97975ebc5637166c00ee5c5fb45cfe92f6"
+    },
+    {
+      "path": "podklady/logo-fzs-en.pdf",
+      "sha256": "c52bf9c6acc7b3ed0e61b54959b3284cf7e1ba44612518a3891238b8b4ad4f96"
+    },
+    {
+      "path": "podklady/logo-fzs-txt-bw.pdf",
+      "sha256": "3f0a7d5c6e0501d84dde061d924756c786d1b391c2bc5c4dcc532454132a0a18"
+    },
+    {
+      "path": "podklady/logo-fzs-txt-en-bw.pdf",
+      "sha256": "380f45cfd9279b4c8e907811fde19f766af9e761e298d27185571443d7c78a73"
+    },
+    {
+      "path": "podklady/logo-fzs-txt-en-wh.pdf",
+      "sha256": "52459e93604b14a7368d730d57895e36492c3b55de37626590e6d714ed327b46"
+    },
+    {
+      "path": "podklady/logo-fzs-txt-en.pdf",
+      "sha256": "da79ec18b90ebc48f4fdc0250bfe6cd5180bd1529fa4796337c79a992f315eb0"
+    },
+    {
+      "path": "podklady/logo-fzs-txt-wh.pdf",
+      "sha256": "37aef5fb420f2003f939c6a4cf339d1fdccdcc0c5393340981685f53879ac163"
+    },
+    {
+      "path": "podklady/logo-fzs-txt.pdf",
+      "sha256": "fb152c110ce8c4bb8dd470bba2b05cbba9601b1f0956bac2ab223dcf5441c62e"
+    },
+    {
+      "path": "podklady/logo-fzs-wh.pdf",
+      "sha256": "e2b70f1514f8bc14ec865c672b3d225d2f88f1c9108786a6c9d7ae1cddcbe654"
+    },
+    {
+      "path": "podklady/logo-fzs.pdf",
+      "sha256": "d20655f0b2932b927cbbbda3656497be935203b335d7235b795d132124a666b4"
+    },
+    {
+      "path": "podklady/logo-tul-3r-bw.pdf",
+      "sha256": "ede0d4a037dfa54ba9c4c8064bcbe2acba64d67dc52885bc3facc48eb24d2213"
+    },
+    {
+      "path": "podklady/logo-tul-3r-en-bw.pdf",
+      "sha256": "fe726489c5cdf3bd78e65d636b53d02cc6092ea5f99ec4642fa27a782c8a0fa3"
+    },
+    {
+      "path": "podklady/logo-tul-3r-en-wh.pdf",
+      "sha256": "452e4aa8194080978d6704afe6bd2085ad8d7625f034349295d618babc9486be"
+    },
+    {
+      "path": "podklady/logo-tul-3r-en.pdf",
+      "sha256": "04183fde0f898c00bd8d2166f7cc8ec1cfd8e0a5f9cc627349e6af169a216122"
+    },
+    {
+      "path": "podklady/logo-tul-3r-wh.pdf",
+      "sha256": "ea5ba7beaeecf42c46649382db7be13ed2e91f75a1d848919e27ca5165b5bad9"
+    },
+    {
+      "path": "podklady/logo-tul-3r.pdf",
+      "sha256": "3aa01e6a248f891721bb6befe72ee2ba372041f9245d790f8a2a60caa326aa3c"
+    },
+    {
+      "path": "podklady/logo-tul-bw.pdf",
+      "sha256": "aee9942101f7f8f4b1afc77c2b1cf06aab721932cf6e731d3229669203082ab9"
+    },
+    {
+      "path": "podklady/logo-tul-txt-bw.pdf",
+      "sha256": "14e530c4768cfaed5b841112466275dbcd7c41f74cbbe295942cb30f1ffe7d34"
+    },
+    {
+      "path": "podklady/logo-tul-txt-en-bw.pdf",
+      "sha256": "98145b9443279d3184f45e4b8ab6a3270dda134364e5a8c1548ebc80c9ba2f17"
+    },
+    {
+      "path": "podklady/logo-tul-txt-en-wh.pdf",
+      "sha256": "235df4df90d321edaa89f88d02eb6148f3ae94b388a91c196f3f68229a6e7689"
+    },
+    {
+      "path": "podklady/logo-tul-txt-en.pdf",
+      "sha256": "d4f6e6a64ed6e40ec48401a512b286edd3ebf63be17b4f198379c8227bf6626a"
+    },
+    {
+      "path": "podklady/logo-tul-txt-wh.pdf",
+      "sha256": "f99c4f8e4e3bee417e8e4bdfc4902bcf9e412677d04656b4dbfa705a8f6c93f5"
+    },
+    {
+      "path": "podklady/logo-tul-txt.pdf",
+      "sha256": "dd777b3e857903f9914558ced598a3813238163c223e7db611a5f490d7c0f50b"
+    },
+    {
+      "path": "podklady/logo-tul-wh.pdf",
+      "sha256": "f735db22a69969c62d7f32797049f6d7de79027616f50918831de2ce49fb8fb4"
+    },
+    {
+      "path": "podklady/logo-tul.pdf",
+      "sha256": "9c7485fc2452ebd5acffd182ff554354036fa01b62bbcf3108165ebe9d70d4b2"
+    },
+    {
+      "path": "podklady/manual-tul.pdf",
+      "sha256": "8643150a8a24e15fa4f9f7c0b4593c2887d3ea295374a8e4c07f54184cfc8ce5"
+    },
+    {
+      "path": "podklady/manual-tul.tex",
+      "sha256": "e9853696895283f28e0b9a8f03d3f1b81600f0db645cdc15f2b94cd508a7fde0"
+    },
+    {
+      "path": "podklady/manual-tulthesis.pdf",
+      "sha256": "307d3a4c41e823404055bdabc9fc691e70a69447a75edd12315d94d9765eaba1"
+    },
+    {
+      "path": "podklady/manual-tulthesis.tex",
+      "sha256": "abba46c9203a0073d0e46c5ab1d72c9cc0eb1b161a0a65fc19c71f47d7989a67"
+    },
+    {
+      "path": "podklady/pisma/Inter-Black.otf",
+      "sha256": "d108d003dd5e5a692a586e25aec09f5643f8078613e53d6d5e7ae45e1adf2fb4"
+    },
+    {
+      "path": "podklady/pisma/Inter-BlackItalic.otf",
+      "sha256": "fdd250fe1eadd2d48151f9e18d989840d308450486ec4a2e4e4fde4b0d435f6c"
+    },
+    {
+      "path": "podklady/pisma/Inter-Bold.otf",
+      "sha256": "1e9dfd6a6e33ac63a8fe3b4ed7ae0df9eac2d0b25e444e8e7daef4ac77943fc1"
+    },
+    {
+      "path": "podklady/pisma/Inter-BoldItalic.otf",
+      "sha256": "db4356b780ed61e0d0597a07566bef5bd7497d6f0edc2d88dbf8deaedaf1ace4"
+    },
+    {
+      "path": "podklady/pisma/Inter-ExtraBold.otf",
+      "sha256": "158144ef2ad48baf0e45907951a00a1d3264f85c742ccfbc087e90d3d9288cfa"
+    },
+    {
+      "path": "podklady/pisma/Inter-ExtraBoldItalic.otf",
+      "sha256": "6afee6b920d669c589b47fc2abbcad7d459f3d22f6c934c39c33105b39c238da"
+    },
+    {
+      "path": "podklady/pisma/Inter-ExtraLight.otf",
+      "sha256": "a0f33dfec7784ebf09b19d4ea50ffa49e2595f880082351124aacf9ebfa48442"
+    },
+    {
+      "path": "podklady/pisma/Inter-ExtraLightItalic.otf",
+      "sha256": "df1d6a77ed02425ec3456dfb488f05bba51e20d62dad2a92edf4ab7425247697"
+    },
+    {
+      "path": "podklady/pisma/Inter-Italic.otf",
+      "sha256": "45ecfe6cbadfd4803de6214e02c336a95163a7703973bc8a5ce7ac2d174ecaf7"
+    },
+    {
+      "path": "podklady/pisma/Inter-Light.otf",
+      "sha256": "e66f130fbadda71e297a9a78025e2f05e8d225ae9dfcea9f51f6570b68fdd905"
+    },
+    {
+      "path": "podklady/pisma/Inter-LightItalic.otf",
+      "sha256": "9e9b0aa66832affca1f1bed090eb7b49236de1ac7b7e81f8c7c80864de49a974"
+    },
+    {
+      "path": "podklady/pisma/Inter-Medium.otf",
+      "sha256": "99dab2bdcb613c4c8264000a94351d1227f74dc95a86d1249493aeee0c0179c4"
+    },
+    {
+      "path": "podklady/pisma/Inter-MediumItalic.otf",
+      "sha256": "a0d825963fd0040dd3445c42bf769472dd0777b4e76323486caf72d955bb4723"
+    },
+    {
+      "path": "podklady/pisma/Inter-Regular.otf",
+      "sha256": "a7e791e8f5a0fb02b65663f7fca73e1d1ca9543f772ad480cbd76f4e3fe3f8cc"
+    },
+    {
+      "path": "podklady/pisma/Inter-SemiBold.otf",
+      "sha256": "8c1990b6012254ea2b487161697d107357dd0ee55811cfd91c8c11227bbef457"
+    },
+    {
+      "path": "podklady/pisma/Inter-SemiBoldItalic.otf",
+      "sha256": "404251faffd4c55dfcb53007e7afb9d5c2891584c842165e35050345ab97744b"
+    },
+    {
+      "path": "podklady/pisma/Inter-Thin.otf",
+      "sha256": "4d9bb6a256c5a9a4f3c7a7f5f27eb0f7e849a1ceee20638d44c9073b41a0b015"
+    },
+    {
+      "path": "podklady/pisma/Inter-ThinItalic.otf",
+      "sha256": "e8ecee2030f42da7214c7d5dae3c9c29dfb5e728c7f14020b4ce813da6aff12d"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-Black.ttf",
+      "sha256": "9f194f4b5feb160e249d2ca0f6165f8aada18ef3326ee3690e858b5a39e678ca"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-BlackItalic.ttf",
+      "sha256": "1e0e3b15b0667c8e7eca1ee84d3a4b1d9791b47abe3b28d06e678a8c15a91482"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-Bold.ttf",
+      "sha256": "1c043c7e4e31bef13751f8c14a55b6cd731130501eb726cdf87354da8c4c3c46"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-BoldItalic.ttf",
+      "sha256": "304c1457814164a84ce4f04301e754c6c0c152f31f0abb3d4dbb9f949efe0316"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-Italic.ttf",
+      "sha256": "92bb546c3a9911a0efc6cae0e507809148009786ef8289d3923ae503646e3037"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-Light.ttf",
+      "sha256": "7aaf7a3a48076702e829e86ab63d5f0aa4d94fa146322f93c281f60b3fa24e7e"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-LightItalic.ttf",
+      "sha256": "e16103d05dc19342a15237583073e29ae3191886e79a7e5b88786db2a2f710b4"
+    },
+    {
+      "path": "podklady/pisma/Merriweather-Regular.ttf",
+      "sha256": "06a2eb39176db59b9b7b0ddafee5748f4c032450c048ac99174a59f0b31997b9"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Black.ttf",
+      "sha256": "6bb9d6ba7b7b66864cee275200974d59229806d5717dac1866153053f704bd90"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Bold.ttf",
+      "sha256": "30d564327a3583d4bf694e30b14de28ae1287b04149783a72609ad5f923d0bcc"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-ExtraBold.ttf",
+      "sha256": "df9ec1876482b7ab51544135427c078f76d9492c863d4c8fc5fc1a3a05e1f924"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-ExtraLight.ttf",
+      "sha256": "83ba8b76050c1f8724be8a3585de65a6492311198d73a4544f2c63176a78a975"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Light.ttf",
+      "sha256": "94d6f15fae9dc291b7c8f1b8092e0bd8625c6f98b9f9555dc1533f5265c96b4d"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Medium.ttf",
+      "sha256": "62b9693510ad4647d0e6a5adfe9f7f0289ea597d8bfb225fdc59c70a28edb89a"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Regular.ttf",
+      "sha256": "87ff4d6da156dc108db5dabfc87779be83dbb55eccc7619578cd86c336d368a5"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-SemiBold.ttf",
+      "sha256": "c5921dcf98a93847e91be608067a9618b2fec7835061ab5f86895663b9d32530"
+    },
+    {
+      "path": "podklady/pisma/NotoSansMono-Thin.ttf",
+      "sha256": "4eb344b3c01ef831b17ba3abcea4a50fdae3f75a9dff603640f1e10dc4696ac8"
+    },
+    {
+      "path": "podklady/pisma/OFL-Inter.txt",
+      "sha256": "4d7d9c95e7d7f2f0ebf76d5e0b344826b74e903a34028ee18ab54bb639e45906"
+    },
+    {
+      "path": "podklady/pisma/OFL-Merriweather.txt",
+      "sha256": "792157d2eb74bfdce18e545570948f4e3018106e1e339ddcb565d47e313d2521"
+    },
+    {
+      "path": "podklady/pisma/OFL-NotoSansMono.txt",
+      "sha256": "857c9cfe99da9b1cb313234885d0909f4d36545410bb6e6d6b944340d1331d91"
+    },
+    {
+      "path": "podklady/pisma/TULMono-Bold.otf",
+      "sha256": "ef626e950bd8d7c55c28a3c770aec15072ba4a188f3a1477334cdc5d556d336d"
+    },
+    {
+      "path": "podklady/pisma/TULMono-Hairline.otf",
+      "sha256": "353660aa5dea9a0adc1da08963be500548e58d316dc353aed3ceab4912ca7ce1"
+    },
+    {
+      "path": "podklady/pisma/TULMono-Regular.otf",
+      "sha256": "349d61ecc965add8afc81e55992467f7f9f3b9d9a892bbc7e8bdc0a02efa9ead"
+    },
+    {
+      "path": "podklady/pisma/TULMono-SingleLine.otf",
+      "sha256": "b56451aa69aa477d1d8fc5787c5ab175edd7b3361e920b1d3f600f0bf02e4818"
+    },
+    {
+      "path": "podklady/symbol-cxi.pdf",
+      "sha256": "0498638cb70d67fc53812d76a2a8f400c7f748c335cfc88dad7cea796591fb56"
+    },
+    {
+      "path": "podklady/symbol-ef.pdf",
+      "sha256": "2e8305aef16a6aef767c9b53238ce23de141aa2c954af375b3e31e8cfa8481bf"
+    },
+    {
+      "path": "podklady/symbol-fm.pdf",
+      "sha256": "a22605b2a327ad65fc3bfaac0a555c6dc9231d0d0c4c8691555dc7cb7f407060"
+    },
+    {
+      "path": "podklady/symbol-fp.pdf",
+      "sha256": "b99e6bb832bcf4f343d5c6404f67784abeecacbf76d6f3a2edb2455864b22af9"
+    },
+    {
+      "path": "podklady/symbol-fs.pdf",
+      "sha256": "f31b1c63662177f9bea5ed7277ac6084e7fa25a297fc06e3c87e99d48e823a1d"
+    },
+    {
+      "path": "podklady/symbol-ft.pdf",
+      "sha256": "da5f5ca50258535d6ddc14a4c71aff298b7e39746df2b24b24218fd8ea09e4d7"
+    },
+    {
+      "path": "podklady/symbol-fua.pdf",
+      "sha256": "b277e8d327a6feca8dd9d326c60d4fabf88a2f1b3eb3515da73ffae7f4af0b83"
+    },
+    {
+      "path": "podklady/symbol-fzs.pdf",
+      "sha256": "7c1282a86a7cad4a01ff40ba0940ba7b2729538b53f38705e38b1dee26fd92a5"
+    },
+    {
+      "path": "podklady/symbol-tul-bw.pdf",
+      "sha256": "5c1b0583a2ff4e02ec7c01e076e88239b35130cf4e06bf2bbb332af604d41781"
+    },
+    {
+      "path": "podklady/symbol-tul-wh.pdf",
+      "sha256": "1e45b9ed4379edfbd1e9c2b0490583a922da437662b804c95802d4c09cc46f53"
+    },
+    {
+      "path": "podklady/symbol-tul.pdf",
+      "sha256": "51afaf5c367637162b783921ade076125b289e1386e37d17c9282ee63daaddb0"
+    },
+    {
+      "path": "podklady/tul.sty",
+      "sha256": "ab5fcb33b2c758ebd28ad020c82a5e1df131214a8253bbc04182e4038c00caff"
+    },
+    {
+      "path": "podklady/tulthesis.cls",
+      "sha256": "5bc4bacdf6885eb5b7dbdaa26735901088c8209a59f4d414c4c6b4268e834b88"
+    },
+    {
+      "path": "README.md",
+      "sha256": "67bc1d7867eafd751cc5b4ebce2f6f7562b1340c543c0a88ee43d3a611ac3204"
+    },
+    {
+      "path": "semestralni-prace.tex",
+      "sha256": "e04b78ef5d2746254223310d1be6d3f2c342fcee435691d6bbd819be73dfa3bc"
+    },
+    {
+      "path": "tul-semestralni.sty",
+      "sha256": "13f77be98345ab980e4e2329ba3018d53388d6e6e3f2b20209c3daefeeca29d6"
+    }
+  ]
+}

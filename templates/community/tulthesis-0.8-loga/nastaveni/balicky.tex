@@ -1,0 +1,10 @@
+% Nastavení společné pro celou práci. Samotné kapitoly balíčky nenačítají.
+\usepackage{polyglossia}
+\setdefaultlanguage{czech}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=iso-numeric,sorting=nyt,autolang=other,bibencoding=UTF8]{biblatex}
+\addbibresource{literatura/zdroje.bib}
+% Styl citací ověřte podle požadavků fakulty; ukázka nepředepisuje normu.
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+% Pokud měníte cestu k obrázkům, ponechte i cestu k logům šablony.
+\input{nastaveni/cesty-loga}
